@@ -1,7 +1,7 @@
 package ar.com.educacionit.clase2;
 
 //nombre de la clase
-public class Auto {
+public class Auto implements Comparable<Auto>{
 
 	//atributos
 	private String marca;
@@ -97,4 +97,16 @@ public class Auto {
 	public String getMarca() {		
 		return this.marca;
 	}
+	
+	@Override
+ 	public int compareTo(Auto o) {
+ 		//return this.marca.compareTo(o.getMarca());
+		return o.getMarca().compareTo(this.marca);
+ 	}
+
+	@Override
+	public String toString() {
+		return "Auto [marca=" + marca + ", modelo=" + modelo + ", anio=" + anio + "]";
+	}	
+		
 }
