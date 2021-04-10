@@ -5,15 +5,16 @@
     <artifactId>app-parent</artifactId>
     <version>1.0.0-SNAPSHOT</version>
   </parent>
-  
-  <artifactId>app-web</artifactId>
+  <artifactId>app-services</artifactId>
+  <name>services</name>
+  <description>capa de servicio</description>
   
   <dependencies>
+
   <dependency>
-		<groupId>ar.com.educacionit</groupId>
-		<artifactId>app-services</artifactId>
-		<version>1.0.0-SNAPSHOT</version>
-	</dependency>
+  	<groupId>ar.com.educacionit</groupId>
+  	<artifactId>app-dao</artifactId>
+  	<version>1.0.0-SNAPSHOT</version>
+  </dependency>
   </dependencies>
-  
 </project>

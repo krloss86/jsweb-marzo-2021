@@ -21,11 +21,18 @@ public class ProductoDAOJdbcImpl implements ProductoDAO {
 		
 		Connection connection = AdministradorDeConexiones.obtenerConexion(); 
 		
+		/*String sql = "INSERT INTO productos (titulo, precio,codigo, id_tipo_producto) "
+				+ "VALUES ('"+producto.getTitulo()+"', '"+producto.getPrecio()+"','"+producto.getCodigo()+"', '"+producto.getTipoProducto()+"')";*/
+		
 		String sql = "INSERT INTO productos (titulo, precio,codigo, id_tipo_producto) "
-				+ "VALUES ('"+producto.getTitulo()+"', '"+producto.getPrecio()+"','"+producto.getCodigo()+"', '"+producto.getTipoProducto()+"')";
+				+ "VALUES (?, ?, ?, ?)";
 		
 		try {
 			PreparedStatement statement = connection.prepareStatement(sql, PreparedStatement.RETURN_GENERATED_KEYS);
+			statement.setString(1, producto.getTitulo());
+			statement.setFloat(2, producto.getPrecio());
+			statement.setString(3, producto.getCodigo());
+			statement.setLong(4, producto.getTipoProducto());
 			
 			statement.execute();
 			
@@ -64,12 +71,10 @@ public class ProductoDAOJdbcImpl implements ProductoDAO {
 		String sqlSelect = "select * from productos";
 		
 		try {
-			Statement statement =  connection.createStatement();
+			PreparedStatement statement =  connection.prepareStatement(sqlSelect);
 			
 			ResultSet resultSet = statement.executeQuery(sqlSelect);
-			
 					
-			//if(resultSet.next()) { //encontró registros?
 			while(resultSet.next()) {
 				Producto producto = productoFromResultSet(resultSet);
 				
@@ -92,13 +97,15 @@ public class ProductoDAOJdbcImpl implements ProductoDAO {
 	}
 	
 	public Producto getById(Long idProducto) throws GenericException {
-		
+		//TODO ver que sucede con ???
 		Connection connection = AdministradorDeConexiones.obtenerConexion();
 		
 		String sqlSelect = "SELECT * FROM productos WHERE id = " + idProducto;
 		
 		try {
-			Statement statement =  connection.createStatement();
+			PreparedStatement statement =  connection.prepareStatement(sqlSelect);
+			
+			// statement.setLong(1, idProducto);
 			
 			ResultSet resultSet = statement.executeQuery(sqlSelect);
 			
@@ -124,14 +131,17 @@ public class ProductoDAOJdbcImpl implements ProductoDAO {
 	
 	public Producto getByCodigo(String codigoProducto) throws GenericException {
 		
+		//TODO 
 		Connection connection = AdministradorDeConexiones.obtenerConexion();
 		
-		String sqlSelect = "SELECT * FROM productos WHERE codigo = '" + codigoProducto+"'";
+		String sqlSelect = "SELECT * FROM productos WHERE codigo = '"+codigoProducto+"'";
 		
 		try {
-			Statement statement =  connection.createStatement();
+			PreparedStatement statement =  connection.prepareStatement(sqlSelect);
 			
-			ResultSet resultSet = statement.executeQuery(sqlSelect);
+			// statement.setString(1, codigoProducto);
+			
+			ResultSet resultSet = statement.executeQuery();
 			
 			Producto producto = null; 
 					
@@ -165,15 +175,20 @@ public class ProductoDAOJdbcImpl implements ProductoDAO {
 		}
 		
 		String sqlSelect = "UPDATE productos "
-				+ " set titulo='"+producto.getTitulo()+"',"
-				+ " precio='"+producto.getPrecio()+ "',"
-				+ " id_tipo_producto='"+producto.getTipoProducto()+ "'"
-				+ " WHERE id='" + producto.getId()+"'";
+				+ " set titulo = ? ,"
+				+ " precio = ? ,"
+				+ " id_tipo_producto = ?"
+				+ " WHERE id = ?";
 		
 		try {
-			Statement statement =  connection.createStatement();
+			PreparedStatement statement =  connection.prepareStatement(sqlSelect);
 			
-			int updated = statement.executeUpdate(sqlSelect);
+			statement.setString(1, producto.getTitulo());
+			statement.setFloat(2, producto.getPrecio());
+			statement.setLong(3, producto.getTipoProducto());
+			statement.setLong(4, producto.getId());
+			
+			int updated = statement.executeUpdate();
 							
 			statement.close();
 			
@@ -205,12 +220,14 @@ public class ProductoDAOJdbcImpl implements ProductoDAO {
 			throw new GenericException("No existe producto id:" + id, null);
 		}		
 		
-		String sql = "DELETE FROM PRODUCTOS WHERE ID = " + id;
+		String sql = "DELETE FROM PRODUCTOS WHERE ID = ? ";
 		
 		try {
-			Statement statement = connection.createStatement();
+			PreparedStatement statement = connection.prepareStatement(sql);
 			
-			int deleted = statement.executeUpdate(sql);
+			statement.setLong(1, id);
+			
+			int deleted = statement.executeUpdate();
 			
 			statement.close();
 			
@@ -240,12 +257,14 @@ public class ProductoDAOJdbcImpl implements ProductoDAO {
 			throw new GenericException("No existe producto id:" + codigo, null);
 		}		
 		
-		String sql = "DELETE FROM PRODUCTOS WHERE codigo = " + codigo;
+		String sql = "DELETE FROM PRODUCTOS WHERE codigo = ? ";
 		
 		try {
-			Statement statement = connection.createStatement();
+			PreparedStatement statement = connection.prepareStatement(sql);
 			
-			int deleted = statement.executeUpdate(sql);
+			statement.setString(1, codigo);
+			
+			int deleted = statement.executeUpdate();
 			
 			statement.close();
 			
@@ -285,7 +304,40 @@ public class ProductoDAOJdbcImpl implements ProductoDAO {
 
 	@Override
 	public Collection<Producto> findAllByTitulo(String titulo) throws GenericException {
-		return this.findAll();
+		
+		Collection<Producto> productos = new ArrayList<Producto>();
+		
+		Connection connection = AdministradorDeConexiones.obtenerConexion();
+		
+		String sqlSelect = "select * from productos where upper(titulo) like '%"+titulo+"%'";
+		
+		try {
+			PreparedStatement statement =  connection.prepareStatement(sqlSelect);
+			
+			//setear los parametros
+			//statement.setNString(0, titulo);
+			
+			ResultSet resultSet = statement.executeQuery();
+					
+			while(resultSet.next()) {
+				Producto producto = productoFromResultSet(resultSet);
+				
+				productos.add(producto);
+			}
+			
+			statement.close();
+			
+			return productos;
+		}catch (SQLException e) {
+			throw new GenericException("No se ha podido crear el producto", e);
+		}finally {
+			try {
+				connection.close();
+			} catch (SQLException e1) {
+				throw new GenericException("Problema cerrando la conexion, verique en la base de datos",e1);
+			}
+		}	
+		
 	}
 
 }
