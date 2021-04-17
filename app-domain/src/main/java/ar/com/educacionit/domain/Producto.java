@@ -25,6 +25,10 @@ public class Producto {
 		this.tipoProducto = tipoProducto;
 	}
 
+	public Producto() {
+		
+	}
+
 	public Long getId() {
 		return id;
 	}
@@ -71,6 +75,9 @@ public class Producto {
 		return "Producto [id=" + id + ", titulo=" + titulo + ", precio=" + precio + ", codigo=" + codigo
 				+ ", tipoProducto=" + tipoProducto + "]";
 	}
-	
+
+	public String toCSV() {
+		return titulo + ";" + precio + ";" + codigo + ";" + tipoProducto;
+	}
 	
 }
