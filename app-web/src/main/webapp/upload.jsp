@@ -7,7 +7,7 @@
 		<div class="container">
 			<div class="row">
 				<div class="col-12 mt-2">
-					<form>
+					<form enctype="application/x-www-form-urlencoded" action="<%=request.getContextPath()%>/UploadServlet" method="post">
 					  <div class="form-group">
 					    <label for="exampleFormControlFile1">Cargar Archivo de Productos (csv/xlsx)</label>
 					    <input type="file" class="form-control-file" id="exampleFormControlFile1">
