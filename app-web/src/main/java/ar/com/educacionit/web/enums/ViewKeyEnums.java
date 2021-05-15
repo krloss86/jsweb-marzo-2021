@@ -14,7 +14,8 @@ public enum ViewKeyEnums {
 	PRODUCTO_EDITAR("producto_editar"), 
 	UPLOAD_PREVIEW_KEY("upload_preview_key"), 
 	LISTADO_FAIL("listadoFail"),
-	LISTADO_OK("listadoOk"),
+	LISTADO_OK("listadoOk"), 
+	TOTAL("total"),
 	;
 	
 	private String viewKey;

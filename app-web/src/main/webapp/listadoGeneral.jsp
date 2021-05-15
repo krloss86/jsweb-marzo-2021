@@ -18,6 +18,32 @@
 			<jsp:include page="mensajeria.jsp"/>	
 			
 			<div class="row">
+				<div class="col-12">
+					<form class="form-inline" action="<%=request.getContextPath()%>/BuscarProductoServlet" method="post">
+<!-- 						<input type="hidden" name="titulo" value="" > -->
+						<div class="form-group">
+							<label>Titulo</label>
+							<input name="titulo" type="text" class="form-control" id="titulo">
+						</div>
+						<div class="form-group">
+							<label>Precio</label>
+							<input name="precio" type="number" class="form-control" id="precio">
+						</div>
+						<div class="form-group">
+						    <label for="exampleInputPassword1">Ordenar (Precio)</label>
+						    <select name="orden" class="form-control">
+								<option value="asc">Asc</option>
+							    <option value="desc">Desc</option>
+							</select>
+						  </div>
+						<button type="submit" class="btn btn-primary">
+							Filtrar
+						</button>
+					</form>
+				</div> 
+			</div>
+			
+			<div class="row">
 				<div class="col-12 mt-2">
 					<table class="table">
 						<thead>
@@ -46,6 +72,11 @@
 								</td>
 							</tr>
 						<%} %>
+							<tr>
+								<td colspan="3" align="right">Total </td>
+								<td>$ <%=request.getAttribute(ViewKeyEnums.TOTAL.name())%></td>
+								<td colspan="2"></td>
+							</tr>
 					</table>
 				</div>
 			</div>			
