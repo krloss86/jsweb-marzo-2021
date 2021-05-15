@@ -6,6 +6,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import ar.com.educacionit.services.ProductoServices;
 import ar.com.educacionit.services.impl.ProductoServiceImpl;
@@ -27,5 +28,15 @@ public abstract class BaseServlet extends HttpServlet {
 	
 	public void redirect(ViewEnums target, HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		getServletContext().getRequestDispatcher(target.getView()).forward(request, response);
+	}
+	
+	/**
+	 * Guarda un objeto en la sesion con clave key y valor value
+	 * @param session
+	 * @param key
+	 * @param value
+	 */
+	public void addAttribute(HttpSession session, ViewKeyEnums key, Object value) {
+		session.setAttribute(key.name(), value);		
 	}
 }

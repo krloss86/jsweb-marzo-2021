@@ -12,7 +12,9 @@ public enum ViewKeyEnums {
 	CLAVE_BUSQUEDA("claveBusqueda"), 
 	ID_PRODUCTO("id"),
 	PRODUCTO_EDITAR("producto_editar"), 
-	UPLOAD_PREVIEW_KEY("upload_preview_key")
+	UPLOAD_PREVIEW_KEY("upload_preview_key"), 
+	LISTADO_FAIL("listadoFail"),
+	LISTADO_OK("listadoOk"),
 	;
 	
 	private String viewKey;

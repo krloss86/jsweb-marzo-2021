@@ -4,14 +4,22 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
-import java.io.Reader;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.Collection;
+
+import javax.servlet.http.Part;
 
 import ar.com.educacionit.domain.Producto;
 
 public class CSVFileParser extends FileParserBase implements IFileParser {
 
+	public CSVFileParser(Part filePart) {
+		super(filePart);
+	}
+	
+	
 	public CSVFileParser(String name) {
 		super(name);
 	}
@@ -19,20 +27,41 @@ public class CSVFileParser extends FileParserBase implements IFileParser {
 	@Override
 	public Collection<Producto> parse() throws IOException {
 		
-		File myFyle = new File(super.name);
+		BufferedReader br = null;
 		
-		Reader r = new FileReader(myFyle);
+		if(this.filePart != null) {
+			InputStream fileContent = filePart.getInputStream();
+			br = new BufferedReader(new InputStreamReader(fileContent));
+		}else {
 		
-		BufferedReader bf = new BufferedReader(r);
-		
-		String lineaLeida = bf.readLine();
-		// titulo;codigo;precio;tipo
+			File myFyle = new File(super.name);
+			
+			if(myFyle.exists()) {
+				FileReader fr = new FileReader(myFyle);
+				br = new BufferedReader(fr);
+			}
+		}
 		
 		Collection<Producto> productos = new ArrayList<Producto>();
 		
+		if(br != null) {
+			productos = this.buildProductos(br);
+		}
+		
+		return productos;
+	}
+
+
+	private Collection<Producto> buildProductos(BufferedReader fr) throws IOException {
+		
+		Collection<Producto> productos = new ArrayList<Producto>();
+		
+		String lineaLeida = fr.readLine();
+		// titulo;codigo;precio;tipo
+		
 		while(lineaLeida  != null) {
 			
-			lineaLeida = bf.readLine();
+			lineaLeida = fr.readLine();
 			//teclado;abc999;1500;1
 			if(lineaLeida !=null) {
 				//separo por ;
@@ -51,7 +80,7 @@ public class CSVFileParser extends FileParserBase implements IFileParser {
 			}
 		}
 		
-		bf.close();
+		fr.close();
 		
 		return productos;
 	}

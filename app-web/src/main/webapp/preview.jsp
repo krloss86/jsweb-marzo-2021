@@ -5,7 +5,7 @@
 
 <!-- SCRIPTLET -->
 <%
-	Collection<Producto> listado = (Collection<Producto>)request.getAttribute(ViewKeyEnums.UPLOAD_PREVIEW_KEY.name());
+	Collection<Producto> listado = (Collection<Producto>)session.getAttribute(ViewKeyEnums.UPLOAD_PREVIEW_KEY.name());
 %>
 
 <html>
@@ -42,7 +42,8 @@
 			
 				<div class="col-md-12 col-md-8 col-lg-9 col-xl-6">
 					<form action="<%=request.getContextPath() %>/CargarProductosServlet" method="post">
-					  <button type="submit" class="btn btn-primary">Subir</button>
+						<a class="btn btn-info" href="<%=request.getContextPath() %>/upload.jsp" role="button">Cancelar</a>
+					  	<button type="submit" class="btn btn-primary">Procesar</button>
 					</form>
 				</div>
 				
