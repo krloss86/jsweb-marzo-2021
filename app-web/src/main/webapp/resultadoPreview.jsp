@@ -1,16 +1,18 @@
 <%@page import="ar.com.educacionit.web.enums.ViewKeyEnums"%>
 <%@page import="ar.com.educacionit.domain.Producto"%>
 <%@page import="java.util.Collection"%>
-
-<html>
-	<head>
-		<jsp:include page="styles.jsp"/>
-	</head>
+<!doctype html>
+<html lang="en">
+  	<head>
+    	<meta charset="utf-8">
+    	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    	<title>BootCamp</title>
+    	<jsp:include page="styles.jsp"></jsp:include>
+  	</head>
 	<body>
 		<jsp:include page="navbar.jsp"/>
 		<div class="container">
 			<jsp:include page="mensajeria.jsp"/>	
-			
 			<div class="row">
 				<div class="col-12 mt-2">
 					<div class="alert alert-success">Productos Procesados Correctamente</div>
@@ -73,28 +75,30 @@
 			
 			<% 
 				if(!productosFail.isEmpty()) { 
-			%>
+			%>			
 			<div class="row">
-				<div class="col-12">
-					<form class="form-inline"
-					 	action="<%=request.getContextPath()%>/GenerarArchivoErrorServlet"
+				<div class="col-xs-12 col-md-6 col-lg-4">
+					<form action="<%=request.getContextPath()%>/GenerarArchivoErrorServlet"
 						method="post"
 						target="_new">
-						
-						<select class="form-control" name="formato">
-							<option value="csv">CSV</option>
-							<option value="xls">XLS</option>
-							<option value="pdf">PDF</option> 
-						</select>
-						<button type="submit" class="btn btn-primary">
-							Generar listado de error
-						</button>
-					</form>
+						<div class="input-group">
+							  <select class="form-select" id="inputGroupSelect04" aria-label="Example select with button addon" name="formato">
+							    <option selected>Choose...</option>
+							    <option value="csv">CSV</option>
+								<option value="xls">XLS</option>
+								<option value="pdf">PDF</option>
+							  </select>
+							  <button type="submit" class="btn btn-success" type="button">
+							  	Generar Listado
+							  </button>
+						</div>
+					 </form>
 				</div>
-			</div>
+			</div>			
 			<%
 				}
 			%>
 		</div>
+		<jsp:include page="scripts.jsp"></jsp:include>
 	</body>
 </html>

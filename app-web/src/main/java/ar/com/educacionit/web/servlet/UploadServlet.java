@@ -27,24 +27,33 @@ public class UploadServlet extends BaseServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		Part filePart = request.getPart("file");
-		String fileName = Paths.get(filePart.getSubmittedFileName()).getFileName().toString();
 		
-		//nombre.ext
-		String ext = getExt(fileName);
+		ViewEnums target = ViewEnums.UPLOAD_PREVIEW;
 		
-		IFileParser fileParser;
+		if(filePart.getSize() > 0) {
+			
+			String fileName = Paths.get(filePart.getSubmittedFileName()).getFileName().toString();
 		
-		if("csv".equals(ext.toLowerCase())) {
-			fileParser = new CSVFileParser(filePart);			
+			//nombre.ext
+			String ext = getExt(fileName);
+			
+			IFileParser fileParser;
+			
+			if("csv".equals(ext.toLowerCase())) {
+				fileParser = new CSVFileParser(filePart);			
+			}else {
+				fileParser = new XLSFileParser(fileName);
+			}
+			
+			Collection<Producto> productos = fileParser.parse();
+			
+			addAttribute(request.getSession(), ViewKeyEnums.UPLOAD_PREVIEW_KEY, productos);
 		}else {
-			fileParser = new XLSFileParser(fileName);
+			super.addAttribute(request, ViewKeyEnums.ERROR_GENERAL,"Debe serleccionar un archivo");
+			target = ViewEnums.UPLOAD;
 		}
 		
-		Collection<Producto> productos = fileParser.parse();
-		
-		addAttribute(request.getSession(), ViewKeyEnums.UPLOAD_PREVIEW_KEY, productos);
-		
-		redirect(ViewEnums.UPLOAD_PREVIEW, request, response);		
+		redirect(target, request, response);		
 	}
 	
 	/**

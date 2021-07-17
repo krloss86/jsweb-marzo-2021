@@ -1,9 +1,11 @@
 <%@page import="ar.com.educacionit.web.enums.ViewKeyEnums"%>
 <%@page import="ar.com.educacionit.domain.Producto"%>
 <%@page import="java.util.Collection"%>
-
-<html>
+<!doctype html>
+<html lang="en">
 	<head>
+	    <meta charset="utf-8">
+	    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 		<jsp:include page="styles.jsp"/>
 		<script type="text/javascript">
 			function guardarId(id) {
@@ -15,12 +17,11 @@
 	<body>
 		<jsp:include page="navbar.jsp"/>
 		<div class="container">
-			<jsp:include page="mensajeria.jsp"/>	
-			
+			<jsp:include page="mensajeria.jsp"/>			
 			<div class="row">
 				<div class="col-12">
 					<form class="form-inline" action="<%=request.getContextPath()%>/BuscarProductoServlet" method="post">
-<!-- 						<input type="hidden" name="titulo" value="" > -->
+<!-- 					<input type="hidden" name="titulo" value="" > -->
 						<div class="form-group">
 							<label>Titulo</label>
 							<input name="titulo" type="text" class="form-control" id="titulo">
@@ -67,7 +68,11 @@
 								<td><%=aux.getPrecio() %></td>
 								<td><%=aux.getTipoProducto() %></td>
 								<td>
-									<a class="btn btn-danger" onclick="guardarId(<%=aux.getId()%>)" href="#" role="button" data-toggle="modal" data-target="#exampleModal">Eliminar</a> | 
+<%-- 									<a class="btn btn-danger" onclick="guardarId(<%=aux.getId()%>)" href="#" role="button" data-toggle="modal" data-target="#exampleModal">Eliminar</a> | --%>
+									<button type="button" onclick="guardarId(<%=aux.getId()%>)" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal">
+										Eliminar
+									</button>
+									 
 									<a class="btn btn-primary" href="<%=request.getContextPath()%>/CargarParaEditarProductoServlet?id=<%=aux.getId()%>" role="button">Editar</a> 
 								</td>
 							</tr>
@@ -80,30 +85,28 @@
 					</table>
 				</div>
 			</div>			
-		</div>
-		
+		</div>		
 		<!-- Modal -->
 		<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
 		  <div class="modal-dialog">
 		    <div class="modal-content">
 		      <div class="modal-header">
-		        <h5 class="modal-title" id="exampleModalLabel">Eliminar Producto</h5>
-		        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-		          <span aria-hidden="true">&times;</span>
-		        </button>
+		        <h5 class="modal-title" id="exampleModalLabel">¿Desea eliminar el producto?</h5>
+		        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 		      </div>
 		      <div class="modal-body">
 		        ¿Desea eliminar el producto?
 		      </div>
 		      <div class="modal-footer">
-		      	<form id="eliminarForm" action="<%=request.getContextPath()%>/EliminarProductoServlet">
+		        <form id="eliminarForm" action="<%=request.getContextPath()%>/EliminarProductoServlet">
 		      		<input name="id" type="hidden" id="idProductoEliminar">
-		        	<button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+        	        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>		        	
 		        	<button type="submit" class="btn btn-primary">Confirmar</button>
 		        </form>
 		      </div>
 		    </div>
 		  </div>
 		</div>
+		<jsp:include page="scripts.jsp"></jsp:include>
 	</body>
 </html>

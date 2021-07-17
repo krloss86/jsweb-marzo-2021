@@ -8,13 +8,17 @@
 	Collection<Producto> listado = (Collection<Producto>)session.getAttribute(ViewKeyEnums.UPLOAD_PREVIEW_KEY.name());
 %>
 
-<html>
-	<head>
+<!doctype html>
+<html lang="en">
+  	<head>
+    	<meta charset="utf-8">
+    	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    	<title>BootCamp</title>
 		<jsp:include page="styles.jsp"></jsp:include>
-	</head>
+  	</head>
 	<body>
 		<jsp:include page="navbar.jsp"/>
-		<div class="container-fluid">
+		<div class="container">
 			<div class="row">
 				<table class="table">
 					  <thead>
@@ -42,12 +46,13 @@
 			
 				<div class="col-md-12 col-md-8 col-lg-9 col-xl-6">
 					<form action="<%=request.getContextPath() %>/CargarProductosServlet" method="post">
-						<a class="btn btn-info" href="<%=request.getContextPath() %>/upload.jsp" role="button">Cancelar</a>
-					  	<button type="submit" class="btn btn-primary">Procesar</button>
+						<a class="btn btn-warning" href="<%=request.getContextPath() %>/upload.jsp" role="button">Cancelar</a>
+					  	<button type="submit" class="btn btn-success">Procesar</button>
 					</form>
 				</div>
 				
 			</div>	
 		</div>
+		<jsp:include page="scripts.jsp"></jsp:include>
 	</body>
 </html>

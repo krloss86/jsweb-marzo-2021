@@ -1,16 +1,16 @@
 <%@page import="ar.com.educacionit.web.enums.ViewKeyEnums"%>
-<html>
-
-<head>
-	<jsp:include page="styles.jsp"></jsp:include>
-</head>
-
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>BootCamp</title>
+    <jsp:include page="styles.jsp"></jsp:include>
+  </head>
 <body>
 	<jsp:include page="navbar.jsp"></jsp:include>
 	<div class="container">
-	
 		<jsp:include page="mensajeria.jsp"/>
-		
 		<h1>Nuevo Producto</h1>		
 		<div class="row">
 			<div class="col-12">
@@ -40,4 +40,5 @@
 			</div>
 		</div>
 	</div>
+	<jsp:include page="scripts.jsp"></jsp:include>
 </body>

@@ -43,7 +43,13 @@ public class ActualizarProductoServlet extends BaseServlet {
 			//recargo la lista de productos
 			Collection<Producto> productos = ps.findAll();
 			request.setAttribute(ViewKeyEnums.LISTADO.name(), productos);
-			
+
+			Float suma = productos.stream()
+					.map(p -> p.getPrecio())
+					.reduce(0F, (Float x, Float y) -> x+y);
+				
+			addAttribute(request, ViewKeyEnums.TOTAL, suma);
+
 		} catch (ServiceException | RuntimeException e) {
 			request.setAttribute(ViewKeyEnums.ERROR_GENERAL.name(), e.getMessage());
 			target = ViewEnums.EDITAR_PRODUCTO;
