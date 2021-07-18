@@ -17,7 +17,7 @@ import ar.com.educacionit.web.enums.ViewEnums;
 import ar.com.educacionit.web.enums.ViewKeyEnums;
 
 @WebServlet("/NuevoProductoServlet")
-public class NuevoProductoServlet extends HttpServlet {
+public class NuevoProductoServlet extends BaseServlet {
 	private static final long serialVersionUID = 1L;
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -45,7 +45,12 @@ public class NuevoProductoServlet extends HttpServlet {
 			//recargo la lista de productos
 			Collection<Producto> productos = ps.findAll();
 			request.setAttribute(ViewKeyEnums.LISTADO.name(), productos);
-			
+			Float suma = productos.stream()
+					.map(p -> p.getPrecio())
+					.reduce(0F, (Float x, Float y) -> x+y);
+				
+			addAttribute(request, ViewKeyEnums.TOTAL, suma);
+
 		} catch (ServiceException | RuntimeException e) {
 			request.setAttribute(ViewKeyEnums.ERROR_GENERAL.name(), e.getMessage());
 			target = ViewEnums.NUEVO_PRODUCTO;

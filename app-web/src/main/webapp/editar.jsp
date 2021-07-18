@@ -15,9 +15,7 @@
 	<body>
 		<jsp:include page="navbar.jsp"></jsp:include>
 		<div class="container">
-		
 			<jsp:include page="mensajeria.jsp"/>
-			
 			<h1>Editar Producto Id: <%=aux.getId()%></h1>		
 			<div class="row">
 				<div class="col-12">
@@ -46,8 +44,8 @@
 						    <option value="3">Celulares</option>
 						</select>
 					  </div>
-					  <a class="btn btn-primary" href="<%=request.getContextPath()%>/BuscarProductoServlet" role="button">Volver</a>
-					  <button type="submit" class="btn btn-primary">Actualizar</button>
+					  <a class="btn btn-primary mt-1" href="<%=request.getContextPath()%>/BuscarProductoServlet" role="button">Volver</a>
+					  <button type="submit" class="btn btn-primary mt-1">Actualizar</button>
 					</form>			
 				</div>
 			</div>

@@ -1,6 +1,7 @@
 <!doctype html>
 <html lang="en">
   <head>
+	<link rel="icon" type="image/x-icon" href="<%=request.getContextPath()%>/favicon.ico">
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>BootCamp</title>
@@ -48,7 +49,7 @@
 		    <div class="card h-100">
 		      <img src="<%=request.getContextPath()%>/assets/images/ceramica.jpg" class="card-img-top" alt="...">
 		      <div class="card-body">
-		        <h5 class="card-title">Card title</h5>
+		        <h5 class="card-title">Porcelana</h5>
 	<!-- 		        <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p> -->
 					<a href="#" class="btn btn-primary">Ver mas</a>
 		      </div>

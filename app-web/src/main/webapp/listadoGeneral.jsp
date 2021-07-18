@@ -37,7 +37,7 @@
 							    <option value="desc">Desc</option>
 							</select>
 						  </div>
-						<button type="submit" class="btn btn-primary">
+						<button type="submit" class="btn btn-primary mt-1">
 							Filtrar
 						</button>
 					</form>

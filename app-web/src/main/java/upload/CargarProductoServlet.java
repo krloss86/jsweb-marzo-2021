@@ -29,12 +29,15 @@ public class CargarProductoServlet extends BaseServlet {
 		// fail
 		Collection<Producto> productosFail = new ArrayList<Producto>();
 		
-		for(Producto aux : productosEnSesion) {
-			try {
-				Producto producto = ps.nuevoProducto(aux);
-				productosOk.add(producto);
-			} catch (ServiceException e) {
-				productosFail.add(aux);
+		if(productosEnSesion != null) {
+			
+			for(Producto aux : productosEnSesion) {
+				try {
+					Producto producto = ps.nuevoProducto(aux);
+					productosOk.add(producto);
+				} catch (ServiceException e) {
+					productosFail.add(aux);
+				}
 			}
 		}
 		

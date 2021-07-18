@@ -35,7 +35,7 @@
 					    <option value="3">Celulares</option>
 					</select>
 				  </div>
-				  <button type="submit" class="btn btn-primary">Grabar</button>
+				  <button type="submit" class="btn btn-primary mt-1">Grabar</button>
 				</form>			
 			</div>
 		</div>

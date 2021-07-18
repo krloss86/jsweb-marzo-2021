@@ -42,7 +42,7 @@
 								class="form-control"
 								id="exampleInputPassword1">
 						</div>
-						<button type="submit" class="btn btn-primary">Login</button>
+						<button type="submit" class="btn btn-primary mt-1">Login</button>
 					</form>
 				</div>
 			</div>
