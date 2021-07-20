@@ -14,7 +14,7 @@
 		<h1>Nuevo Producto</h1>		
 		<div class="row">
 			<div class="col-12">
-				<form action="<%=request.getContextPath()%>/NuevoProductoServlet" method="post">
+				<form action="<%=request.getContextPath()%>/controllers/NuevoProductoServlet" method="post">
 				  <div class="form-group">
 				    <label for="exampleInputEmail1">Código</label>
 				    <input name="codigo" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">				    

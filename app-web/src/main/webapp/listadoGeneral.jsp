@@ -16,11 +16,12 @@
 	</head>
 	<body>
 		<jsp:include page="navbar.jsp"/>
-		<div class="container">
+		<div class="container-fluid">
 			<jsp:include page="mensajeria.jsp"/>			
 			<div class="row">
-				<div class="col-12">
-					<form class="form-inline" action="<%=request.getContextPath()%>/BuscarProductoServlet" method="post">
+				<div class="col-md-12 col-lg-2 mt-1">
+					<h3>Filtrar:</h3>
+					<form class="form-inline" action="<%=request.getContextPath()%>/controllers/BuscarProductoServlet" method="post">
 <!-- 					<input type="hidden" name="titulo" value="" > -->
 						<div class="form-group">
 							<label>Titulo</label>
@@ -42,10 +43,8 @@
 						</button>
 					</form>
 				</div> 
-			</div>
-			
-			<div class="row">
-				<div class="col-12 mt-2">
+				<div class="col-md-12 col-lg-10 mt-1">
+					<h3>Resultados:</h3>
 					<table class="table">
 						<thead>
 							<tr>
@@ -68,20 +67,20 @@
 								<td><%=aux.getPrecio() %></td>
 								<td><%=aux.getTipoProducto() %></td>
 								<td>
-<%-- 									<a class="btn btn-danger" onclick="guardarId(<%=aux.getId()%>)" href="#" role="button" data-toggle="modal" data-target="#exampleModal">Eliminar</a> | --%>
-									<button type="button" onclick="guardarId(<%=aux.getId()%>)" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal">
-										Eliminar
-									</button>
-									 
-									<a class="btn btn-primary" href="<%=request.getContextPath()%>/CargarParaEditarProductoServlet?id=<%=aux.getId()%>" role="button">Editar</a> 
+									<div class="d-grid gap-2 d-md-flex justify-content-md-end">
+										<button type="button" onclick="guardarId(<%=aux.getId()%>)" class="btn btn-danger me-md-2" data-bs-toggle="modal" data-bs-target="#exampleModal">
+											Eliminar
+										</button>
+										<a class="btn btn-primary" href="<%=request.getContextPath()%>/controllers/CargarParaEditarProductoServlet?id=<%=aux.getId()%>" role="button">Editar</a> 
+									</div>
 								</td>
 							</tr>
 						<%} %>
-							<tr>
-								<td colspan="3" align="right">Total </td>
-								<td>$ <%=request.getAttribute(ViewKeyEnums.TOTAL.name())%></td>
-								<td colspan="2"></td>
-							</tr>
+						<tr>
+							<td colspan="3" align="right">Total</td>
+							<td>$ <%=request.getAttribute(ViewKeyEnums.TOTAL.name())%></td>
+							<td colspan="2"></td>
+						</tr>
 					</table>
 				</div>
 			</div>			
@@ -98,7 +97,7 @@
 		        ¿Desea eliminar el producto?
 		      </div>
 		      <div class="modal-footer">
-		        <form id="eliminarForm" action="<%=request.getContextPath()%>/EliminarProductoServlet">
+		        <form id="eliminarForm" action="<%=request.getContextPath()%>/controllers/EliminarProductoServlet">
 		      		<input name="id" type="hidden" id="idProductoEliminar">
         	        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>		        	
 		        	<button type="submit" class="btn btn-primary">Confirmar</button>

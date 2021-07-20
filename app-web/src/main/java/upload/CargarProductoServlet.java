@@ -14,7 +14,7 @@ import ar.com.educacionit.exceptions.ServiceException;
 import ar.com.educacionit.web.enums.ViewEnums;
 import ar.com.educacionit.web.enums.ViewKeyEnums;
 import ar.com.educacionit.web.servlet.BaseServlet;
-@WebServlet("/CargarProductosServlet")
+@WebServlet("/controllers/CargarProductosServlet")
 public class CargarProductoServlet extends BaseServlet {
 
 	@Override

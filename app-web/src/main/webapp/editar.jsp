@@ -19,7 +19,7 @@
 			<h1>Editar Producto Id: <%=aux.getId()%></h1>		
 			<div class="row">
 				<div class="col-12">
-					<form action="<%=request.getContextPath()%>/ActualizarProductoServlet" method="post">
+					<form action="<%=request.getContextPath()%>/controllers/ActualizarProductoServlet" method="post">
 						<div class="form-group">
 						    <label for="exampleInputEmail0">ID</label>
 						    <input name="id" readonly="readonly" value="<%=aux.getId() %>" type="text" class="form-control" id="exampleInputEmail0" aria-describedby="emailHelp">				    
@@ -44,7 +44,7 @@
 						    <option value="3">Celulares</option>
 						</select>
 					  </div>
-					  <a class="btn btn-primary mt-1" href="<%=request.getContextPath()%>/BuscarProductoServlet" role="button">Volver</a>
+					  <a class="btn btn-primary mt-1" href="<%=request.getContextPath()%>/controllers/BuscarProductoServlet" role="button">Volver</a>
 					  <button type="submit" class="btn btn-primary mt-1">Actualizar</button>
 					</form>			
 				</div>

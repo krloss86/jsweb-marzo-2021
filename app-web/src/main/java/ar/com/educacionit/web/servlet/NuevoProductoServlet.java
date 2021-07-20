@@ -16,7 +16,7 @@ import ar.com.educacionit.services.impl.ProductoServiceImpl;
 import ar.com.educacionit.web.enums.ViewEnums;
 import ar.com.educacionit.web.enums.ViewKeyEnums;
 
-@WebServlet("/NuevoProductoServlet")
+@WebServlet("/controllers/NuevoProductoServlet")
 public class NuevoProductoServlet extends BaseServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -52,7 +52,7 @@ public class NuevoProductoServlet extends BaseServlet {
 			addAttribute(request, ViewKeyEnums.TOTAL, suma);
 
 		} catch (ServiceException | RuntimeException e) {
-			request.setAttribute(ViewKeyEnums.ERROR_GENERAL.name(), e.getMessage());
+			request.setAttribute(ViewKeyEnums.ERROR_GENERAL.name(), "Verifique los datos ingresados: " + e.getMessage());
 			target = ViewEnums.NUEVO_PRODUCTO;
 		}
 		

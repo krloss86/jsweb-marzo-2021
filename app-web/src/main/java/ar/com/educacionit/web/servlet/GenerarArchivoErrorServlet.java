@@ -17,7 +17,7 @@ import javax.servlet.http.HttpServletResponse;
 import ar.com.educacionit.domain.Producto;
 import ar.com.educacionit.web.enums.ViewKeyEnums;
 
-@WebServlet("/GenerarArchivoErrorServlet")
+@WebServlet("/controllers/GenerarArchivoErrorServlet")
 public class GenerarArchivoErrorServlet extends BaseServlet {
 
 	@Override

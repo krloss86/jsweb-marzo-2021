@@ -17,7 +17,7 @@ import ar.com.educacionit.web.enums.ViewKeyEnums;
 /**
  * Servlet implementation class BuscarProductoServlet
  */
-@WebServlet("/EliminarProductoServlet")
+@WebServlet("/controllers/EliminarProductoServlet")
 public class EliminarProductoServlet extends BaseServlet {
 	
 	private static final long serialVersionUID = 1L;

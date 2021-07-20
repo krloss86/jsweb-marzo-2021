@@ -19,7 +19,7 @@ import ar.com.educacionit.web.parser.IFileParser;
 import ar.com.educacionit.web.parser.XLSFileParser;
 
 
-@WebServlet("/UploadServlet")
+@WebServlet("/controllers/UploadServlet")
 @MultipartConfig
 public class UploadServlet extends BaseServlet {
 
@@ -33,7 +33,7 @@ public class UploadServlet extends BaseServlet {
 		if(filePart.getSize() > 0) {
 			
 			String fileName = Paths.get(filePart.getSubmittedFileName()).getFileName().toString();
-		
+			
 			//nombre.ext
 			String ext = getExt(fileName);
 			
@@ -42,7 +42,7 @@ public class UploadServlet extends BaseServlet {
 			if("csv".equals(ext.toLowerCase())) {
 				fileParser = new CSVFileParser(filePart);			
 			}else {
-				fileParser = new XLSFileParser(fileName);
+				fileParser = new XLSFileParser(filePart);
 			}
 			
 			Collection<Producto> productos = fileParser.parse();

@@ -3,8 +3,10 @@ package ar.com.educacionit.web.enums;
 public enum ViewKeyEnums {
 
 	USUARIO("usuario"), 
-	USUARIO_PASSWORD_INVALIDO("Usuario/Password Inválido"), 
+	USUARIO_PASSWORD_INVALIDO("Usuario/Password Inválido"),
+	USUARIO_SESSION_INVALIDA("Su sesión ha finalizado"),
 	ERROR_GENERAL("error"), 
+	WARNING_GENERAL("warning"),
 	EXITO("exito"), 
 	LISTADO("listado"),
 	

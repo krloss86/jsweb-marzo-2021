@@ -13,7 +13,7 @@ import ar.com.educacionit.exceptions.ServiceException;
 import ar.com.educacionit.web.enums.ViewEnums;
 import ar.com.educacionit.web.enums.ViewKeyEnums;
 
-@WebServlet("/ActualizarProductoServlet")
+@WebServlet("/controllers/ActualizarProductoServlet")
 public class ActualizarProductoServlet extends BaseServlet {
 	private static final long serialVersionUID = 1L;
 

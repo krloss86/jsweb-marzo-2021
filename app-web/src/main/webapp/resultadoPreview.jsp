@@ -14,8 +14,14 @@
 		<div class="container">
 			<jsp:include page="mensajeria.jsp"/>	
 			<div class="row">
-				<div class="col-12 mt-2">
-					<div class="alert alert-success">Productos Procesados Correctamente</div>
+				<div class="col-12">
+					<h1>Resultado</h1>		
+				</div>
+			</div>
+			
+			<div class="row">
+				<div class="col-sm-12 mt-2">
+					<h3 class="text-success">Productos Procesados</h3>
 					<table class="table">
 						<thead>
 							<tr>
@@ -39,13 +45,23 @@
 								<td><%=aux.getTipoProducto() %></td>
 							</tr>
 						<%} %>
+						<% if(productos.isEmpty()) { %>
+							<tr>
+								<td colspan="6">
+									<p class="d-flex justify-content-center text-info ">No hay datos</p>
+								</td>
+							</tr>
+						<%} %>
 					</table>
+					<a class="btn btn-primary mt-1" 
+						href="<%=request.getContextPath()%>/controllers/BuscarProductoServlet?" role="button">
+						Ver Listado
+					</a>
 				</div>
-			</div>	
-			<hr>
+			</div>
 			<div class="row">
-				<div class="col-12 mt-2">
-					<div class="alert alert-danger">Productos No Procesados</div>
+				<div class="col-sm-12 mt-2">
+					<h3 class="text-danger">Productos NO Procesados</h3>
 					<table class="table">
 						<thead>
 							<tr>
@@ -69,35 +85,37 @@
 								<td><%=aux.getTipoProducto() %></td>
 							</tr>
 						<%} %>
-					</table>
+						<% if(productosFail.isEmpty()) { %>
+							<tr>
+								<td colspan="6">
+									<p class="d-flex justify-content-center text-info ">No hay datos</p>
+								</td>
+							</tr>
+						<%} %>
+					</table>					
+					<% 
+						if(!productosFail.isEmpty()) { 
+					%>			
+						<form action="<%=request.getContextPath()%>/controllers/GenerarArchivoErrorServlet"
+							method="post"
+							target="_new">
+							<div class="input-group">
+								  <select class="form-select" id="inputGroupSelect04" aria-label="Example select with button addon" name="formato">
+								    <option selected>...</option>
+								    <option value="csv">CSV</option>
+									<option value="xls">XLS</option>
+<!-- 									<option value="pdf">PDF</option> -->
+								  </select>
+								  <button type="submit" class="btn btn-success" type="button">
+								  	Generar Listado
+								  </button>
+							</div>
+						 </form>
+					<%
+						}
+					%>
 				</div>
 			</div>
-			
-			<% 
-				if(!productosFail.isEmpty()) { 
-			%>			
-			<div class="row">
-				<div class="col-xs-12 col-md-6 col-lg-4">
-					<form action="<%=request.getContextPath()%>/GenerarArchivoErrorServlet"
-						method="post"
-						target="_new">
-						<div class="input-group">
-							  <select class="form-select" id="inputGroupSelect04" aria-label="Example select with button addon" name="formato">
-							    <option selected>Choose...</option>
-							    <option value="csv">CSV</option>
-								<option value="xls">XLS</option>
-								<option value="pdf">PDF</option>
-							  </select>
-							  <button type="submit" class="btn btn-success" type="button">
-							  	Generar Listado
-							  </button>
-						</div>
-					 </form>
-				</div>
-			</div>			
-			<%
-				}
-			%>
 		</div>
 		<jsp:include page="scripts.jsp"></jsp:include>
 	</body>

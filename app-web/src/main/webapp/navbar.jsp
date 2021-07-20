@@ -1,9 +1,9 @@
 <%@page import="ar.com.educacionit.web.enums.ViewKeyEnums"%>
 <%@page import="ar.com.educacionit.domain.User"%>
-
+<%@page isELIgnored="false"%>
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
   <div class="container-fluid">
-    <a class="navbar-brand" href="<%=request.getContextPath()%>">Home</a>
+    <a class="navbar-brand" href="${pageContext.request.contextPath}">Home</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -17,33 +17,24 @@
 		<%
 	  		User user = (User)session.getAttribute(ViewKeyEnums.USUARIO.name());
 		%>
-		
-		<%
-			if(user == null) {
-		%>
-			<li class="nav-item">
-	        	<a class="nav-link" href="login.jsp">Login</a>
-	      	</li>
-	    <%
-			}
-	    %>
 	    <%      
 			if(user != null) {
 	    %>
 		    <li class="nav-item">
-		    	<a class="nav-link" href="upload.jsp">Cargar Archivo</a>
+		    	<a class="nav-link" href="${pageContext.request.contextPath}/upload.jsp">Cargar Archivo</a>
 		    </li>
 		    <li class="nav-item">
-		       	<a class="nav-link" href="nuevo.jsp">Nuevo Producto</a>
+		       	<a class="nav-link" href="${pageContext.request.contextPath}/nuevo.jsp">Nuevo Producto</a>
 		    </li>
-			<li class="nav-item">
-		       	<a class="nav-link" href="LogoutServlet">Logout</a>
+<!-- 			<li class="nav-item"> -->
+<!-- 		    <a class="nav-link" href="LogoutServlet">Logout</a> -->
 		    </li>
 	    </ul>
-	    <form class="d-flex" action="<%=request.getContextPath()%>/BuscarProductoServlet" method="post">
+	    <form class="d-flex" action="${pageContext.request.contextPath}/controllers/BuscarProductoServlet" method="post">
 			<input name="claveBusqueda" class="form-control mr-sm-2" type="search" placeholder="Buscar" aria-label="Buscar">
 			<button class="btn btn-secondary my-2 my-sm-0" type="submit">Buscar</button>
 		</form>
+    	<a class="btn btn-warning" href="${pageContext.request.contextPath}/LogoutServlet" role="button">Logout</a>
 		<%
 			}
 		%>

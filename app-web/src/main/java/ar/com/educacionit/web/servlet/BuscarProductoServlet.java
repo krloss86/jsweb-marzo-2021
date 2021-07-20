@@ -24,7 +24,7 @@ import ar.com.educacionit.web.servlet.ordenadores.OrdenDesc;
 /**
  * Servlet implementation class BuscarProductoServlet
  */
-@WebServlet("/BuscarProductoServlet")
+@WebServlet("/controllers/BuscarProductoServlet")
 public class BuscarProductoServlet extends BaseServlet {
 	
 	private static final long serialVersionUID = 1L;
@@ -48,7 +48,7 @@ public class BuscarProductoServlet extends BaseServlet {
 			//obtener los parametros de los filtros
 			String titulo = request.getParameter("titulo");
 			if(titulo != null && !"".equals(titulo.trim())) {
-				stream = stream.filter(p -> p.getTitulo().contains(titulo));
+				stream = stream.filter(p -> p.getTitulo().toLowerCase().contains(titulo.toLowerCase()));
 			}
 			
 			//precio mayores o iguales
@@ -67,7 +67,10 @@ public class BuscarProductoServlet extends BaseServlet {
 			//aplico todos los filtros (si hay)
 			productos = stream.collect(Collectors.toList());
 			
-			//otenngo orden
+			if(productos.isEmpty()) {	
+				addAttribute(request, ViewKeyEnums.WARNING_GENERAL, "No hay datos");
+			}
+			//otengo orden
 			
 			String orden = request.getParameter("orden");
 			if("asc".equals(orden)) {

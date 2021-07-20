@@ -309,7 +309,7 @@ public class ProductoDAOJdbcImpl implements ProductoDAO {
 		
 		Connection connection = AdministradorDeConexiones.obtenerConexion();
 		
-		String sqlSelect = "select * from productos where upper(titulo) like '%"+titulo+"%'";
+		String sqlSelect = "select * from productos where upper(titulo) like '%"+titulo.toUpperCase()+"%'";
 		
 		try {
 			PreparedStatement statement =  connection.prepareStatement(sqlSelect);

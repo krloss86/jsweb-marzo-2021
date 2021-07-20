@@ -14,7 +14,7 @@
 			<div class="row">
 				<h1>Cargar Archivo</h1>
 				<div class="col-12 mt-2">
-					<form enctype="multipart/form-data" action="<%=request.getContextPath()%>/UploadServlet" method="post">
+					<form enctype="multipart/form-data" action="<%=request.getContextPath()%>/controllers/UploadServlet" method="post">
 					  <div class="form-group">
 					    <label for="exampleFormControlFile1">Cargar Archivo de Productos (csv/xlsx)</label>
 					    <input name="file" type="file" class="form-control-file" id="exampleFormControlFile1">

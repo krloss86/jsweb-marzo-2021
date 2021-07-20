@@ -1,3 +1,4 @@
+<%--
 <!doctype html>
 <html lang="en">
   <head>
@@ -100,3 +101,5 @@
 	<jsp:include page="scripts.jsp"></jsp:include>
   </body>
 </html>
+ --%>
+<jsp:forward page="/login.jsp"></jsp:forward>
