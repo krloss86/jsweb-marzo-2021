@@ -20,17 +20,6 @@ public class TreeSetMain {
 		//169 170 173 172 173
 		
 		System.out.println(alturas);
-		
-		//java11
-		Set<String> nombres2 = Set.of("Ferando", "Leonardo", "Sebastian", "Carlos", "Oliden","Francisco");
-		//LinkedHashSet<String> nombresLHS = new LinkedHashSet<>(nombres2);
-		HashSet<String> nombresHas = new HashSet<>(nombres2);
-		TreeSet<String> nombres = new TreeSet<>(nombres2);
-		
-		//System.out.println(nombresLHS);
-		System.out.println(nombresHas);
-		System.out.println(nombres);
-		
 	}
 
 }
