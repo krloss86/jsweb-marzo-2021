@@ -16,7 +16,7 @@ public class UserDaoImpl implements UserDao {
 		
 		Connection connection = AdministradorDeConexiones.obtenerConexion();
 		
-		String sqlSelect = "SELECT * FROM user WHERE upper(username) = '"+user.toUpperCase()+"'";
+		String sqlSelect = "SELECT * FROM users WHERE upper(username) = '"+user.toUpperCase()+"'";
 		
 		try {
 			PreparedStatement statement =  connection.prepareStatement(sqlSelect);
