@@ -73,7 +73,7 @@ public class ProductoDAOJdbcImpl implements ProductoDAO {
 		try {
 			PreparedStatement statement =  connection.prepareStatement(sqlSelect);
 			
-			ResultSet resultSet = statement.executeQuery(sqlSelect);
+			ResultSet resultSet = statement.executeQuery();
 					
 			while(resultSet.next()) {
 				Producto producto = productoFromResultSet(resultSet);
@@ -107,7 +107,7 @@ public class ProductoDAOJdbcImpl implements ProductoDAO {
 			
 			// statement.setLong(1, idProducto);
 			
-			ResultSet resultSet = statement.executeQuery(sqlSelect);
+			ResultSet resultSet = statement.executeQuery();
 			
 			Producto producto = null; 
 					

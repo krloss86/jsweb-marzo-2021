@@ -8,8 +8,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import ar.com.educacionit.web.enums.ViewEnums;
+
 @WebServlet("/LogoutServlet")
-public class LogoutServlet extends HttpServlet {
+public class LogoutServlet extends BaseServlet {
 	private static final long serialVersionUID = 1L;
      
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -17,7 +19,7 @@ public class LogoutServlet extends HttpServlet {
 		//mata la sesion
 		request.getSession().invalidate();
 		
-		response.sendRedirect(request.getContextPath());		
+		redirect(ViewEnums.LOGIN, request, response);
 	}
 
 }

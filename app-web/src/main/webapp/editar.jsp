@@ -44,7 +44,7 @@
 						    <option value="3">Celulares</option>
 						</select>
 					  </div>
-					  <a class="btn btn-primary mt-1" href="<%=request.getContextPath()%>/controllers/BuscarProductoServlet" role="button">Volver</a>
+					  <a class="btn btn-secondary mt-1" href="<%=request.getContextPath()%>/controllers/BuscarProductoServlet" role="button">Volver</a>
 					  <button type="submit" class="btn btn-primary mt-1">Actualizar</button>
 					</form>			
 				</div>
