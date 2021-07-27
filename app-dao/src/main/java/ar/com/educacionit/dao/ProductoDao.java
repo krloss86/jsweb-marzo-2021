@@ -11,7 +11,7 @@ import ar.com.educacionit.domain.Producto;
  * @author CHLopez
  *
  */
-public interface ProductoDAO {
+public interface ProductoDao {
 
 	public Producto create(Producto producto) throws DuplicatedException, GenericException;
 	public Collection<Producto> findAll() throws GenericException;

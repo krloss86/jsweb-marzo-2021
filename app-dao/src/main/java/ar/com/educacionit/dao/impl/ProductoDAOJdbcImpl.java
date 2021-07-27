@@ -5,17 +5,16 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.SQLIntegrityConstraintViolationException;
-import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Collection;
 
-import ar.com.educacionit.dao.ProductoDAO;
+import ar.com.educacionit.dao.ProductoDao;
 import ar.com.educacionit.dao.exceptions.DuplicatedException;
 import ar.com.educacionit.dao.exceptions.GenericException;
 import ar.com.educacionit.dao.jdbc.AdministradorDeConexiones;
 import ar.com.educacionit.domain.Producto;
 
-public class ProductoDAOJdbcImpl implements ProductoDAO {
+public class ProductoDAOJdbcImpl implements ProductoDao {
 
 	public Producto create(Producto producto) throws DuplicatedException, GenericException {
 		

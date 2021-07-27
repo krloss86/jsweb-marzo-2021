@@ -2,7 +2,7 @@ package ar.com.educacionit.services.impl;
 
 import java.util.Collection;
 
-import ar.com.educacionit.dao.ProductoDAO;
+import ar.com.educacionit.dao.ProductoDao;
 import ar.com.educacionit.dao.exceptions.DuplicatedException;
 import ar.com.educacionit.dao.exceptions.GenericException;
 import ar.com.educacionit.dao.impl.ProductoDAOJdbcImpl;
@@ -12,7 +12,7 @@ import ar.com.educacionit.services.ProductoServices;
 
 public class ProductoServiceImpl implements ProductoServices {
 
-	private ProductoDAO productoDao;
+	private ProductoDao productoDao;
 	
 	//C.D.I
 	//I.O.C

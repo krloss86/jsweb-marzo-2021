@@ -2,7 +2,7 @@ package ar.com.educacionit.clase6.jdbc;
 
 import java.util.Scanner;
 
-import ar.com.educacionit.dao.ProductoDAO;
+import ar.com.educacionit.dao.ProductoDao;
 import ar.com.educacionit.dao.exceptions.DuplicatedException;
 import ar.com.educacionit.dao.exceptions.GenericException;
 import ar.com.educacionit.dao.impl.ProductoDAOJdbcImpl;
@@ -31,7 +31,7 @@ public class CreateProductoMain {
 		Long tipoProducto = teclado.nextLong();
 
 		// Interface nombre = new Clase();
-		ProductoDAO productoDao = new ProductoDAOJdbcImpl();
+		ProductoDao productoDao = new ProductoDAOJdbcImpl();
 		
 		//creo el producto
 		Producto nuevoProducto = new Producto(titulo, precio, codigo, tipoProducto);
