@@ -12,11 +12,6 @@
 		    <li class="nav-item">
 		    	<a class="nav-link" href="${pageContext.request.contextPath}/listadoGeneral.jsp">Productos</a>
 		    </li>
-		    <%--
-		    <li class="nav-item">
-		       	<a class="nav-link" href="${pageContext.request.contextPath}/contacto.jsp">Contacto</a>
-		    </li>
-		    --%>
 		    <li class="nav-item">
 		       	<a class="nav-link" href="${pageContext.request.contextPath}/profile.jsp">Usuario</a>
 		    </li>
@@ -31,11 +26,11 @@
 				  </span>
 				</a>
 		    </li>
-	    </ul>
-	    <form class="d-flex" action="${pageContext.request.contextPath}/controllers/BuscarProductoServlet" method="post">
-			<input name="claveBusqueda" class="form-control mr-sm-2" type="search" placeholder="Buscar" aria-label="Buscar">			
-			<button class="btn btn-secondary my-2 my-sm-0" type="submit">Buscar</button>
-		</form>		
+	    </ul>	    
     </div>
-  </div>
+    <form class="d-flex" action="${pageContext.request.contextPath}/listadoGeneral.jsp" method="post">
+		<input name="claveBusqueda" class="form-control mr-sm-2" type="search" placeholder="Buscar" aria-label="Buscar">			
+		<button class="btn btn-secondary my-2 my-sm-0" type="submit">Buscar</button>
+	</form>		
+    </div>
 </nav>
