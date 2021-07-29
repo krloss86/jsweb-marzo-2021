@@ -144,4 +144,29 @@ public class CategoriasDBCDaoImpl implements CategoriasDao {
 			throw new GenericException("No se ha podido crear el producto", e2);
 		}		
 	}
+
+	
+	@Override
+	public List<Categoria> findAllBy(String criteria)  throws GenericException {
+
+		List<Categoria> list = new ArrayList<>();
+
+		try (Connection con = AdministradorDeConexiones.obtenerConexion()) {
+
+			String sql = "SELECT * FROM categorias where descripcion like '%"+criteria+"%'" ;
+
+			try (PreparedStatement pst = con.prepareStatement(sql)) {
+
+				try (ResultSet res = pst.executeQuery()) {
+
+					list = DTOUtils.populateDTOs(Categoria.class, res);
+				}
+			}
+		} catch (SQLException e) {
+			throw new GenericException("No se ha podido consultar la lista", e);
+		}
+
+		return list;
+	}
+
 }

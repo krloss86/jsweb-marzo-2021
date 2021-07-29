@@ -10,24 +10,26 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">      	
 		    <li class="nav-item">
-		    	<a class="nav-link" href="${pageContext.request.contextPath}/upload.jsp">Productos</a>
+		    	<a class="nav-link" href="${pageContext.request.contextPath}/listadoGeneral.jsp">Productos</a>
 		    </li>
+		    <%--
 		    <li class="nav-item">
-		       	<a class="nav-link" href="${pageContext.request.contextPath}/nuevo.jsp">Contacto</a>
+		       	<a class="nav-link" href="${pageContext.request.contextPath}/contacto.jsp">Contacto</a>
 		    </li>
+		    --%>
 		    <li class="nav-item">
-		       	<a class="nav-link" href="${pageContext.request.contextPath}/nuevo.jsp">Usuario</a>
+		       	<a class="nav-link" href="${pageContext.request.contextPath}/profile.jsp">Usuario</a>
 		    </li>
 	    </ul>
 	    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
 		    <li>
-				<button type="button" class="btn btn-info position-relative">
+				<a href="${pageContext.request.contextPath}/shoppingCart.jsp" class="btn btn-info position-relative">
 				  Carrito
 				  <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
 				    99+
 				    <span class="visually-hidden">Articulos</span>
 				  </span>
-				</button>
+				</a>
 		    </li>
 	    </ul>
 	    <form class="d-flex" action="${pageContext.request.contextPath}/controllers/BuscarProductoServlet" method="post">

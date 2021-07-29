@@ -48,6 +48,27 @@ public abstract class JDBCDAOBase<T extends Entity> implements GenericDao<T>{
 
 		return list;
 	}
+	
+	public List<T> findAllBy(String sqlWhere) throws GenericException {
+		
+		List<T> list = new ArrayList<>();
+
+		try (Connection con = AdministradorDeConexiones.obtenerConexion()) {
+
+			String sql = "SELECT * FROM " + this.tabla + " where " + sqlWhere;
+
+			try (PreparedStatement pst = con.prepareStatement(sql)) {
+
+				try (ResultSet res = pst.executeQuery()) {
+					list = (List<T>)DTOUtils.populateDTOs(this.clazz, res);
+				}
+			}
+		} catch (SQLException e) {
+			throw new GenericException("No se ha podido consultar la lista", e);
+		}
+
+		return list;
+	}
 
 	public T getOne(Long id) throws GenericException {
 		

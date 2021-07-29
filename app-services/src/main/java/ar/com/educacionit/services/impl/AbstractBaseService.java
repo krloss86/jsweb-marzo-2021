@@ -26,6 +26,15 @@ public class AbstractBaseService<T> implements IBaseService<T> {
 	}
 
 	@Override
+	public List<T> findAllBy(String criteria) throws ServiceException {
+		try {
+			return this.dao.findAllBy(criteria);
+		} catch (GenericException e) {
+			throw new ServiceException("No se ha podido consultar todos", e); 
+		}
+	}
+
+	@Override
 	public T getOne(Long id) throws ServiceException {
 		try {
 			return this.dao.getOne(id);

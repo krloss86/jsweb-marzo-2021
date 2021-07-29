@@ -11,6 +11,8 @@ public interface GenericDao<T> {
 	
 	public List<T> findAll() throws GenericException;
 	
+	public List<T> findAllBy(String criteria) throws GenericException;
+	
 	public T getOne(Long id) throws GenericException;
 	
 	public void delete(Long id) throws GenericException;

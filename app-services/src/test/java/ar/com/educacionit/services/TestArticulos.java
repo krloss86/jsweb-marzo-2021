@@ -67,6 +67,14 @@ public class TestArticulos {
 	
 	@Order(3)
 	@Test
+	public void whenFindAllWithWhere_then_showList() throws ServiceException {
+		ArticulosService service = new ArticuloServiceImpl();
+		List<Articulos> entities = service.findAllBy("Titulo");
+		assertTrue(!entities.isEmpty());
+	}
+	
+	@Order(4)
+	@Test
 	public void whenGetOne_then_showIt() throws ServiceException {
 		ArticulosService service = new ArticuloServiceImpl();
 		
@@ -76,7 +84,7 @@ public class TestArticulos {
 		assertEquals(entityId, entity.getId());
 	}
 
-	@Order(4)
+	@Order(5)
 	@Test
 	public void whenExistsEntity_then_updateIt() throws ServiceException, DuplicatedException {
 		ArticulosService service = new ArticuloServiceImpl();
@@ -93,7 +101,7 @@ public class TestArticulos {
 		assertEquals(expected, entity.getTitulo());
 	}
 	
-	@Order(5)
+	@Order(6)
 	@Test
 	public void whenExistsEntity_then_deleteId() throws ServiceException{		
 		ArticulosService service = new ArticuloServiceImpl();

@@ -16,7 +16,11 @@
 		                <h2>
 		                    404 Not Found</h2>
 		                <div class="error-details">
-		                    <%=exception.toString()%>
+		                    <%
+			                    if(exception != null) {
+			                    	out.print(exception.toString());
+			                    }
+		                    %>
 		                </div>
 		                <div class="error-actions">
 							<a href="<%=request.getContextPath()%>"
