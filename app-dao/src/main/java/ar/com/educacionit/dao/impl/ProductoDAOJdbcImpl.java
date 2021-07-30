@@ -29,7 +29,7 @@ public class ProductoDAOJdbcImpl implements ProductoDao {
 		try {
 			PreparedStatement statement = connection.prepareStatement(sql, PreparedStatement.RETURN_GENERATED_KEYS);
 			statement.setString(1, producto.getTitulo());
-			statement.setFloat(2, producto.getPrecio());
+			statement.setDouble(2, producto.getPrecio());
 			statement.setString(3, producto.getCodigo());
 			statement.setLong(4, producto.getTipoProducto());
 			
@@ -183,7 +183,7 @@ public class ProductoDAOJdbcImpl implements ProductoDao {
 			PreparedStatement statement =  connection.prepareStatement(sqlSelect);
 			
 			statement.setString(1, producto.getTitulo());
-			statement.setFloat(2, producto.getPrecio());
+			statement.setDouble(2, producto.getPrecio());
 			statement.setLong(3, producto.getTipoProducto());
 			statement.setLong(4, producto.getId());
 			
@@ -293,7 +293,7 @@ public class ProductoDAOJdbcImpl implements ProductoDao {
 		Producto producto;
 		Long id = resultSet.getLong(1);//ID
 		String titulo = resultSet.getString(2);
-		Float precio = resultSet.getFloat(3);
+		Double precio = resultSet.getDouble(3);
 		String codigo = resultSet.getString(4);
 		Long tipoProducto = resultSet.getLong(5);
 		

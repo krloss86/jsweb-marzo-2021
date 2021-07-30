@@ -70,7 +70,7 @@ public class CSVFileParser extends FileParserBase implements IFileParser {
 				if(datos.length > 1 && !"".equals(datos[0])) {
 					String titulo = datos[0];
 					String codigo = datos[1];
-					Float precio = Float.parseFloat(datos[2]);
+					Double precio = Double.parseDouble(datos[2]);
 					Long tipo = Long.parseLong(datos[3]);
 					
 					Producto producto = new Producto(titulo, precio, codigo, tipo);

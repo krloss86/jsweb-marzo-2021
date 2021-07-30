@@ -10,7 +10,7 @@ public class Cupones extends Entity {
 	private String codigo;
 	private Date fechaVigenciaDesde;
 	private Date fechaVigenciaHasta;
-	private Float descuento;
+	private Double descuento;
 	public Long getId() {
 		return id;
 	}
@@ -36,10 +36,10 @@ public class Cupones extends Entity {
 		this.fechaVigenciaHasta = fechaVigenciaHasta;
 	}
 	
-	public Float getDescuento() {
+	public Double getDescuento() {
 		return descuento;
 	}
-	public void setDescuento(Float descuento) {
+	public void setDescuento(Double descuento) {
 		this.descuento = descuento;
 	}
 	public String getCodigo() {

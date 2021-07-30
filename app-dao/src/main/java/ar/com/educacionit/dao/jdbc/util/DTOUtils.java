@@ -1,7 +1,6 @@
 package ar.com.educacionit.dao.jdbc.util;
 
 import java.lang.reflect.Method;
-import java.math.BigDecimal;
 import java.sql.Clob;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
@@ -74,37 +73,24 @@ public class DTOUtils {
 			int columnCount = rs.getMetaData().getColumnCount();
 			Object value = null;
 			for (int i = 1; i <= columnCount; i++) {
+				
+				int type =  meta.getColumnType(i);
+				
 				//System.out.println(meta.getColumnName(i));
-				if(isNumeric(meta, i)){
-					if(meta.getScale(i) == 0 || meta.getScale(i) == -127) {
-						//Cuando el campo es calculado no hay metadata.
-						//value = rs.getString(i) != null ? rs.getLong(i) : null;
-						if(rs.getString(i) != null){
-							BigDecimal val = rs.getBigDecimal(i);
-							
-							/*if(Math.floor(val.doubleValue()) != val.doubleValue()){
-								//Es decimal
-								value = val;
-							}else{*/
-								if(isFloating(meta, i)) {
-									//No es decimal
-									try {
-										value = rs.getFloat(i);
-									}catch (Exception e2) {
-										value = rs.getDouble(i);
-									}
-								}else {
-									value = rs.getLong(i);
-								}
-							//}
-							
-						}else{
-							value = null;
-						}
-					}else {
-						value = rs.getString(i) != null ? rs.getBigDecimal(i) : null;
-					}
-				}else if(meta.getColumnType(i) == Types.VARCHAR || meta.getColumnType(i) == Types.CHAR){
+					
+				if(type == Types.BIT) {
+					value = rs.getObject(i)!=null ? rs.getInt(i) : null;
+				}else if(type == Types.INTEGER || type == Types.NUMERIC) {
+					value = rs.getObject(i)!=null ? rs.getLong(i) : null;
+				}/*else if(type == Types.NUMERIC) {
+					value = rs.getObject(i)!=null ? rs.getLong(i) : null;	
+				}*/else if(type == Types.FLOAT) {
+					value = rs.getObject(i)!=null ? rs.getFloat(i) : null;
+				}else if(type == Types.DOUBLE || type == Types.REAL) {
+					value = rs.getObject(i)!=null ? rs.getDouble(i) : null;
+				}/*else if(type == Types.REAL) {
+					value = rs.getObject(i)!=null ? rs.getBigDecimal(i) : null;
+				}*/else if(meta.getColumnType(i) == Types.VARCHAR || meta.getColumnType(i) == Types.CHAR){
 					value = rs.getString(i);
 				}else if(meta.getColumnType(i) == Types.DATE || meta.getColumnType(i) == Types.TIMESTAMP){
 					value = rs.getDate(i)!=null?new java.util.Date(rs.getTimestamp(i).getTime()):null;
@@ -127,13 +113,11 @@ public class DTOUtils {
 		return mapList;
 	}
 
-	private static boolean isNumeric(ResultSetMetaData meta, int i) throws SQLException {
-		int type =  meta.getColumnType(i);
-		return type == Types.NUMERIC || type == Types.INTEGER || type == Types.BIT || type == Types.DOUBLE || type == Types.FLOAT || type == Types.REAL ; 
+	private static boolean isNumeric(int type) throws SQLException {
+		return type == Types.NUMERIC || type == Types.INTEGER || type == Types.BIT || isFloating(type) ; 
 	}
 	
-	private static boolean isFloating(ResultSetMetaData meta, int i) throws SQLException {
-		int type =  meta.getColumnType(i);
+	private static boolean isFloating(int type) throws SQLException {
 		return  type == Types.DOUBLE || type == Types.FLOAT || type == Types.REAL ; 
 	}
 

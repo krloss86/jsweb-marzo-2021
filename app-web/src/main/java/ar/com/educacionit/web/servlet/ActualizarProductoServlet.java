@@ -32,7 +32,7 @@ public class ActualizarProductoServlet extends BaseServlet {
 		try {
 			
 			Long idLong = Long.parseLong(id);
-			Float precioF = Float.parseFloat(precio);
+			Double precioF = Double.parseDouble(precio);
 			Long tipoProductoL = Long.parseLong(tipoProducto);
 			
 			nuevoProducto = new Producto(idLong, titulo, precioF, codigo, tipoProductoL);
@@ -44,9 +44,9 @@ public class ActualizarProductoServlet extends BaseServlet {
 			Collection<Producto> productos = ps.findAll();
 			request.setAttribute(ViewKeyEnums.LISTADO.name(), productos);
 
-			Float suma = productos.stream()
+			Double suma = productos.stream()
 					.map(p -> p.getPrecio())
-					.reduce(0F, (Float x, Float y) -> x+y);
+					.reduce(0D, (Double x, Double y) -> x+y);
 				
 			addAttribute(request, ViewKeyEnums.TOTAL, suma);
 

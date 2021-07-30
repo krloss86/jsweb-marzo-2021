@@ -16,7 +16,7 @@ public class OrdenesJDBCDaoImpl extends JDBCDAOBase<Ordenes> implements OrdenesD
 	@Override
 	protected void update(PreparedStatement pst, Ordenes entity) throws SQLException {
 		pst.setLong(1,entity.getEstadosOrdenesId());
-		pst.setFloat(2, entity.getMontoTotal());
+		pst.setDouble(2, entity.getMontoTotal());
 		if(entity.getCuponesId() != null) {
 			pst.setLong(3,entity.getCuponesId());
 		}else {
@@ -35,7 +35,7 @@ public class OrdenesJDBCDaoImpl extends JDBCDAOBase<Ordenes> implements OrdenesD
 		//convierto java.util.data a java.sql.Date
 		pst.setLong(2, entity.getSociosId());
 		pst.setLong(3,entity.getEstadosOrdenesId());
-		pst.setFloat(4, entity.getMontoTotal());
+		pst.setDouble(4, entity.getMontoTotal());
 		if(entity.getCuponesId() != null) {
 			pst.setLong(5,entity.getCuponesId());
 		}else {

@@ -54,7 +54,7 @@ public class BuscarProductoServlet extends BaseServlet {
 			//precio mayores o iguales
 			String precio = request.getParameter("precio");
 			if(precio !=null && !"".equals(precio.trim())) {
-				Float precioF = Float.parseFloat(precio);
+				Double precioF = Double.parseDouble(precio);
 				stream = stream.filter(p -> p.getPrecio() >= precioF);
 			}
 			
@@ -79,9 +79,9 @@ public class BuscarProductoServlet extends BaseServlet {
 				Collections.sort((List)productos, new OrdenAsc());
 			}
 			
-			Float suma = productos.stream()
+			Double suma = productos.stream()
 				.map(p -> p.getPrecio())
-				.reduce(0F, (Float x, Float y) -> x+y);
+				.reduce(0D, (Double x, Double y) -> x+y);
 			
 			addAttribute(request, ViewKeyEnums.TOTAL, suma);
 		} catch (ServiceException e) {

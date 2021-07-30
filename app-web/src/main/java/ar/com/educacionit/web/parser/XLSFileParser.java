@@ -71,7 +71,7 @@ public class XLSFileParser extends FileParserBase implements IFileParser {
 					producto.setCodigo(currentCell.getStringCellValue());
 					break;
 				case 2:
-					producto.setPrecio((float) currentCell.getNumericCellValue());
+					producto.setPrecio((double) currentCell.getNumericCellValue());
 					break;
 				case 3:
 					producto.setTipoProducto((long) currentCell.getNumericCellValue());

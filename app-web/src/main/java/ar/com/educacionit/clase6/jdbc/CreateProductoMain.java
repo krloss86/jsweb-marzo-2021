@@ -22,7 +22,7 @@ public class CreateProductoMain {
 		
 		//evitar validaciones
 		System.out.println("Ingrese Precio:");
-		Float precio = teclado.nextFloat();
+		Double precio = teclado.nextDouble();
 		
 		System.out.println("Ingrese Código");
 		String codigo = teclado.next();

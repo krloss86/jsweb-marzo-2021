@@ -7,7 +7,7 @@ public class PagosOrdenes {
 	private Long ordenesId;
 	private Long mediosPagosId; 
 	private Date fechaPago;
-	private Float montoPagado;
+	private Double montoPagado;
 	
 	public Long getOrdenesId() {
 		return ordenesId;
@@ -27,10 +27,10 @@ public class PagosOrdenes {
 	public void setFechaPago(Date fechaPago) {
 		this.fechaPago = fechaPago;
 	}
-	public Float getMontoPagado() {
+	public Double getMontoPagado() {
 		return montoPagado;
 	}
-	public void setMontoPagado(Float montoPagado) {
+	public void setMontoPagado(Double montoPagado) {
 		this.montoPagado = montoPagado;
 	}
 	

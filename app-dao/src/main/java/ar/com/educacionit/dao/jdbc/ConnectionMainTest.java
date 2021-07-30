@@ -18,7 +18,7 @@ public class ConnectionMainTest {
 		Connection connection = AdministradorDeConexiones.obtenerConexion();
 		
 		System.out.println("Creando producto");
-		Producto p = new Producto("TEST", 1000F, "TEST2", 1l);		
+		Producto p = new Producto("TEST", 1000D, "TEST2", 1l);		
 		createProducto(connection, p);		
 		System.out.println("-------------------------------------");
 	
@@ -204,7 +204,7 @@ public class ConnectionMainTest {
 		Producto producto;
 		Long id = resultSet.getLong(1);//ID
 		String titulo = resultSet.getString(2);
-		Float precio = resultSet.getFloat(3);
+		Double precio = resultSet.getDouble(3);
 		String codigo = resultSet.getString(4);
 		Long tipoProducto = resultSet.getLong(5);
 		

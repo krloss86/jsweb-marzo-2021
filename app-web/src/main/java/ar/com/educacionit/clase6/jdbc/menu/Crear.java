@@ -16,7 +16,7 @@ public class Crear extends AccionBase implements IAccion {
 		
 		//evitar validaciones
 		System.out.println("Ingrese Precio:");
-		Float precio = teclado.nextFloat();
+		Double precio = teclado.nextDouble();
 		
 		System.out.println("Ingrese Código");
 		String codigo = teclado.next();

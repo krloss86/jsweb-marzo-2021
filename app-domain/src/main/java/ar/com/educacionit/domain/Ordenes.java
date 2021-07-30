@@ -9,7 +9,7 @@ public class Ordenes extends Entity {
 	private Date fechaCreacion;
 	private Long sociosId;
 	private Long estadosOrdenesId;
-	private Float montoTotal;
+	private Double montoTotal;
 	private Long cuponesId;
 	public Long getId() {
 		return id;
@@ -37,10 +37,10 @@ public class Ordenes extends Entity {
 	public void setEstadosOrdenesId(Long estadosOrdenesId) {
 		this.estadosOrdenesId = estadosOrdenesId;
 	}
-	public Float getMontoTotal() {
+	public Double getMontoTotal() {
 		return montoTotal;
 	}
-	public void setMontoTotal(Float montoTotal) {
+	public void setMontoTotal(Double montoTotal) {
 		this.montoTotal = montoTotal;
 	}
 	public Long getCuponesId() {

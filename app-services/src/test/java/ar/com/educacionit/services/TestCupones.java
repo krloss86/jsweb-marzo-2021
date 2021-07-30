@@ -27,7 +27,7 @@ public class TestCupones {
 		//when
 		Cupones entity = new Cupones();
 		entity.setCodigo(new String(""+Math.random()).substring(0,5));
-		entity.setDescuento(50f);
+		entity.setDescuento(50d);
 		entity.setFechaVigenciaDesde(new Date());
 		entity.setFechaVigenciaHasta(new Date());
 		entity.setNombre("cupon1");
@@ -70,7 +70,7 @@ public class TestCupones {
 		String expected = "actualizado";
 		
 		entity.setCodigo(expected.substring(0,5));
-		entity.setDescuento(60f);
+		entity.setDescuento(60d);
 		Date newDate = new Date();
 		entity.setFechaVigenciaDesde(newDate);
 		entity.setFechaVigenciaHasta(newDate);

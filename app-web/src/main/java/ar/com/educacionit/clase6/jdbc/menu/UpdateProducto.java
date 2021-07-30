@@ -25,7 +25,7 @@ public class UpdateProducto extends AccionBase implements IAccion {
 
 				//precio
 				System.out.println("Ingrese el nuevo Precio");
-				Float precioActualizado = teclado.nextFloat();				
+				Double precioActualizado = teclado.nextDouble();				
 				producto.setPrecio(precioActualizado);
 				
 				//titulo

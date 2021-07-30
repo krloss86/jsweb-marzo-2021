@@ -9,7 +9,7 @@ public class Articulos extends Entity {
 	private String titulo;
 	private String codigo;
 	private Date fechaCreacion;
-	private Float precio;
+	private Double precio;
 	private Long stock;
 	private Long marcasId;
 	private Long categoriasId;
@@ -32,10 +32,10 @@ public class Articulos extends Entity {
 	public void setFechaCreacion(Date fechaCreacion) {
 		this.fechaCreacion = fechaCreacion;
 	}
-	public Float getPrecio() {
+	public Double getPrecio() {
 		return precio;
 	}
-	public void setPrecio(Float precio) {
+	public void setPrecio(Double precio) {
 		this.precio = precio;
 	}
 	public Long getStock() {

@@ -25,8 +25,8 @@ public class UpdateProductoMain {
 			if(producto != null) {
 				System.out.println(producto);
 				//precio en un 10%
-				Float precioActual = producto.getPrecio();
-				Float precioActualizado = precioActual * 1.1f;
+				Double precioActual = producto.getPrecio();
+				Double precioActualizado = precioActual * 1.1f;
 				producto.setPrecio(precioActualizado);
 				
 				//titulo

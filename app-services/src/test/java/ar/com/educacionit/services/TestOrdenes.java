@@ -20,12 +20,6 @@ import ar.com.educacionit.domain.Marcas;
 import ar.com.educacionit.domain.Ordenes;
 import ar.com.educacionit.domain.Socios;
 import ar.com.educacionit.exceptions.ServiceException;
-import ar.com.educacionit.services.ArticulosService;
-import ar.com.educacionit.services.CategoriasService;
-import ar.com.educacionit.services.EstadosOrdenesService;
-import ar.com.educacionit.services.MarcasService;
-import ar.com.educacionit.services.OrdenesService;
-import ar.com.educacionit.services.SociosService;
 import ar.com.educacionit.services.impl.ArticuloServiceImpl;
 import ar.com.educacionit.services.impl.CategoriaServiceImpl;
 import ar.com.educacionit.services.impl.EstadosOrdenesServiceImpl;
@@ -54,7 +48,7 @@ public class TestOrdenes {
 		articuloEntity.setCodigo(new String(""+Math.random()).substring(0,10));
 		articuloEntity.setFechaCreacion(new Date());
 		articuloEntity.setMarcasId(marca.getId());
-		articuloEntity.setPrecio(1000f);
+		articuloEntity.setPrecio(1000d);
 		articuloEntity.setStock(10l);
 		articuloEntity.setCategoriasId(categoria.getId());
 		
@@ -72,7 +66,7 @@ public class TestOrdenes {
 		entity.setCuponesId(null);
 		entity.setEstadosOrdenesId(eo.getId());
 		entity.setFechaCreacion(new Date());
-		entity.setMontoTotal(1500.5f);
+		entity.setMontoTotal(1500.5d);
 		entity.setSociosId(s.getId());
 		
 		OrdenesService os = new OrdenesServiceImpl();
@@ -80,6 +74,8 @@ public class TestOrdenes {
 		
 		//assert
 		assertNotNull(entity.getId());
+		
+		service.delete(articuloEntity.getId());
 	}
 
 	@Order(2)
@@ -109,7 +105,7 @@ public class TestOrdenes {
 		
 		Ordenes entity = service.getOne(entityId);
 		
-		Float expected = 2360f;
+		Double expected = 2360d;
 		
 		entity.setMontoTotal(expected);
 		

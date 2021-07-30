@@ -18,7 +18,7 @@ public class ArticulosJDBCDaoImpl extends JDBCDAOBase<Articulos> implements Arti
 	protected void update(PreparedStatement pst, Articulos entity) throws SQLException {
 		pst.setString(1, entity.getTitulo());
 		//convierto java.util.data a java.sql.Date
-		pst.setFloat(2, entity.getPrecio());
+		pst.setDouble(2, entity.getPrecio());
 		pst.setLong(3, entity.getStock());
 		pst.setLong(4, entity.getMarcasId());
 		pst.setLong(5, entity.getCategoriasId());	
@@ -35,7 +35,7 @@ public class ArticulosJDBCDaoImpl extends JDBCDAOBase<Articulos> implements Arti
 		//convierto java.util.data a java.sql.Date
 		pst.setDate(2, new java.sql.Date(entity.getFechaCreacion().getTime()));
 		pst.setString(3, entity.getCodigo());
-		pst.setFloat(4,entity.getPrecio());
+		pst.setDouble(4,entity.getPrecio());
 		pst.setLong(5, entity.getStock());
 		pst.setLong(6,entity.getMarcasId());
 		pst.setLong(7, entity.getCategoriasId());		

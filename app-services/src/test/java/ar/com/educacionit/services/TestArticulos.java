@@ -45,7 +45,7 @@ public class TestArticulos {
 		entity.setCodigo(new String(""+Math.random()).substring(0,10));
 		entity.setFechaCreacion(new Date());
 		entity.setMarcasId(marca.getId());
-		entity.setPrecio(1000f);
+		entity.setPrecio(1000d);
 		entity.setStock(10l);
 		entity.setCategoriasId(categoria.getId());
 		

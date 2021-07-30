@@ -23,7 +23,7 @@ public class CuponesJDBCDaoImpl extends JDBCDAOBase<Cupones> implements CuponesD
 		pst.setString(2, entity.getCodigo());
 		pst.setDate(3, new java.sql.Date(entity.getFechaVigenciaDesde().getTime()));
 		pst.setDate(4, new java.sql.Date(entity.getFechaVigenciaHasta().getTime()));
-		pst.setFloat(5, entity.getDescuento());		
+		pst.setDouble(5, entity.getDescuento());		
 	}
 
 	@Override
@@ -36,7 +36,7 @@ public class CuponesJDBCDaoImpl extends JDBCDAOBase<Cupones> implements CuponesD
 		pst.setString(1, entity.getNombre());
 		pst.setDate(2, new java.sql.Date(entity.getFechaVigenciaDesde().getTime()));
 		pst.setDate(3, new java.sql.Date(entity.getFechaVigenciaHasta().getTime()));
-		pst.setFloat(4, entity.getDescuento());	
+		pst.setDouble(4, entity.getDescuento());	
 	}
 }
 

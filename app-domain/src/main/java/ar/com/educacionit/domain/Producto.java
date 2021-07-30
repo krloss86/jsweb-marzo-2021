@@ -4,12 +4,12 @@ public class Producto {
 
 	private Long id;
 	private String titulo;
-	private Float precio;
+	private Double precio;
 	private String codigo;
 	private Long tipoProducto;
 
 	//agrego contructor: db ->java 
-	public Producto(Long id, String titulo, Float precio, String codigo, Long tipoProducto) {
+	public Producto(Long id, String titulo, Double precio, String codigo, Long tipoProducto) {
 		this.id = id;
 		this.titulo = titulo;
 		this.precio = precio;
@@ -18,7 +18,7 @@ public class Producto {
 	}
 	
 	//otro sin id: java -> db
-	public Producto(String titulo, Float precio, String codigo, Long tipoProducto) {
+	public Producto(String titulo, Double precio, String codigo, Long tipoProducto) {
 		this.titulo = titulo;
 		this.precio = precio;
 		this.codigo = codigo;
@@ -45,11 +45,11 @@ public class Producto {
 		this.titulo = titulo;
 	}
 
-	public Float getPrecio() {
+	public Double getPrecio() {
 		return precio;
 	}
 
-	public void setPrecio(Float precio) {
+	public void setPrecio(Double precio) {
 		this.precio = precio;
 	}
 
