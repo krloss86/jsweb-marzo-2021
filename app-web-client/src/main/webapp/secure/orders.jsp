@@ -5,11 +5,11 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>BootCamp</title>
-    <jsp:include page="styles.jsp"></jsp:include>
+    <jsp:include page="../styles.jsp"></jsp:include>
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">   
   </head>
 <body>
-	<jsp:include page="navbar.jsp"></jsp:include>
+	<jsp:include page="../navbar.jsp"></jsp:include>
 	<div class="container-fluid">
 <%-- 	<jsp:include page="mensajeria.jsp"/>	 --%>
 		<div class="row mt-2">
@@ -24,6 +24,7 @@
 					    <option value="2">Finalizadas</option>
 					  </select>
 					</div>
+					<%--
 					<div class="input-group mb-3">
 					  <label class="input-group-text" for="inputGroupSelect01">Ordenasr por:</label>
 					  <select class="form-select" id="inputGroupSelect01">
@@ -32,6 +33,7 @@
 					    <option value="2">Menor Precio</option>
 					  </select>
 					</div>
+					--%>
 				</div>
 				<div class="col-12">
 					<h3>Mis Ordenes</h3>
@@ -53,7 +55,7 @@
 								<td>Aug 19, 2016</td>
 								<td><a data-toggle="tooltip"
 									title="View Details" 
-									href="${pageContext.request.contextPath}/orderDetails.jsp?id=1">
+									href="${pageContext.request.contextPath}/secure/orderDetails.jsp?id=1">
 									<i class="bi bi-eye-fill"></i>
 								</a></td>
 							</tr>
@@ -63,5 +65,6 @@
 			</div>
 		</div>
 	</div>
-	<jsp:include page="scripts.jsp"></jsp:include>
+	<jsp:include page="../footer.jsp"></jsp:include>
+	<jsp:include page="../scripts.jsp"></jsp:include>
 </body>

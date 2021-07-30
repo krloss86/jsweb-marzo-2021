@@ -53,8 +53,8 @@
 					</select>
 				</div>
 				<div class="row g-1 mt-1">
-				  
-				  <div class="col-xs-12 col-sm-6 col-md-6 col-lg-4 col-xxl-3">
+<!-- articulo -->
+				  <div class="col-xs-12 col-sm-6 col-md-6 col-lg-3 col-xxl-2">
 				    <div class="card h-100">
 				      <img src="${pageContext.request.contextPath}/assets/images/ceramica.jpg" 
 				      	class="card-img-top" 
@@ -77,10 +77,277 @@
 				      </div>
 				    </div>
 				  </div>
-				  
+				  <!-- fin articulo -->
+<!-- articulo -->
+				  <div class="col-xs-12 col-sm-6 col-md-6 col-lg-3 col-xxl-2">
+				    <div class="card h-100">
+				      <img src="${pageContext.request.contextPath}/assets/images/ceramica.jpg" 
+				      	class="card-img-top" 
+				      	alt="ceramica">
+				      <div class="card-body">
+				        <h5 class="card-title">Taza Cerámica</h5>
+				        <p class="card-text">Color Blanco</p>
+				        <a href="${pageContext.request.contextPath}/detalleArticulos.jsp" class="btn btn-primary w-100">Ver</a>
+				      </div>
+				      <div class="card-footer">
+				        <form class="row g-0 p-0">
+						  <div class="col">
+						    <label for="cantidad" class="visually-hidden">Cantidad</label>
+						    <input type="number" min="0" max="999" class="form-control" id="cantidad" placeholder="Cantidad">
+						  </div>
+						  <div class="col-auto">
+						    <button type="submit" class="btn btn-primary mb-3">Agregar</button>
+						  </div>
+						</form>
+				      </div>
+				    </div>
+				  </div>
+				  <!-- fin articulo --><!-- articulo -->
+				  <div class="col-xs-12 col-sm-6 col-md-6 col-lg-3 col-xxl-2">
+				    <div class="card h-100">
+				      <img src="${pageContext.request.contextPath}/assets/images/ceramica.jpg" 
+				      	class="card-img-top" 
+				      	alt="ceramica">
+				      <div class="card-body">
+				        <h5 class="card-title">Taza Cerámica</h5>
+				        <p class="card-text">Color Blanco</p>
+				        <a href="${pageContext.request.contextPath}/detalleArticulos.jsp" class="btn btn-primary w-100">Ver</a>
+				      </div>
+				      <div class="card-footer">
+				        <form class="row g-0 p-0">
+						  <div class="col">
+						    <label for="cantidad" class="visually-hidden">Cantidad</label>
+						    <input type="number" min="0" max="999" class="form-control" id="cantidad" placeholder="Cantidad">
+						  </div>
+						  <div class="col-auto">
+						    <button type="submit" class="btn btn-primary mb-3">Agregar</button>
+						  </div>
+						</form>
+				      </div>
+				    </div>
+				  </div>
+				  <!-- fin articulo --><!-- articulo -->
+				  <div class="col-xs-12 col-sm-6 col-md-6 col-lg-3 col-xxl-2">
+				    <div class="card h-100">
+				      <img src="${pageContext.request.contextPath}/assets/images/ceramica.jpg" 
+				      	class="card-img-top" 
+				      	alt="ceramica">
+				      <div class="card-body">
+				        <h5 class="card-title">Taza Cerámica</h5>
+				        <p class="card-text">Color Blanco</p>
+				        <a href="${pageContext.request.contextPath}/detalleArticulos.jsp" class="btn btn-primary w-100">Ver</a>
+				      </div>
+				      <div class="card-footer">
+				        <form class="row g-0 p-0">
+						  <div class="col">
+						    <label for="cantidad" class="visually-hidden">Cantidad</label>
+						    <input type="number" min="0" max="999" class="form-control" id="cantidad" placeholder="Cantidad">
+						  </div>
+						  <div class="col-auto">
+						    <button type="submit" class="btn btn-primary mb-3">Agregar</button>
+						  </div>
+						</form>
+				      </div>
+				    </div>
+				  </div>
+				  <!-- fin articulo --><!-- articulo -->
+				  <div class="col-xs-12 col-sm-6 col-md-6 col-lg-3 col-xxl-2">
+				    <div class="card h-100">
+				      <img src="${pageContext.request.contextPath}/assets/images/ceramica.jpg" 
+				      	class="card-img-top" 
+				      	alt="ceramica">
+				      <div class="card-body">
+				        <h5 class="card-title">Taza Cerámica</h5>
+				        <p class="card-text">Color Blanco</p>
+				        <a href="${pageContext.request.contextPath}/detalleArticulos.jsp" class="btn btn-primary w-100">Ver</a>
+				      </div>
+				      <div class="card-footer">
+				        <form class="row g-0 p-0">
+						  <div class="col">
+						    <label for="cantidad" class="visually-hidden">Cantidad</label>
+						    <input type="number" min="0" max="999" class="form-control" id="cantidad" placeholder="Cantidad">
+						  </div>
+						  <div class="col-auto">
+						    <button type="submit" class="btn btn-primary mb-3">Agregar</button>
+						  </div>
+						</form>
+				      </div>
+				    </div>
+				  </div>
+				  <!-- fin articulo --><!-- articulo -->
+				  <div class="col-xs-12 col-sm-6 col-md-6 col-lg-3 col-xxl-2">
+				    <div class="card h-100">
+				      <img src="${pageContext.request.contextPath}/assets/images/ceramica.jpg" 
+				      	class="card-img-top" 
+				      	alt="ceramica">
+				      <div class="card-body">
+				        <h5 class="card-title">Taza Cerámica</h5>
+				        <p class="card-text">Color Blanco</p>
+				        <a href="${pageContext.request.contextPath}/detalleArticulos.jsp" class="btn btn-primary w-100">Ver</a>
+				      </div>
+				      <div class="card-footer">
+				        <form class="row g-0 p-0">
+						  <div class="col">
+						    <label for="cantidad" class="visually-hidden">Cantidad</label>
+						    <input type="number" min="0" max="999" class="form-control" id="cantidad" placeholder="Cantidad">
+						  </div>
+						  <div class="col-auto">
+						    <button type="submit" class="btn btn-primary mb-3">Agregar</button>
+						  </div>
+						</form>
+				      </div>
+				    </div>
+				  </div>
+				  <!-- fin articulo -->
+				  <!-- articulo -->
+				  <div class="col-xs-12 col-sm-6 col-md-6 col-lg-3 col-xxl-2">
+				    <div class="card h-100">
+				      <img src="${pageContext.request.contextPath}/assets/images/ceramica.jpg" 
+				      	class="card-img-top" 
+				      	alt="ceramica">
+				      <div class="card-body">
+				        <h5 class="card-title">Taza Cerámica</h5>
+				        <p class="card-text">Color Blanco</p>
+				        <a href="${pageContext.request.contextPath}/detalleArticulos.jsp" class="btn btn-primary w-100">Ver</a>
+				      </div>
+				      <div class="card-footer">
+				        <form class="row g-0 p-0">
+						  <div class="col">
+						    <label for="cantidad" class="visually-hidden">Cantidad</label>
+						    <input type="number" min="0" max="999" class="form-control" id="cantidad" placeholder="Cantidad">
+						  </div>
+						  <div class="col-auto">
+						    <button type="submit" class="btn btn-primary mb-3">Agregar</button>
+						  </div>
+						</form>
+				      </div>
+				    </div>
+				  </div>
+				  <!-- fin articulo -->
+<!-- articulo -->
+				  <div class="col-xs-12 col-sm-6 col-md-6 col-lg-3 col-xxl-2">
+				    <div class="card h-100">
+				      <img src="${pageContext.request.contextPath}/assets/images/ceramica.jpg" 
+				      	class="card-img-top" 
+				      	alt="ceramica">
+				      <div class="card-body">
+				        <h5 class="card-title">Taza Cerámica</h5>
+				        <p class="card-text">Color Blanco</p>
+				        <a href="${pageContext.request.contextPath}/detalleArticulos.jsp" class="btn btn-primary w-100">Ver</a>
+				      </div>
+				      <div class="card-footer">
+				        <form class="row g-0 p-0">
+						  <div class="col">
+						    <label for="cantidad" class="visually-hidden">Cantidad</label>
+						    <input type="number" min="0" max="999" class="form-control" id="cantidad" placeholder="Cantidad">
+						  </div>
+						  <div class="col-auto">
+						    <button type="submit" class="btn btn-primary mb-3">Agregar</button>
+						  </div>
+						</form>
+				      </div>
+				    </div>
+				  </div>
+				  <!-- fin articulo --><!-- articulo -->
+				  <div class="col-xs-12 col-sm-6 col-md-6 col-lg-3 col-xxl-2">
+				    <div class="card h-100">
+				      <img src="${pageContext.request.contextPath}/assets/images/ceramica.jpg" 
+				      	class="card-img-top" 
+				      	alt="ceramica">
+				      <div class="card-body">
+				        <h5 class="card-title">Taza Cerámica</h5>
+				        <p class="card-text">Color Blanco</p>
+				        <a href="${pageContext.request.contextPath}/detalleArticulos.jsp" class="btn btn-primary w-100">Ver</a>
+				      </div>
+				      <div class="card-footer">
+				        <form class="row g-0 p-0">
+						  <div class="col">
+						    <label for="cantidad" class="visually-hidden">Cantidad</label>
+						    <input type="number" min="0" max="999" class="form-control" id="cantidad" placeholder="Cantidad">
+						  </div>
+						  <div class="col-auto">
+						    <button type="submit" class="btn btn-primary mb-3">Agregar</button>
+						  </div>
+						</form>
+				      </div>
+				    </div>
+				  </div>
+				  <!-- fin articulo --><!-- articulo -->
+				  <div class="col-xs-12 col-sm-6 col-md-6 col-lg-3 col-xxl-2">
+				    <div class="card h-100">
+				      <img src="${pageContext.request.contextPath}/assets/images/ceramica.jpg" 
+				      	class="card-img-top" 
+				      	alt="ceramica">
+				      <div class="card-body">
+				        <h5 class="card-title">Taza Cerámica</h5>
+				        <p class="card-text">Color Blanco</p>
+				        <a href="${pageContext.request.contextPath}/detalleArticulos.jsp" class="btn btn-primary w-100">Ver</a>
+				      </div>
+				      <div class="card-footer">
+				        <form class="row g-0 p-0">
+						  <div class="col">
+						    <label for="cantidad" class="visually-hidden">Cantidad</label>
+						    <input type="number" min="0" max="999" class="form-control" id="cantidad" placeholder="Cantidad">
+						  </div>
+						  <div class="col-auto">
+						    <button type="submit" class="btn btn-primary mb-3">Agregar</button>
+						  </div>
+						</form>
+				      </div>
+				    </div>
+				  </div>
+				  <!-- fin articulo --><!-- articulo -->
+				  <div class="col-xs-12 col-sm-6 col-md-6 col-lg-3 col-xxl-2">
+				    <div class="card h-100">
+				      <img src="${pageContext.request.contextPath}/assets/images/ceramica.jpg" 
+				      	class="card-img-top" 
+				      	alt="ceramica">
+				      <div class="card-body">
+				        <h5 class="card-title">Taza Cerámica</h5>
+				        <p class="card-text">Color Blanco</p>
+				        <a href="${pageContext.request.contextPath}/detalleArticulos.jsp" class="btn btn-primary w-100">Ver</a>
+				      </div>
+				      <div class="card-footer">
+				        <form class="row g-0 p-0">
+						  <div class="col">
+						    <label for="cantidad" class="visually-hidden">Cantidad</label>
+						    <input type="number" min="0" max="999" class="form-control" id="cantidad" placeholder="Cantidad">
+						  </div>
+						  <div class="col-auto">
+						    <button type="submit" class="btn btn-primary mb-3">Agregar</button>
+						  </div>
+						</form>
+				      </div>
+				    </div>
+				  </div>
+				  <!-- fin articulo --><!-- articulo -->
+				  <div class="col-xs-12 col-sm-6 col-md-6 col-lg-3 col-xxl-2">
+				    <div class="card h-100">
+				      <img src="${pageContext.request.contextPath}/assets/images/ceramica.jpg" 
+				      	class="card-img-top" 
+				      	alt="ceramica">
+				      <div class="card-body">
+				        <h5 class="card-title">Taza Cerámica</h5>
+				        <p class="card-text">Color Blanco</p>
+				        <a href="${pageContext.request.contextPath}/detalleArticulos.jsp" class="btn btn-primary w-100">Ver</a>
+				      </div>
+				      <div class="card-footer">
+				        <form class="row g-0 p-0">
+						  <div class="col">
+						    <label for="cantidad" class="visually-hidden">Cantidad</label>
+						    <input type="number" min="0" max="999" class="form-control" id="cantidad" placeholder="Cantidad">
+						  </div>
+						  <div class="col-auto">
+						    <button type="submit" class="btn btn-primary mb-3">Agregar</button>
+						  </div>
+						</form>
+				      </div>
+				    </div>
+				  </div>
+				  <!-- fin articulo -->				  
 				  </div>
 					<nav aria-label="Page navigation example">
-					  <ul class="pagination justify-content-center">
+					  <ul class="pagination justify-content-center mt-2">
 					    <li class="page-item">
 					      <a class="page-link" href="#" tabindex="-1" aria-disabled="true">Previous</a>
 					    </li>
@@ -95,5 +362,7 @@
 				</div>
 			</div>
 		</div>
-	<jsp:include page="scripts.jsp"></jsp:include>
-</body>
+		<jsp:include page="scripts.jsp"></jsp:include>
+	</body>
+	<jsp:include page="footer.jsp"></jsp:include>
+</html>

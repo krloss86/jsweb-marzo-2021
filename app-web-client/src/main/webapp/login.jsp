@@ -42,4 +42,5 @@
 	</main>
 	<jsp:include page="scripts.jsp"></jsp:include>
   </body>
+  <jsp:include page="footer.jsp"></jsp:include>
 </html>

@@ -5,7 +5,7 @@ import java.util.List;
 import ar.com.educacionit.dao.exceptions.DuplicatedException;
 import ar.com.educacionit.exceptions.ServiceException;
 
-public interface IBaseService<T> {
+public interface GenericService<T> {
 
 	public List<T> findAll() throws ServiceException;
 	

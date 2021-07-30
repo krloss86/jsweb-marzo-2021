@@ -7,8 +7,7 @@
     <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
     <title>Checkout example  Bootstrap v5.0</title>
     <!-- Bootstrap core CSS -->
-	<jsp:include page="styles.jsp"></jsp:include>
-	<%--
+	<jsp:include page="../styles.jsp"></jsp:include>
     <style>
       .container {
   		max-width: 960px;
@@ -26,23 +25,23 @@
         }
       }
     </style>
-    --%>
     <!-- Custom styles for this template -->
 	<!--<link href="form-validation.css" rel="stylesheet"> -->
   </head>
-  <body class="bg-light">
-	<jsp:include page="navbar.jsp"></jsp:include>
+  <body>
+	<jsp:include page="../navbar.jsp"></jsp:include>
 	<div class="container">
 	  <main>
+	  	<%--
 		    <div class="py-5 text-center">
-	<!-- 	<img class="d-block mx-auto mb-4" src="/docs/5.0/assets/brand/bootstrap-logo.svg" alt="" width="72" height="57"> -->
+			<img class="d-block mx-auto mb-4" src="/docs/5.0/assets/brand/bootstrap-logo.svg" alt="" width="72" height="57">
 		      <h2>Checkout form</h2>
 		      <p class="lead">
 		      	Below is an example form built entirely with Bootstrap's form controls. Each required form group has a validation state that can be triggered by attempting to submit the form without completing it.
 		      </p>
 		    </div>
-		
-		    <div class="row g-5">
+		--%>
+		    <div class="row g-5 py-2">
 		      <div class="col-md-5 col-lg-4 order-md-last">
 		        <h4 class="d-flex justify-content-between align-items-center mb-3">
 		          <span class="text-primary">Your cart</span>
@@ -91,7 +90,7 @@
 		      </div>
 		      <div class="col-md-7 col-lg-8">
 		        <h4 class="mb-3">Billing address</h4>
-		        <form class="needs-validation" novalidate action="${pageContext.request.contextPath}/checkoutSuccess.jsp">
+		        <form class="needs-validation" novalidate action="${pageContext.request.contextPath}/secure/checkoutSuccess.jsp">
 		          <div class="row g-3">
 		            <div class="col-sm-6">
 		              <label for="firstName" class="form-label">First name</label>
@@ -255,7 +254,7 @@
 		    </ul>
 		  </footer>
 	</div>
-	<jsp:include page="scripts.jsp"></jsp:include>
+	<jsp:include page="../scripts.jsp"></jsp:include>
     <script src="${pageContext.request.contextPath}/js/form-validation.js"></script>
   </body>
 </html>

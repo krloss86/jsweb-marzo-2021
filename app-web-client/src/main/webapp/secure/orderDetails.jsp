@@ -5,11 +5,11 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>BootCamp</title>
-    <jsp:include page="styles.jsp"></jsp:include>
+    <jsp:include page="../styles.jsp"></jsp:include>
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">       
   </head>
 <body>
-	<jsp:include page="navbar.jsp"></jsp:include>
+	<jsp:include page="../navbar.jsp"></jsp:include>
 	<div class="container-fluid">
 <%-- 	<jsp:include page="mensajeria.jsp"/>	 --%>
 		<div class="row mt-2">
@@ -71,7 +71,7 @@
 								<tbody >
 									<tr >
 										<td ><a class="view"
-											href="${pageContext.request.contextPath}/orders.jsp">
+											href="${pageContext.request.contextPath}/secure/orders.jsp">
 											<i class="bi bi-arrow-left-circle-fill"></i>
 										</a></td>
 									</tr>
@@ -83,5 +83,6 @@
 			</div>
 		</div>
 	</div>
-	<jsp:include page="scripts.jsp"></jsp:include>
+	<jsp:include page="../footer.jsp"></jsp:include>
+	<jsp:include page="../scripts.jsp"></jsp:include>
 </body>

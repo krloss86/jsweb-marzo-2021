@@ -6,6 +6,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>BootCamp</title>
     <jsp:include page="styles.jsp"></jsp:include>
+    <style>
+      .container {
+  		max-width: 960px;
+	   }
+      .bd-placeholder-img {
+        font-size: 1.125rem;
+        text-anchor: middle;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        user-select: none;
+      }
+      @media (min-width: 768px) {
+        .bd-placeholder-img-lg {
+          font-size: 3.5rem;
+        }
+      }
+    </style>
   </head>
 <body>
 	<jsp:include page="navbar.jsp"></jsp:include>
@@ -72,5 +89,6 @@
 		</div>
 		
 	</div>
+	<jsp:include page="footer.jsp"></jsp:include>
 	<jsp:include page="scripts.jsp"></jsp:include>
 </body>

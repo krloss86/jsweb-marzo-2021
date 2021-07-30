@@ -6,9 +6,9 @@ import ar.com.educacionit.dao.GenericDao;
 import ar.com.educacionit.dao.exceptions.DuplicatedException;
 import ar.com.educacionit.dao.exceptions.GenericException;
 import ar.com.educacionit.exceptions.ServiceException;
-import ar.com.educacionit.services.IBaseService;
+import ar.com.educacionit.services.GenericService;
 
-public class AbstractBaseService<T> implements IBaseService<T> {
+public class AbstractBaseService<T> implements GenericService<T> {
 
 	protected GenericDao<T> dao;
 	

@@ -5,10 +5,10 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>BootCamp</title>
-    <jsp:include page="styles.jsp"></jsp:include>
+    <jsp:include page="../styles.jsp"></jsp:include>
   </head>
 <body>
-	<jsp:include page="navbar.jsp"></jsp:include>
+	<jsp:include page="../navbar.jsp"></jsp:include>
 	<div class="container-fluid">
 <%-- 	<jsp:include page="mensajeria.jsp"/>	 --%>
 		<div class="row mt-2">
@@ -54,5 +54,6 @@
 			</div>
 		</div>
 	</div>
-	<jsp:include page="scripts.jsp"></jsp:include>
+	<jsp:include page="../footer.jsp"></jsp:include>
+	<jsp:include page="../scripts.jsp"></jsp:include>
 </body>

@@ -3,13 +3,13 @@
 		<ul class="nav flex-column">
 		  <li class="nav-item">
 		    <a class="nav-link active" aria-current="page" 
-		    	href="${pageContext.request.contextPath}/profile.jsp">
+		    	href="${pageContext.request.contextPath}/secure/profile.jsp">
 		    	Perfil
 		    </a>
 		  </li>
 		  <li class="nav-item">
 		    <a class="nav-link" aria-current="page" 
-		    	href="${pageContext.request.contextPath}/orders.jsp">
+		    	href="${pageContext.request.contextPath}/secure/orders.jsp">
 		    	Ordenes
 		    </a>
 		  </li>		 
