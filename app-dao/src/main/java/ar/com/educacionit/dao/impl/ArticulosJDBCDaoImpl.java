@@ -52,4 +52,10 @@ public class ArticulosJDBCDaoImpl extends JDBCDAOBase<Articulos> implements Arti
 		return super.findAllBy(sql);
 	}
 
+	@Override
+	public List<Articulos> findAllCategoriaId(Long categoriaId) throws GenericException {
+		String sql = "categorias_id =" + categoriaId;
+		return super.findAllBy(sql);
+	}
+
 }

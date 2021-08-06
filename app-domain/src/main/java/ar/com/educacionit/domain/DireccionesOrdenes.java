@@ -1,36 +1,49 @@
 package ar.com.educacionit.domain;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class DireccionesOrdenes {
+public class DireccionesOrdenes extends Entity {
 
+	private Long id;	
 	private Long ordenesId;
-	private Long mediosPagosId;
-	private Date fechaPago;
+	private Long paisesId;
+	private String direccionEnvio;
 	
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
 	public Long getOrdenesId() {
 		return ordenesId;
 	}
+
 	public void setOrdenesId(Long ordenesId) {
 		this.ordenesId = ordenesId;
 	}
-	public Long getMediosPagosId() {
-		return mediosPagosId;
+
+	public Long getPaisesId() {
+		return paisesId;
 	}
-	public void setMediosPagosId(Long mediosPagosId) {
-		this.mediosPagosId = mediosPagosId;
+
+	public void setPaisesId(Long paisesId) {
+		this.paisesId = paisesId;
 	}
-	public Date getFechaPago() {
-		return fechaPago;
+
+	public String getDireccionEnvio() {
+		return direccionEnvio;
 	}
-	public void setFechaPago(Date fechaPago) {
-		this.fechaPago = fechaPago;
+
+	public void setDireccionEnvio(String direccionEnvio) {
+		this.direccionEnvio = direccionEnvio;
 	}
-	
+
 	@Override
-	public String toString() {
-		return "DireccionesOrdenes [ordenesId=" + ordenesId + ", mediosPagosId=" + mediosPagosId + ", fechaPago="
-				+ fechaPago + "]";
-	}
-	
+	public void setId(Serializable id) {
+		setId((Long)id);
+	}	
 }

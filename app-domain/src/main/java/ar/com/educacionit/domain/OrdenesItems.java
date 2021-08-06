@@ -1,11 +1,15 @@
 package ar.com.educacionit.domain;
 
-public class OrdenesItems {
+import java.io.Serializable;
 
+public class OrdenesItems extends Entity{
+
+	private Long id;
 	private Long ordenesId;
-	private Integer numeroItem;
-	private Integer cantidad;
+	private Long numeroItem;
+	private Long cantidad;
 	private Long articulosId;
+	private Double precioUnitario;
 
 	public Long getOrdenesId() {
 		return ordenesId;
@@ -13,16 +17,16 @@ public class OrdenesItems {
 	public void setOrdenesId(Long ordenesId) {
 		this.ordenesId = ordenesId;
 	}
-	public Integer getNumeroItem() {
+	public Long getNumeroItem() {
 		return numeroItem;
 	}
-	public void setNumeroItem(Integer numeroItem) {
+	public void setNumeroItem(Long numeroItem) {
 		this.numeroItem = numeroItem;
 	}
-	public Integer getCantidad() {
+	public Long getCantidad() {
 		return cantidad;
 	}
-	public void setCantidad(Integer cantidad) {
+	public void setCantidad(Long cantidad) {
 		this.cantidad = cantidad;
 	}
 	public Long getArticulosId() {
@@ -36,6 +40,24 @@ public class OrdenesItems {
 	public String toString() {
 		return "OrdenesItems [ordenesId=" + ordenesId + ", numeroItem=" + numeroItem + ", cantidad=" + cantidad
 				+ ", articulosId=" + articulosId + "]";
+	}
+
+	@Override
+	public void setId(Serializable id) {
+		this.setId((Long)id);
+	}
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+	public Double getPrecioUnitario() {
+		return precioUnitario;
+	}
+	public void setPrecioUnitario(Double precioUnitario) {
+		this.precioUnitario = precioUnitario;
 	}
 	
 }

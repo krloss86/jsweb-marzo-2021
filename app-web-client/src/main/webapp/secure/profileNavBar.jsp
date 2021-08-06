@@ -12,7 +12,13 @@
 		    	href="${pageContext.request.contextPath}/secure/orders.jsp">
 		    	Ordenes
 		    </a>
-		  </li>		 
+		  </li>	
+		  <li class="nav-item">
+		    <a class="nav-link active" aria-current="page" 
+		    	href="${pageContext.request.contextPath}/LogoutServlet">
+		    	Logout
+		    </a>
+		  </li>	 
 		</ul>
 	</div>
 	<div class="accordion accordion-flush" id="accordionFlushExample">
@@ -24,7 +30,7 @@
 	    </h2>
 	    <div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
 	      <div class="accordion-body">
-			<form class="row g-1 p-1">
+			<form class="row g-0 p-0">
 				<div class="col-md-12">
 			    <label for="inputEmail4" class="form-label">Password</label>
 			    <input type="password" class="form-control" id="inputEmail4">

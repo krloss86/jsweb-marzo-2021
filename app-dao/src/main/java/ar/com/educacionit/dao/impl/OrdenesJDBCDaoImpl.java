@@ -1,10 +1,18 @@
 package ar.com.educacionit.dao.impl;
 
+import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.SQLIntegrityConstraintViolationException;
 import java.sql.Types;
+import java.util.Date;
+import java.util.List;
 
 import ar.com.educacionit.dao.OrdenesDao;
+import ar.com.educacionit.dao.exceptions.DuplicatedException;
+import ar.com.educacionit.dao.exceptions.GenericException;
+import ar.com.educacionit.dao.jdbc.AdministradorDeConexiones;
 import ar.com.educacionit.domain.Ordenes;
 
 public class OrdenesJDBCDaoImpl extends JDBCDAOBase<Ordenes> implements OrdenesDao {
@@ -47,5 +55,48 @@ public class OrdenesJDBCDaoImpl extends JDBCDAOBase<Ordenes> implements OrdenesD
 	protected String getSaveSQL() {
 		return "(fecha_creacion,socios_id,estados_ordenes_id,monto_total,cupones_id) values (?,?,?,?,?)";
 	}
+	
+	/*
+	@Override
+	public Long save(List<Long> itemsIds, Double montoTotal, Long sociosId) throws GenericException{
+		
+		try (Connection con = AdministradorDeConexiones.obtenerConexion()) {
+			
+			con.setAutoCommit(false);
 
+			String sql = "INSERT INTO " + this.tabla + this.getSaveSQL();
+			
+			try (PreparedStatement pst = con.prepareStatement(sql, PreparedStatement.RETURN_GENERATED_KEYS)) {
+
+				Ordenes entity = new Ordenes();
+				entity.setEstadosOrdenesId(1L);//creada
+				entity.setFechaCreacion(new Date());
+				entity.setMontoTotal(null);
+				entity.setSociosId(sociosId);
+				
+				this.save(pst, entity);
+				
+				pst.execute();
+
+				try (ResultSet resultSet = pst.getGeneratedKeys()) {
+
+					if (resultSet.next()) {
+
+						Long lastGeneratedId = resultSet.getLong(1);
+
+						entity.setId(lastGeneratedId);
+					}
+				}
+				
+				//ahora grabo los items ordenes
+				sql = "INSERT ORDENES_ITEMS ";
+			}
+		} catch (SQLException e2) {
+			if (e2 instanceof SQLIntegrityConstraintViolationException) {
+				throw new DuplicatedException("No se ha podido crear el producto, integridad violada", e2);
+			}
+			throw new GenericException("No se ha podido crear el producto", e2);
+		}
+	}
+	*/
 }

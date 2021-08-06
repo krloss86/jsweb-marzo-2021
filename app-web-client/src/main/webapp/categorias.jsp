@@ -1,3 +1,5 @@
+<%@page import="ar.com.educacionit.web.enums.CategoriaKeyEnum"%>
+<%@page import="ar.com.educacionit.web.enums.TipoBusquedaEnum"%>
 <%@page import="ar.com.educacionit.domain.Categoria"%>
 <%@page import="java.util.List"%>
 <%@page isELIgnored="false"%>
@@ -50,7 +52,7 @@
 				<div class="col-12">
 					<h2>Categorías</h2>
 				</div>
-				<%List<Categoria> list = (List<Categoria>)request.getAttribute(ViewKeyEnums.LIST_CATEGORIAS.name());%>
+				<%List<Categoria> list = (List<Categoria>)request.getAttribute(CategoriaKeyEnum.LIST_CATEGORIAS.name());%>
 				<%for(Categoria entity: list) {%>
 				<div class="col-12 col-sm-6 col-md-4 col-lg-3">
 				    <div class="card h-100">
@@ -63,7 +65,7 @@
 				        	<%=entity.getDescripcion()%>
 				        </h5>
 		<!--			<p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p> -->
-						<a href="${pageContext.request.contextPath}/listadoGeneral.jsp" class="btn btn-primary">Ver mas</a>
+						<a href="${pageContext.request.contextPath}/BuscarProductoServlet?categoriasId=<%=entity.getId()%>&tipoBusqueda=<%=TipoBusquedaEnum.CATEGORIAS_ID.name()%>" class="btn btn-primary">Ver mas</a>
 				      </div>
 				    </div>
 				  </div>

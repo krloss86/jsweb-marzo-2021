@@ -1,10 +1,15 @@
 package ar.com.educacionit.domain;
 
-public class MediosPagos {
+import java.io.Serializable;
+
+public class MediosPagos extends Entity {
 
 	private Long id;
+	private String codigo;
 	private String descripcion;
-	private Boolean habilitado;
+	private String descripcionCorta;
+	private Long habilitada;
+	
 	public Long getId() {
 		return id;
 	}
@@ -17,16 +22,35 @@ public class MediosPagos {
 	public void setDescripcion(String descripcion) {
 		this.descripcion = descripcion;
 	}
-	public Boolean getHabilitado() {
-		return habilitado;
+	
+	public String getCodigo() {
+		return codigo;
 	}
-	public void setHabilitado(Boolean habilitado) {
-		this.habilitado = habilitado;
+	public void setCodigo(String codigo) {
+		this.codigo = codigo;
+	}
+	public String getDescripcionCorta() {
+		return descripcionCorta;
+	}
+	public void setDescripcionCorta(String descripcionCorta) {
+		this.descripcionCorta = descripcionCorta;
+	}
+	
+	public Long getHabilitada() {
+		return habilitada;
+	}
+	public void setHabilitada(Long habilitada) {
+		this.habilitada = habilitada;
 	}
 	
 	@Override
 	public String toString() {
-		return "MediosPagos [id=" + id + ", descripcion=" + descripcion + ", habilitado=" + habilitado + "]";
+		return "MediosPagos [id=" + id + ", descripcion=" + descripcion + ", habilitada=" + habilitada + "]";
+	}
+	
+	@Override
+	public void setId(Serializable id) {
+		setId((Long)id);
 	}
 	
 }

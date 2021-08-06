@@ -1,13 +1,15 @@
 package ar.com.educacionit.domain;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class PagosOrdenes {
+public class PagosOrdenes extends Entity {
 
+	private Long id;
 	private Long ordenesId;
 	private Long mediosPagosId; 
 	private Date fechaPago;
-	private Double montoPagado;
+	private Double monto;
 	
 	public Long getOrdenesId() {
 		return ordenesId;
@@ -27,18 +29,28 @@ public class PagosOrdenes {
 	public void setFechaPago(Date fechaPago) {
 		this.fechaPago = fechaPago;
 	}
-	public Double getMontoPagado() {
-		return montoPagado;
-	}
-	public void setMontoPagado(Double montoPagado) {
-		this.montoPagado = montoPagado;
-	}
 	
+	
+	public Double getMonto() {
+		return monto;
+	}
+	public void setMonto(Double monto) {
+		this.monto = monto;
+	}
 	@Override
 	public String toString() {
 		return "PagosOrdenes [ordenesId=" + ordenesId + ", mediosPagosId=" + mediosPagosId + ", fechaPago=" + fechaPago
-				+ ", montoPagado=" + montoPagado + "]";
+				+ ", monto=" + monto + "]";
 	}
-	
-	
+	public Long getId() {
+		return id;
+	}
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	@Override
+	public void setId(Serializable id) {
+		setId((Long)id);
+	}
 }

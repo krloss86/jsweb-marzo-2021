@@ -100,8 +100,16 @@ public class TestArticulos {
 		
 		assertEquals(expected, entity.getTitulo());
 	}
-	
+
 	@Order(6)
+	@Test
+	public void whenFindAllBy_then_showList() throws ServiceException {
+		ArticulosService service = new ArticuloServiceImpl();
+		List<Articulos> entities = service.findByCategoriaId(1L);
+		assertTrue(!entities.isEmpty());
+	}
+	
+	@Order(7)
 	@Test
 	public void whenExistsEntity_then_deleteId() throws ServiceException{		
 		ArticulosService service = new ArticuloServiceImpl();
