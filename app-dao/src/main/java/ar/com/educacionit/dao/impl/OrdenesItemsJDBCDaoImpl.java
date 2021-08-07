@@ -2,8 +2,10 @@ package ar.com.educacionit.dao.impl;
 
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.util.List;
 
 import ar.com.educacionit.dao.OrdenesItemsDao;
+import ar.com.educacionit.dao.exceptions.GenericException;
 import ar.com.educacionit.domain.OrdenesItems;
 
 public class OrdenesItemsJDBCDaoImpl extends JDBCDAOBase<OrdenesItems> implements OrdenesItemsDao {
@@ -36,6 +38,13 @@ public class OrdenesItemsJDBCDaoImpl extends JDBCDAOBase<OrdenesItems> implement
 		/*pst.setString(1, entity.getDescripcion());
 		pst.setString(2, entity.getDescripcionCorta());
 		pst.setLong(3, entity.getHabilitada());*/
+	}
+	
+	@Override
+	public List<OrdenesItems> findByOrdenesId(Long ordenesId) throws GenericException {
+		String sql = "ordenes_id = " +ordenesId;
+		List<OrdenesItems> list =  super.findAllBy(sql);
+		return list;
 	}
 }
 

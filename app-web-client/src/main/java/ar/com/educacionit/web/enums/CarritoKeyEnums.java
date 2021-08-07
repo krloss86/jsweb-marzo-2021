@@ -9,11 +9,6 @@ public enum CarritoKeyEnums implements Enumerable{
 	DATOS_CHECKOUT("datos_checkout"), 
 	MEDIOS_PAGOS("medios_pagos"),
 	
-	NOMBRE("nombre"),
-	APELLIDO("apellido"),
-	EMAIL("email"),
-	DIRECCION("direccion"),
-	PAIS("pais"),
 	MEDIO_PAGO("medioPago"), 
 	ID_ORDEN_GENERADA("ID_ORDEN_GENERADA")	
 	;

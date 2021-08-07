@@ -1,3 +1,4 @@
+<%@page import="ar.com.educacionit.web.enums.OrdenesKeyEnums"%>
 <%@page import="ar.com.educacionit.web.enums.CarritoKeyEnums"%>
 <%@page import="ar.com.educacionit.web.enums.ViewKeyEnums"%>
 <!doctype html>
@@ -39,7 +40,7 @@
 						<p >Te hemos enviado un mail con los datos.</p>
 						<p >Podes ver el estado haciendo click</p>
 						<a class="btn btn-info w-100"
-							title="View Details" href="${pageContext.request.contextPath}/secure/orderDetails.jsp"> Ver
+							title="View Details" href="${pageContext.request.contextPath}/controllers/DetalleOrdenController?<%=OrdenesKeyEnums.ID_ORDEN.name()%>=<%=request.getAttribute(CarritoKeyEnums.ID_ORDEN_GENERADA.name()) %>"> Ver
 							detalle de orden
 						</a>
 					</div>

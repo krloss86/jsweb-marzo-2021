@@ -10,7 +10,6 @@ import javax.servlet.http.HttpServletResponse;
 import ar.com.educacionit.web.dto.Carrito;
 import ar.com.educacionit.web.enums.CarritoKeyEnums;
 import ar.com.educacionit.web.enums.ViewEnums;
-import ar.com.educacionit.web.enums.ViewKeyEnums;
 
 @WebServlet("/ActualizarCarritoController")
 public class ActualizarCarritoController extends BaseServlet{
@@ -29,7 +28,7 @@ public class ActualizarCarritoController extends BaseServlet{
 			carrito.update(id, cantidad);
 		}
 		
-		addAttribute(req, ViewKeyEnums.EXITO, "Articulo id: " +id + " actualizado");
+		super.addExitoGeneral(req, "Articulo id: " +id + " actualizado");
 		
 		addAttribute(req.getSession(), CarritoKeyEnums.CARRITO, carrito);
 		

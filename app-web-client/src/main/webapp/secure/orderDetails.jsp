@@ -1,3 +1,5 @@
+<%@page import="ar.com.educacionit.web.enums.OrdenesKeyEnums"%>
+<%@page import="ar.com.educacionit.domain.Ordenes"%>
 <%@page import="ar.com.educacionit.web.enums.ViewKeyEnums"%>
 <!doctype html>
 <html lang="en">
@@ -16,20 +18,23 @@
 			<jsp:include page="profileNavBar.jsp"></jsp:include>
 			<div class="col">				
 				<div class="col-12">
-					<h3>Detalle Orden nro: 1</h3>
+					<%
+						Ordenes orden = (Ordenes)session.getAttribute(OrdenesKeyEnums.ORDEN.name());
+					%>
+					<h3>Detalle Orden nro: <%=orden.getId() %></h3>
 					<div class="table-wrapper mt-3">
 						<div class="col">
 							<table class="table table-striped table-hover">
 								<thead >
 									<tr >
-										<th >description</th>
-										<th >totalPrice</th>
+										<th >Fecha Orden</th>
+										<th >Precio Total</th>
 									</tr>
 								</thead>
 								<tbody >
 									<tr >
-										<td >order 1</td>
-										<td >$10.00</td>
+										<td ><%=orden.getFechaCreacion() %></td>
+										<td ><%=orden.getMontoTotal() %></td>
 									</tr>
 								</tbody>
 							</table>
@@ -37,18 +42,14 @@
 							<table class="table table-striped table-hover">
 								<thead >
 									<tr >
-										<th >street</th>
-										<th >city</th>
-										<th >state</th>
-										<th >zip</th>
+										<th >Pais</th>
+										<th >Direcci&oacute;n</th>
 									</tr>
 								</thead>
 								<tbody >
 									<tr >
-										<td >aristobulo del valle 1257</td>
-										<td >caba</td>
-										<td >buenos aires</td>
-										<td >1295</td>
+										<td >Argentina </td>
+										<td ><%=orden.getDireccionOrden().getDireccionEnvio() %></td>
 									</tr>
 								</tbody>
 							</table>
@@ -62,8 +63,8 @@
 								</thead>
 								<tbody >
 									<tr >
-										<td >Efectivo</td>
-										<td >$10.00</td>
+										<td ><%=orden.getPagoOrden().getMediosPagosId() %></td>
+										<td ><%=orden.getPagoOrden().getMonto() %></td>
 									</tr>
 								</tbody>
 							</table>
@@ -71,7 +72,7 @@
 								<tbody >
 									<tr >
 										<td ><a class="view"
-											href="${pageContext.request.contextPath}/secure/orders.jsp">
+											href="${pageContext.request.contextPath}/secure/OrdenesControllers">
 											<i class="bi bi-arrow-left-circle-fill"></i>
 										</a></td>
 									</tr>

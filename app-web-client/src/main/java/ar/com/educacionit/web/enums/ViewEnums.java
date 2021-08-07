@@ -11,7 +11,8 @@ public enum ViewEnums {
 	CARRITO("/shoppingCart.jsp"),
 	CHECKOUT("/secure/checkout.jsp"),
 	CHECKOUT_SUCCESS("/secure/checkoutSuccess.jsp"),
-	ORDER_DETAILS("/secure/orderDetails.jsp")
+	ORDER_DETAILS("/secure/orderDetails.jsp"), 
+	ORDENES("/secure/orders.jsp")
 	;
 	
 	private String view;

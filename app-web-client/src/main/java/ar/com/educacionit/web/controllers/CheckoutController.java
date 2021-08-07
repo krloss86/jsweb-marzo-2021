@@ -21,6 +21,7 @@ import ar.com.educacionit.web.dto.Carrito;
 import ar.com.educacionit.web.dto.Checkout;
 import ar.com.educacionit.web.enums.CarritoKeyEnums;
 import ar.com.educacionit.web.enums.Enumerable;
+import ar.com.educacionit.web.enums.ProfileKeyEnums;
 import ar.com.educacionit.web.enums.ViewEnums;
 import ar.com.educacionit.web.enums.ViewKeyEnums;
 
@@ -35,17 +36,17 @@ public class CheckoutController extends BaseServlet{
 		Carrito carrito = (Carrito)req.getSession().getAttribute(CarritoKeyEnums.CARRITO.name());
 		
 		if(carrito == null) {
-			addAttribute(req, ViewKeyEnums.ERROR_GENERAL, "No hay articulos");
+			super.addErrorGeneral(req,"No hay articulos");
 			redirect(ViewEnums.CARRITO, req, resp);
 		}
 		
 		User user = getUserLogged(req);
 		
 		Checkout checkout = new Checkout();
-		checkout.setNombre(user.getUsername() != null ? user.getUsername() : "");
-		checkout.setApellido(user.getApellido() != null ? user.getApellido() : "");
-		checkout.setEmail(user.getEmail() != null ? user.getEmail() : "");
-		checkout.setDireccion(user.getDireccion() != null ? user.getDireccion() : "");
+		checkout.setNombre(user.getSocios().getNombre());
+		checkout.setApellido(user.getSocios().getApellido());
+		checkout.setEmail(user.getSocios().getEmail());
+		checkout.setDireccion(user.getSocios().getDireccion());
 		checkout.setPais(user.getPais() != null ? user.getPais() : "");
 		
 		try {
@@ -77,11 +78,12 @@ public class CheckoutController extends BaseServlet{
 		Checkout checkout = (Checkout)req.getSession().getAttribute(CarritoKeyEnums.DATOS_CHECKOUT.name());
 		
 		//tomo los datos de pantalla agregados por el usuario
-		String nombre = getParameter(req,CarritoKeyEnums.NOMBRE);
-		String apellido = getParameter(req,CarritoKeyEnums.APELLIDO);
-		String email = getParameter(req,CarritoKeyEnums.EMAIL);
-		String direccion = getParameter(req,CarritoKeyEnums.DIRECCION);
-		String pais = getParameter(req,CarritoKeyEnums.PAIS);
+		String nombre = getParameter(req,ProfileKeyEnums.NOMBRE);
+		String apellido = getParameter(req,ProfileKeyEnums.APELLIDO);
+		String email = getParameter(req,ProfileKeyEnums.EMAIL);
+		String direccion = getParameter(req,ProfileKeyEnums.DIRECCION);
+		String pais = getParameter(req,ProfileKeyEnums.PAIS);
+		String medioPago = getParameter(req, CarritoKeyEnums.MEDIO_PAGO);
 		
 		//validacion: completar
 		
@@ -95,7 +97,10 @@ public class CheckoutController extends BaseServlet{
 
 		Long idOrden = null;
 		try {
-			idOrden = ordenService.save(new ArrayList(carrito.getItems()), 8L, carrito.getTotal(), null, 4L, Long.parseLong(pais), direccion);
+			idOrden = ordenService.save(new ArrayList(carrito.getItems()),
+					user.getSocios().getId(), carrito.getTotal(), null,
+					Long.parseLong(medioPago), 
+					Long.parseLong(pais), direccion);
 			
 			//limpiar los datos de sesion
 			req.getSession().removeAttribute(CarritoKeyEnums.CARRITO.name());
@@ -104,7 +109,7 @@ public class CheckoutController extends BaseServlet{
 			addAttribute(req, CarritoKeyEnums.ID_ORDEN_GENERADA, idOrden);
 			redirect(ViewEnums.CHECKOUT_SUCCESS, req, resp);
 		} catch (ServiceException e) {
-			addAttribute(req, ViewKeyEnums.ERROR_GENERAL, e.getStackTrace());
+			addAttribute(req, ViewKeyEnums.ERROR_GENERAL, e.getMessage());
 			redirect(ViewEnums.CHECKOUT, req, resp);
 		}
 	}

@@ -12,6 +12,8 @@ public class User {
 	private String direccion;
 	private String pais;
 	
+	private Socios socios;
+	
 	public User(Long id, String username, String password) {
 		super();
 		this.id = id;
@@ -82,5 +84,14 @@ public class User {
 	public void setPais(String pais) {
 		this.pais = pais;
 	}
+
+	public Socios getSocios() {
+		return socios;
+	}
+
+	public void setSocios(Socios socios) {
+		this.socios = socios;
+	}
+
 	
 }

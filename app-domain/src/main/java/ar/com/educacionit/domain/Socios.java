@@ -10,6 +10,7 @@ public class Socios extends Entity {
 	private String apellido;
 	private String email;
 	private Date fechaAlta;
+	private String direccion;
 	public Long getId() {
 		return id;
 	}
@@ -50,6 +51,12 @@ public class Socios extends Entity {
 	public String toString() {
 		return "Socioas [id=" + id + ", nombre=" + nombre + ", apellido=" + apellido + ", email=" + email
 				+ ", fechaAlta=" + fechaAlta + "]";
+	}
+	public String getDireccion() {
+		return direccion;
+	}
+	public void setDireccion(String direccion) {
+		this.direccion = direccion;
 	}
 	
 }

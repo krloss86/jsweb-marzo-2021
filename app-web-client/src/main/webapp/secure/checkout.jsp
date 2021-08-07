@@ -1,4 +1,5 @@
 <!doctype html>
+<%@page import="ar.com.educacionit.web.enums.ProfileKeyEnums"%>
 <%@page import="ar.com.educacionit.domain.MediosPagos"%>
 <%@page import="ar.com.educacionit.domain.dto.ItemCarrito"%>
 <%@page import="ar.com.educacionit.web.dto.Carrito"%>
@@ -105,7 +106,7 @@
 		          <div class="row g-3">
 		            <div class="col-sm-6">
 		              <label for="firstName" class="form-label">Nombre</label>
-		              <input name="<%=CarritoKeyEnums.NOMBRE.name()%>" type="text" class="form-control" id="firstName" placeholder="" 
+		              <input name="<%=ProfileKeyEnums.NOMBRE.name()%>" type="text" class="form-control" id="firstName" placeholder="" 
 		              	value="<%=checkout.getNombre()%>" 
 		              	required>
 		              <div class="invalid-feedback">
@@ -115,7 +116,7 @@
 		
 		            <div class="col-sm-6">
 		              <label for="lastName" class="form-label">Apellido</label>
-		              <input name="<%=CarritoKeyEnums.APELLIDO.name()%>" type="text" class="form-control" id="lastName" placeholder="" 
+		              <input name="<%=ProfileKeyEnums.APELLIDO.name()%>" type="text" class="form-control" id="lastName" placeholder="" 
 		              	value="<%=checkout.getApellido()%>" 
 		              	required>
 		              <div class="invalid-feedback">
@@ -136,7 +137,7 @@
 					--%>
 		            <div class="col-12">
 		              <label for="email" class="form-label">Email <span class="text-muted">(Optional)</span></label>
-		              <input name="<%=CarritoKeyEnums.EMAIL.name()%>" type="email" class="form-control" id="email" placeholder="you@example.com"
+		              <input name="<%=ProfileKeyEnums.EMAIL.name()%>" type="email" class="form-control" id="email" placeholder="you@example.com"
 		              	value="<%=checkout.getEmail()%>"
 		              	required>
 		              <div class="invalid-feedback">
@@ -146,7 +147,7 @@
 		
 		            <div class="col-12">
 		              <label for="address" class="form-label">Direcci&oacute;n</label>
-		              <input name="<%=CarritoKeyEnums.DIRECCION.name()%>" type="text" class="form-control" id="address" placeholder="1234 Main St" 
+		              <input name="<%=ProfileKeyEnums.DIRECCION.name()%>" type="text" class="form-control" id="address" placeholder="1234 Main St" 
 		              	value="<%=checkout.getDireccion()%>"
 		              	required>
 		              <div class="invalid-feedback">
@@ -161,7 +162,7 @@
 					--%>
 		            <div class="col-md-5">
 		              <label for="country" class="form-label">Pais</label>
-		              <select name="<%=CarritoKeyEnums.PAIS.name()%>" class="form-select" id="country" required>
+		              <select name="<%=ProfileKeyEnums.PAIS.name()%>" class="form-select" id="country" required>
 		                <option value="-1">Seleccione...</option>
 		                <% 
 		                	List<Paises> paises = (List<Paises>)request.getAttribute(CarritoKeyEnums.PAISES.name()); 
@@ -225,7 +226,7 @@
 		          	for(MediosPagos medio : mediosPagos) {
 		          %>
 		            <div class="form-check">
-		              <input value="<%=medio.getId() %>" id="credit" name="paymentMethod" type="radio" class="form-check-input" required>
+		              <input name="<%=CarritoKeyEnums.MEDIO_PAGO.name()%>" value="<%=medio.getId() %>" id="<%=medio.getId() %>" type="radio" class="form-check-input" required>
 		              <label class="form-check-label" for="credit"><%=medio.getDescripcion() %></label>
 		            </div>
 		            <%-- 

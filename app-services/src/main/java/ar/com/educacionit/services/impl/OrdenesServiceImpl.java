@@ -4,6 +4,7 @@ import java.util.Date;
 import java.util.List;
 
 import ar.com.educacionit.dao.DireccionesOrdenesDao;
+import ar.com.educacionit.dao.OrdenesDao;
 import ar.com.educacionit.dao.OrdenesItemsDao;
 import ar.com.educacionit.dao.PagosOrdenesDao;
 import ar.com.educacionit.dao.exceptions.DuplicatedException;
@@ -22,12 +23,30 @@ import ar.com.educacionit.services.OrdenesService;
 
 public class OrdenesServiceImpl extends AbstractBaseService<Ordenes> implements OrdenesService{
 
-	private OrdenesItemsDao ordenesDao = new OrdenesItemsJDBCDaoImpl();
+	private OrdenesItemsDao ordenesItemsDao = new OrdenesItemsJDBCDaoImpl();
 	private PagosOrdenesDao pagosOrdenesDao = new PagosOrdenesJDBCDaoImpl();
 	private DireccionesOrdenesDao direccionesOrdnesDao = new DireccionesOrdenesJDBCDaoImpl(); 
+	private PagosOrdenesDao pagoOrdenDao = new PagosOrdenesJDBCDaoImpl();
 	
 	public OrdenesServiceImpl() {
 		super(new OrdenesJDBCDaoImpl());
+	}
+	
+	@Override
+	public Ordenes getOne(Long id) throws ServiceException {
+		Ordenes orden = super.getOne(id);
+		try {
+			List<OrdenesItems> items = ordenesItemsDao.findByOrdenesId(orden.getId());
+			DireccionesOrdenes direccionOrden = direccionesOrdnesDao.findByOrdenesId(orden.getId());
+			PagosOrdenes pagoOrden = pagoOrdenDao.findByOrdenesId(orden.getId());
+
+			orden.setDireccionOrden(direccionOrden);
+			orden.setItems(items);
+			orden.setPagoOrden(pagoOrden);
+		} catch (GenericException e) {
+			e.printStackTrace();
+		}
+		return orden;
 	}
 
 	@Override
@@ -52,7 +71,7 @@ public class OrdenesServiceImpl extends AbstractBaseService<Ordenes> implements 
 				oi.setCantidad(new Long(item.getCantidad()));
 				oi.setNumeroItem(i);
 				oi.setPrecioUnitario(item.getPrecio());
-				ordenesDao.save(oi);
+				ordenesItemsDao.save(oi);
 				i++;
 			}
 			
@@ -79,6 +98,16 @@ public class OrdenesServiceImpl extends AbstractBaseService<Ordenes> implements 
 		} catch (GenericException e) {			
 			throw new ServiceException(e);
 		}		
+	}
+
+	@Override
+	public List<Ordenes> findAllBySocioId(Long socioId) throws ServiceException {
+		try {
+			//como no es un metodo del generic, debo castear a ArticulosDao
+			return ((OrdenesDao)super.dao).findAllBySocioId(socioId);
+		} catch (GenericException e) {
+			throw new ServiceException(e.getMessage(),e);
+		}
 	}
 
 }

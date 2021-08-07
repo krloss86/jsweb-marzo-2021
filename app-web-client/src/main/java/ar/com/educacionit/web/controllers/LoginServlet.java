@@ -1,6 +1,7 @@
 package ar.com.educacionit.web.controllers;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -9,24 +10,24 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import ar.com.educacionit.domain.Paises;
 import ar.com.educacionit.domain.User;
 import ar.com.educacionit.exceptions.ServiceException;
 import ar.com.educacionit.services.LoginService;
 import ar.com.educacionit.services.impl.LoginServiceImp;
+import ar.com.educacionit.services.impl.PaisesServiceImpl;
+import ar.com.educacionit.web.enums.CarritoKeyEnums;
 import ar.com.educacionit.web.enums.ViewEnums;
 import ar.com.educacionit.web.enums.ViewKeyEnums;
 
 @WebServlet("/LoginServlet")
-public class LoginServlet extends HttpServlet {
+public class LoginServlet extends BaseServlet {
+	
 	private static final long serialVersionUID = 1L;
        
     public LoginServlet() {
         super();
     }
-
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		response.getWriter().append("Served at: ").append(request.getContextPath());
-	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 			
@@ -45,7 +46,10 @@ public class LoginServlet extends HttpServlet {
 				//request.setAttribute(ViewKeyEnums.USUARIO.name(), user);
 				
 				//sesion!
-				request.getSession().setAttribute(ViewKeyEnums.USUARIO.name(), user);
+				addAttribute(request.getSession(), ViewKeyEnums.USUARIO, user);
+				
+				List<Paises> paises = new PaisesServiceImpl().findAll();
+				addAttribute(request.getSession(), CarritoKeyEnums.PAISES, paises);
 			}else {
 				request.setAttribute(ViewKeyEnums.ERROR_GENERAL.name(), ViewKeyEnums.USUARIO_PASSWORD_INVALIDO.getViewKey());
 				target = ViewEnums.LOGIN;

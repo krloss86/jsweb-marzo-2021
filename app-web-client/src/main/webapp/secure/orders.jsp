@@ -1,3 +1,6 @@
+<%@page import="ar.com.educacionit.web.enums.OrdenesKeyEnums"%>
+<%@page import="ar.com.educacionit.domain.Ordenes"%>
+<%@page import="java.util.List"%>
 <%@page import="ar.com.educacionit.web.enums.ViewKeyEnums"%>
 <!doctype html>
 <html lang="en">
@@ -48,17 +51,26 @@
 							</tr>
 						</thead>
 						<tbody>
+						<%
+							List<Ordenes> ordenes = (List<Ordenes>)session.getAttribute(OrdenesKeyEnums.ORDENES.name());
+						%>
+						<%
+							for(Ordenes orden : ordenes) {
+						%>
 							<tr>
-								<td>1</td>
-								<td>pending</td>
-								<td>100</td>
-								<td>Aug 19, 2016</td>
+								<td><%=orden.getId() %></td>
+								<td><%=orden.getEstadosOrdenesId() %></td>
+								<td><%=orden.getMontoTotal() %></td>
+								<td><%=orden.getFechaCreacion()%></td>
 								<td><a data-toggle="tooltip"
-									title="View Details" 
-									href="${pageContext.request.contextPath}/secure/orderDetails.jsp?id=1">
+									title="Ver Detalle" 
+									href="${pageContext.request.contextPath}/controllers/DetalleOrdenController?<%=OrdenesKeyEnums.ID_ORDEN.name()%>=<%=orden.getId()%>">
 									<i class="bi bi-eye-fill"></i>
 								</a></td>
 							</tr>
+						<%
+							}
+						%>
 						</tbody>
 					</table>
 				</div>

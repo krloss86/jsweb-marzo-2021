@@ -13,6 +13,7 @@ import ar.com.educacionit.dao.OrdenesDao;
 import ar.com.educacionit.dao.exceptions.DuplicatedException;
 import ar.com.educacionit.dao.exceptions.GenericException;
 import ar.com.educacionit.dao.jdbc.AdministradorDeConexiones;
+import ar.com.educacionit.domain.Articulos;
 import ar.com.educacionit.domain.Ordenes;
 
 public class OrdenesJDBCDaoImpl extends JDBCDAOBase<Ordenes> implements OrdenesDao {
@@ -55,48 +56,16 @@ public class OrdenesJDBCDaoImpl extends JDBCDAOBase<Ordenes> implements OrdenesD
 	protected String getSaveSQL() {
 		return "(fecha_creacion,socios_id,estados_ordenes_id,monto_total,cupones_id) values (?,?,?,?,?)";
 	}
-	
 	/*
 	@Override
-	public Long save(List<Long> itemsIds, Double montoTotal, Long sociosId) throws GenericException{
-		
-		try (Connection con = AdministradorDeConexiones.obtenerConexion()) {
-			
-			con.setAutoCommit(false);
-
-			String sql = "INSERT INTO " + this.tabla + this.getSaveSQL();
-			
-			try (PreparedStatement pst = con.prepareStatement(sql, PreparedStatement.RETURN_GENERATED_KEYS)) {
-
-				Ordenes entity = new Ordenes();
-				entity.setEstadosOrdenesId(1L);//creada
-				entity.setFechaCreacion(new Date());
-				entity.setMontoTotal(null);
-				entity.setSociosId(sociosId);
-				
-				this.save(pst, entity);
-				
-				pst.execute();
-
-				try (ResultSet resultSet = pst.getGeneratedKeys()) {
-
-					if (resultSet.next()) {
-
-						Long lastGeneratedId = resultSet.getLong(1);
-
-						entity.setId(lastGeneratedId);
-					}
-				}
-				
-				//ahora grabo los items ordenes
-				sql = "INSERT ORDENES_ITEMS ";
-			}
-		} catch (SQLException e2) {
-			if (e2 instanceof SQLIntegrityConstraintViolationException) {
-				throw new DuplicatedException("No se ha podido crear el producto, integridad violada", e2);
-			}
-			throw new GenericException("No se ha podido crear el producto", e2);
-		}
+	public List<Articulos> findAllBy(String titulo) throws GenericException {
+		String sql = "titulo like '%"+titulo+"%'";
+		return super.findAllBy(sql);
+	}*/
+	
+	@Override
+	public List<Ordenes> findAllBySocioId(Long socioId) throws GenericException {
+		String sql = "socios_id = " +socioId;
+		return super.findAllBy(sql);
 	}
-	*/
 }

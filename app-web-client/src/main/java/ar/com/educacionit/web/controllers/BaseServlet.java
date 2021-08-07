@@ -48,4 +48,12 @@ public abstract class BaseServlet extends HttpServlet {
 	protected User getUserLogged(HttpServletRequest req) {
 		return (User)req.getSession().getAttribute(ViewKeyEnums.USUARIO.name());
 	}
+
+	public void addErrorGeneral(HttpServletRequest req, String error) {
+		addAttribute(req, ViewKeyEnums.ERROR_GENERAL, error);
+	}
+
+	public void addExitoGeneral(HttpServletRequest req, String mensaje) {
+		addAttribute(req, ViewKeyEnums.EXITO, mensaje);
+	}
 }

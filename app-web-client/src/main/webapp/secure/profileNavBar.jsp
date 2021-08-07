@@ -9,7 +9,7 @@
 		  </li>
 		  <li class="nav-item">
 		    <a class="nav-link" aria-current="page" 
-		    	href="${pageContext.request.contextPath}/secure/orders.jsp">
+		    	href="${pageContext.request.contextPath}/secure/OrdenesControllers">
 		    	Ordenes
 		    </a>
 		  </li>	
