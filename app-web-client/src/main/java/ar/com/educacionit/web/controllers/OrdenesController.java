@@ -38,7 +38,7 @@ public class OrdenesController extends BaseServlet {
 			
 		} catch (ServiceException e) {
 			ordenes = new ArrayList<Ordenes>();
-			super.addErrorGeneral(req,e.getMessage());
+			super.addErrorMessage(req,e.getMessage());
 		}
 		
 		redirect(ViewEnums.ORDENES, req, resp);		

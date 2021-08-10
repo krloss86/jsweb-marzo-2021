@@ -69,7 +69,7 @@
 		          <li class="list-group-item d-flex justify-content-between lh-sm">
 		            <div>
 		              <h6 class="my-0"><%=item.getTitulo() %></h6>
-<!-- 		              <small class="text-muted">Brief description</small> -->
+<!-- 		          <small class="text-muted">Brief description</small> -->
 		            </div>
 		            <span class="text-muted">
 		            	<%=item.getPrecio() %>
@@ -102,7 +102,7 @@
 		      <div class="col-md-7 col-lg-8">
 		      
 		        <h4 class="mb-3">Direcci&oacute;n Facturaci&oacute;n</h4>
-		        <form class="needs-validation" novalidate action="${pageContext.request.contextPath}/secure/CheckoutController" method="POST">
+		        <form class="needs-validation" id="frmCheckout" novalidate action="${pageContext.request.contextPath}/secure/CheckoutController" method="POST">
 		          <div class="row g-3">
 		            <div class="col-sm-6">
 		              <label for="firstName" class="form-label">Nombre</label>
@@ -163,14 +163,15 @@
 		            <div class="col-md-5">
 		              <label for="country" class="form-label">Pais</label>
 		              <select name="<%=ProfileKeyEnums.PAIS.name()%>" class="form-select" id="country" required>
-		                <option value="-1">Seleccione...</option>
+		                <option value="">Seleccione...</option>
 		                <% 
 		                	List<Paises> paises = (List<Paises>)request.getAttribute(CarritoKeyEnums.PAISES.name()); 
 		                %>
 		                <%
 		                	for(Paises pais : paises) {
+		                		String selcted = pais.getId().equals(checkout.getPaisesId()) ? "selected" : "";
 		                %>
-			                <option value="<%=pais.getId()%>"><%=pais.getDescripcion() %></option>
+			                <option <%=selcted %> value="<%=pais.getId()%>"><%=pais.getDescripcion() %></option>
 						<%
 		                	}
 						%>
@@ -226,7 +227,12 @@
 		          	for(MediosPagos medio : mediosPagos) {
 		          %>
 		            <div class="form-check">
-		              <input name="<%=CarritoKeyEnums.MEDIO_PAGO.name()%>" value="<%=medio.getId() %>" id="<%=medio.getId() %>" type="radio" class="form-check-input" required>
+		              <input name="<%=CarritoKeyEnums.MEDIO_PAGO.name()%>" 
+		              	value="<%=medio.getId() %>" 
+		              	id="<%=medio.getCodigo() %>" 
+		              	type="radio" 
+		              	class="form-check-input ccCheckbox" 
+		              	required>
 		              <label class="form-check-label" for="credit"><%=medio.getDescripcion() %></label>
 		            </div>
 		            <%-- 
@@ -244,44 +250,46 @@
 		          %>
 		          </div>
 		
-		          <div class="row gy-3">
-		            <div class="col-md-6">
-		              <label for="cc-name" class="form-label">Name on card</label>
-		              <input type="text" class="form-control" id="cc-name" placeholder="" required>
-		              <small class="text-muted">Full name as displayed on card</small>
+		          <div class="row gy-3" id="ccRow">
+		            <div class="col-md-7">
+		              <label for="cc-name" class="form-label">Nombre en Tarjeta de Cr&eacute;dito</label>
+		              <input type="text" class="form-control cc" id="cc-name" placeholder="" required="required">
+		              <small class="text-muted">Nombre completo como figura en la tarjeta de cr&eacute;dito</small>
 		              <div class="invalid-feedback">
-		                Name on card is required
+		                El nombre es requerido
 		              </div>
 		            </div>
 		
-		            <div class="col-md-6">
-		              <label for="cc-number" class="form-label">Credit card number</label>
-		              <input type="text" class="form-control" id="cc-number" placeholder="" required>
+		            <div class="col-md-5">
+		              <label for="cc-number" class="form-label">N&uacute;mero de tarjeta</label>
+		              <input type="text" class="form-control cc" id="cc-number" placeholder="" required="required">
 		              <div class="invalid-feedback">
-		                Credit card number is required
-		              </div>
-		            </div>
-		
-		            <div class="col-md-3">
-		              <label for="cc-expiration" class="form-label">Expiration</label>
-		              <input type="text" class="form-control" id="cc-expiration" placeholder="" required>
-		              <div class="invalid-feedback">
-		                Expiration date required
+		                N&uacute;mero de tarjeta es requerido
 		              </div>
 		            </div>
 		
 		            <div class="col-md-3">
-		              <label for="cc-cvv" class="form-label">CVV</label>
-		              <input type="text" class="form-control" id="cc-cvv" placeholder="" required>
+		              <label for="cc-expiration" class="form-label">Vencimiento</label>
+		              <input type="text" class="form-control cc" id="cc-expiration" placeholder="" required="required">
 		              <div class="invalid-feedback">
-		                Security code required
+		                Vencimiento es requido
+		              </div>
+		            </div>
+		
+		            <div class="col-md-3">
+		              <label for="cc-cvv" class="form-label">C&oacute;digo Seguridad</label>
+		              <input type="text" class="form-control cc" id="cc-cvv" placeholder="" required="required">
+		              <div class="invalid-feedback">
+		               c&oacute;digo de seguridad es requerido
 		              </div>
 		            </div>
 		          </div>
 		
 		          <hr class="my-4">
 		
-		          <button class="w-100 btn btn-primary btn-lg" type="submit">Continue to checkout</button>
+		          <button class="w-100 btn btn-primary btn-lg" type="submit" data-bs-toggle="modal" data-bs-target="#exampleModal">
+		          	Generar Orden
+		          </button>
 		        </form>
 		      </div>
 		    </div>
@@ -299,7 +307,27 @@
 		    </ul>
 		  </footer>
 	</div>
+	<!-- Modal -->
+	<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+	  <div class="modal-dialog">
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <h5 class="modal-title" id="exampleModalLabel">Generaci&oacute;n de orden</h5>
+	        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+	      </div>
+	      <div class="modal-body">
+	        ¿Est&aacute; seguro?
+	      </div>
+	      <div class="modal-footer">
+   	        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>		        	
+        	<button id="btnCheckout" type="button" class="btn btn-primary">Confirmar</button>
+	      </div>
+	    </div>
+	  </div>
+	</div>
 	<jsp:include page="../scripts.jsp"></jsp:include>
     <script src="${pageContext.request.contextPath}/js/form-validation.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script type="module" src="${pageContext.request.contextPath}/js/checkout.js"></script>
   </body>
 </html>

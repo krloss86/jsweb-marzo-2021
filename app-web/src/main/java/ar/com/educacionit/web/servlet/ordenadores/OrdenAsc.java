@@ -2,11 +2,11 @@ package ar.com.educacionit.web.servlet.ordenadores;
 
 import java.util.Comparator;
 
-import ar.com.educacionit.domain.Producto;
+import ar.com.educacionit.domain.Articulos;
 
-public class OrdenAsc implements Comparator<Producto>{
+public class OrdenAsc implements Comparator<Articulos>{
 	@Override
-	public int compare(Producto o1, Producto o2) {
+	public int compare(Articulos o1, Articulos o2) {
 		return o1.getPrecio().compareTo(o2.getPrecio());
 	}
 }

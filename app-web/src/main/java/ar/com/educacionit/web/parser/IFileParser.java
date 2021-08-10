@@ -3,9 +3,9 @@ package ar.com.educacionit.web.parser;
 import java.io.IOException;
 import java.util.Collection;
 
-import ar.com.educacionit.domain.Producto;
+import ar.com.educacionit.domain.Articulos;
 
 public interface IFileParser {
 
-	Collection<Producto> parse() throws IOException;
+	Collection<Articulos> parse() throws IOException;
 }

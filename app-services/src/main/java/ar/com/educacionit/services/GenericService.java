@@ -2,7 +2,6 @@ package ar.com.educacionit.services;
 
 import java.util.List;
 
-import ar.com.educacionit.dao.exceptions.DuplicatedException;
 import ar.com.educacionit.exceptions.ServiceException;
 
 public interface GenericService<T> {
@@ -15,7 +14,7 @@ public interface GenericService<T> {
 	
 	public void delete(Long id) throws ServiceException;
 	
-	public void save(T entity) throws DuplicatedException, ServiceException;
+	public void save(T entity) throws ServiceException;
 	
-	public void update(T entity) throws DuplicatedException, ServiceException;
+	public void update(T entity) throws ServiceException;
 }

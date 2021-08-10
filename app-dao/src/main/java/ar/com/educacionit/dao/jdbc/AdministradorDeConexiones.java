@@ -9,17 +9,17 @@ import ar.com.educacionit.dao.exceptions.GenericException;
 public class AdministradorDeConexiones {
 
 	public static Connection obtenerConexion() throws GenericException{
-		/*String url = "jdbc:postgresql://ec2-35-174-122-153.compute-1.amazonaws.com/dev4u03tup2l15";
+		String url = "jdbc:postgresql://ec2-35-174-122-153.compute-1.amazonaws.com/dev4u03tup2l15";
 		String user ="fwbhwfmiaiacla";
 		String password = "1c5bc164fc9dd6fac878c75684f99074716202336e59c06393900c1c56ef8ed5";		
 		String driverName = "org.postgresql.Driver";
-		*/
 		
+		/*
 		String url = "jdbc:mysql://127.0.0.1/bootcamp1?serverTimeZone=UTC&userSSL=false";
 		String user ="root";
 		String password = "root";		
 		String driverName = "com.mysql.cj.jdbc.Driver";
-		
+		*/
 		
 		//crear una instancia para dicho driver!
 		try {

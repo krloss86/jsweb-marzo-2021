@@ -6,7 +6,6 @@ import java.util.List;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -24,50 +23,53 @@ import ar.com.educacionit.web.enums.ViewKeyEnums;
 public class LoginServlet extends BaseServlet {
 	
 	private static final long serialVersionUID = 1L;
-       
-    public LoginServlet() {
-        super();
-    }
-
+    
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 			
 		 String username = request.getParameter("username");
 		 String password = request.getParameter("password");
 		
-		 LoginService ls = new LoginServiceImp();
-		 
 		 ViewEnums target = ViewEnums.LOGIN_SUCCESS;
+
+		 if(!"".equals(username) && !"".equals(password)) {
 		 
-		 try {
-			
-			User user = ls.getUserByUserName(username);
-			
-			if(user != null && user.getPassword().equals(password)) {
-				//request.setAttribute(ViewKeyEnums.USUARIO.name(), user);
+			 LoginService ls = new LoginServiceImp();
+			 
+			 try {
 				
-				//sesion!
-				addAttribute(request.getSession(), ViewKeyEnums.USUARIO, user);
+				User user = ls.getUserByUserName(username);
 				
-				List<Paises> paises = new PaisesServiceImpl().findAll();
-				addAttribute(request.getSession(), CarritoKeyEnums.PAISES, paises);
-			}else {
-				request.setAttribute(ViewKeyEnums.ERROR_GENERAL.name(), ViewKeyEnums.USUARIO_PASSWORD_INVALIDO.getViewKey());
+				if(user != null && user.getPassword().equals(password)) {
+					//request.setAttribute(ViewKeyEnums.USUARIO.name(), user);
+					
+					//sesion!
+					addAttribute(request.getSession(), ViewKeyEnums.USUARIO, user);
+					
+					List<Paises> paises = new PaisesServiceImpl().findAll();
+					addAttribute(request.getSession(), CarritoKeyEnums.PAISES, paises);
+				}else {
+					request.setAttribute(ViewKeyEnums.ERROR_GENERAL.name(), ViewKeyEnums.USUARIO_PASSWORD_INVALIDO.getViewKey());
+					target = ViewEnums.LOGIN;
+				}
+				
+			} catch (ServiceException e) {
+				/*String msjError = e.getMessage();
+				if(e.getCause() != null) {
+					msjError += " - " + e.getMessage();
+				}*/
+				request.setAttribute(ViewKeyEnums.ERROR_GENERAL.name(), e.getMessage());
 				target = ViewEnums.LOGIN;
 			}
-			
-		} catch (ServiceException e) {
-			/*String msjError = e.getMessage();
-			if(e.getCause() != null) {
-				msjError += " - " + e.getMessage();
-			}*/
-			request.setAttribute(ViewKeyEnums.ERROR_GENERAL.name(), e.getMessage());
-			target = ViewEnums.LOGIN;
-		}
+			 
+		 }else {
+			 request.setAttribute(ViewKeyEnums.ERROR_GENERAL.name(), ViewKeyEnums.USUARIO_PASSWORD_INVALIDO.getViewKey());
+			 target = ViewEnums.LOGIN;
+		 }
 		 
-		//redireccion!!!
-		
-		RequestDispatcher rd = getServletContext().getRequestDispatcher(target.getView());		
-		rd.forward(request, response);
+		 //redireccion!!!
+		 
+		 RequestDispatcher rd = getServletContext().getRequestDispatcher(target.getView());		
+		 rd.forward(request, response);
 	}
 
 }

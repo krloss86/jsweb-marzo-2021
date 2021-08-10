@@ -53,7 +53,7 @@ public class AbstractBaseService<T> implements GenericService<T> {
 	}
 
 	@Override
-	public void save(T entity) throws DuplicatedException, ServiceException {
+	public void save(T entity) throws ServiceException {
 		try {
 			this.dao.save(entity);
 		} catch (DuplicatedException e) {
@@ -65,7 +65,7 @@ public class AbstractBaseService<T> implements GenericService<T> {
 	}
 
 	@Override
-	public void update(T entity) throws DuplicatedException, ServiceException {
+	public void update(T entity) throws ServiceException {
 		try {
 			this.dao.update(entity);
 		} catch (DuplicatedException e) {

@@ -36,7 +36,7 @@ public class CheckoutController extends BaseServlet{
 		Carrito carrito = (Carrito)req.getSession().getAttribute(CarritoKeyEnums.CARRITO.name());
 		
 		if(carrito == null) {
-			super.addErrorGeneral(req,"No hay articulos");
+			super.addErrorMessage(req,"No hay articulos");
 			redirect(ViewEnums.CARRITO, req, resp);
 		}
 		
@@ -47,7 +47,7 @@ public class CheckoutController extends BaseServlet{
 		checkout.setApellido(user.getSocios().getApellido());
 		checkout.setEmail(user.getSocios().getEmail());
 		checkout.setDireccion(user.getSocios().getDireccion());
-		checkout.setPais(user.getPais() != null ? user.getPais() : "");
+		checkout.setPaisesId(user.getSocios().getPaisesId());
 		
 		try {
 			List<Paises> paises = new PaisesServiceImpl().findAll();
@@ -77,12 +77,12 @@ public class CheckoutController extends BaseServlet{
 		
 		Checkout checkout = (Checkout)req.getSession().getAttribute(CarritoKeyEnums.DATOS_CHECKOUT.name());
 		
-		//tomo los datos de pantalla agregados por el usuario
+		//tomo los datos de pantalla agregados por el usuario, pueden ser diferentes al del socio que esta asociado al user
 		String nombre = getParameter(req,ProfileKeyEnums.NOMBRE);
 		String apellido = getParameter(req,ProfileKeyEnums.APELLIDO);
 		String email = getParameter(req,ProfileKeyEnums.EMAIL);
 		String direccion = getParameter(req,ProfileKeyEnums.DIRECCION);
-		String pais = getParameter(req,ProfileKeyEnums.PAIS);
+		String paisesId = getParameter(req,ProfileKeyEnums.PAIS);
 		String medioPago = getParameter(req, CarritoKeyEnums.MEDIO_PAGO);
 		
 		//validacion: completar
@@ -91,16 +91,19 @@ public class CheckoutController extends BaseServlet{
 		checkout.setApellido(apellido);
 		checkout.setEmail(email);
 		checkout.setDireccion(direccion);
-		checkout.setPais(pais);
+		checkout.setPaisesId(Long.parseLong(paisesId));
 		
 		OrdenesService ordenService = new OrdenesServiceImpl();
 
 		Long idOrden = null;
 		try {
 			idOrden = ordenService.save(new ArrayList(carrito.getItems()),
-					user.getSocios().getId(), carrito.getTotal(), null,
+					user.getSocios().getId(), 
+					carrito.getTotal(), 
+					null,
 					Long.parseLong(medioPago), 
-					Long.parseLong(pais), direccion);
+					Long.parseLong(paisesId), 
+					direccion);
 			
 			//limpiar los datos de sesion
 			req.getSession().removeAttribute(CarritoKeyEnums.CARRITO.name());

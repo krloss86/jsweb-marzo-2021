@@ -39,6 +39,9 @@
 					--%>
 				</div>
 				<div class="col-12">
+					<%
+						List<Ordenes> ordenes = (List<Ordenes>)session.getAttribute(OrdenesKeyEnums.ORDENES.name());
+					%>
 					<h3>Mis Ordenes</h3>
 					<table class="table table-striped table-hover">
 						<thead>
@@ -52,9 +55,6 @@
 						</thead>
 						<tbody>
 						<%
-							List<Ordenes> ordenes = (List<Ordenes>)session.getAttribute(OrdenesKeyEnums.ORDENES.name());
-						%>
-						<%
 							for(Ordenes orden : ordenes) {
 						%>
 							<tr>
@@ -67,6 +67,15 @@
 									href="${pageContext.request.contextPath}/controllers/DetalleOrdenController?<%=OrdenesKeyEnums.ID_ORDEN.name()%>=<%=orden.getId()%>">
 									<i class="bi bi-eye-fill"></i>
 								</a></td>
+							</tr>
+						<%
+							}
+						%>
+						<%
+							if(ordenes.isEmpty()) {
+						%>
+							<tr>
+								<td colspan="5">No hay ordenes</td>
 							</tr>
 						<%
 							}

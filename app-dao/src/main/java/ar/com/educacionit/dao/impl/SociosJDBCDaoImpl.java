@@ -2,6 +2,7 @@ package ar.com.educacionit.dao.impl;
 
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.sql.Types;
 import java.util.List;
 
 import ar.com.educacionit.dao.SociosDao;
@@ -30,7 +31,7 @@ public class SociosJDBCDaoImpl extends JDBCDAOBase<Socios> implements SociosDao 
 
 	@Override
 	protected String getUpdateSQL() {
-		return "nombre=?, apellido=?,email=?";
+		return "nombre=?, apellido=?,email=?,direccion=?,paises_id=?";
 	}
 	
 	@Override
@@ -39,6 +40,11 @@ public class SociosJDBCDaoImpl extends JDBCDAOBase<Socios> implements SociosDao 
 		pst.setString(2, entity.getApellido());
 		pst.setString(3, entity.getEmail());
 		pst.setString(4, entity.getDireccion());
+		if(entity.getPaisesId() !=null) {
+			pst.setLong(5,entity.getPaisesId());
+		}else {
+			pst.setNull(5,Types.INTEGER);
+		}
 	}
 	
 	@Override

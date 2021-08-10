@@ -28,7 +28,7 @@ public class ActualizarCarritoController extends BaseServlet{
 			carrito.update(id, cantidad);
 		}
 		
-		super.addExitoGeneral(req, "Articulo id: " +id + " actualizado");
+		super.addSuccessMessage(req, "Articulo id: " +id + " actualizado");
 		
 		addAttribute(req.getSession(), CarritoKeyEnums.CARRITO, carrito);
 		

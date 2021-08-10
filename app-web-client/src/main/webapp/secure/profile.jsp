@@ -44,15 +44,15 @@
 				  </div>
 				  <div class="col-xs-12 col-md-6 col-lg-3">
 		              <label for="country" class="form-label">Pais</label>
-		              <select name="<%=ProfileKeyEnums.PAIS.name()%>" value="<%=request.getAttribute(ProfileKeyEnums.PAIS.name())%>" class="form-select" id="country" required>
-		                <option value="-1">Seleccione...</option>
+		              <select name="<%=ProfileKeyEnums.PAIS.name()%>" class="form-select" id="country" required>
+		                <option value="">Seleccione...</option>
 		                <% 
 		                	List<Paises> paises = (List<Paises>)session.getAttribute(CarritoKeyEnums.PAISES.name()); 
-		                %>
-		                <%
+		               
 		                	for(Paises pais : paises) {
+		                		String selcted = pais.getId().equals(user.getSocios().getPaisesId()) ? "selected" : "";
 		                %>
-			                <option value="<%=pais.getId()%>"><%=pais.getDescripcion() %></option>
+			                <option <%=selcted%> value="<%=pais.getId()%>"><%=pais.getDescripcion() %></option>
 						<%
 		                	}
 						%>

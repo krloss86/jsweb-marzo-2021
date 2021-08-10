@@ -24,8 +24,10 @@ public class LoginServiceImp implements LoginService {
 	public User getUserByUserName(String user) throws ServiceException {
 		try {
 			User users = this.userDao.getByUserName(user);
-			Socios socios = this.socioDao.getSocioByUserId(users.getId());
-			users.setSocios(socios);
+			if(users != null) {
+				Socios socios = this.socioDao.getSocioByUserId(users.getId());
+				users.setSocios(socios);
+			}
 			return users;
 		} catch (GenericException e) {
 			throw new ServiceException(e.getMessage(), e);

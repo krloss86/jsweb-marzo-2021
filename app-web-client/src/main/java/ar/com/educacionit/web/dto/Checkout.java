@@ -6,14 +6,14 @@ public class Checkout {
 	private String apellido;
 	private String email;
 	private String direccion;
-	private String pais;
+	private Long paisesId;
 	
 	public Checkout() {
 		this.nombre = "";
 		this.apellido = "";
 		this.email = "";
 		this.direccion = "";
-		this.pais = "";
+		this.paisesId = -1L;
 	}
 	
 	public String getNombre() {
@@ -40,12 +40,15 @@ public class Checkout {
 	public void setDireccion(String direccion) {
 		this.direccion = direccion;
 	}
-	public String getPais() {
-		return pais;
+
+	public Long getPaisesId() {
+		return paisesId;
 	}
-	public void setPais(String pais) {
-		this.pais = pais;
+
+	public void setPaisesId(Long paisesId) {
+		this.paisesId = paisesId;
 	}
+	
 	
 
 }

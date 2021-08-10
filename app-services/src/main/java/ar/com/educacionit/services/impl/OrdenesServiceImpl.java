@@ -23,13 +23,17 @@ import ar.com.educacionit.services.OrdenesService;
 
 public class OrdenesServiceImpl extends AbstractBaseService<Ordenes> implements OrdenesService{
 
-	private OrdenesItemsDao ordenesItemsDao = new OrdenesItemsJDBCDaoImpl();
-	private PagosOrdenesDao pagosOrdenesDao = new PagosOrdenesJDBCDaoImpl();
-	private DireccionesOrdenesDao direccionesOrdnesDao = new DireccionesOrdenesJDBCDaoImpl(); 
-	private PagosOrdenesDao pagoOrdenDao = new PagosOrdenesJDBCDaoImpl();
+	private OrdenesItemsDao ordenesItemsDao;
+	private PagosOrdenesDao pagosOrdenesDao;
+	private DireccionesOrdenesDao direccionesOrdnesDao; 
+	private PagosOrdenesDao pagoOrdenDao;
 	
 	public OrdenesServiceImpl() {
 		super(new OrdenesJDBCDaoImpl());
+		this.ordenesItemsDao = new OrdenesItemsJDBCDaoImpl();
+		this.pagosOrdenesDao = new PagosOrdenesJDBCDaoImpl();
+		this.direccionesOrdnesDao = new DireccionesOrdenesJDBCDaoImpl();
+		this.pagoOrdenDao = new PagosOrdenesJDBCDaoImpl();
 	}
 	
 	@Override
@@ -94,6 +98,7 @@ public class OrdenesServiceImpl extends AbstractBaseService<Ordenes> implements 
 			
 			return entity.getId();
 		} catch (DuplicatedException e) {
+			//IMPLEMENTAR ROLLBACK
 			throw new ServiceException(e.getMessage(),e);
 		} catch (GenericException e) {			
 			throw new ServiceException(e);
@@ -103,7 +108,7 @@ public class OrdenesServiceImpl extends AbstractBaseService<Ordenes> implements 
 	@Override
 	public List<Ordenes> findAllBySocioId(Long socioId) throws ServiceException {
 		try {
-			//como no es un metodo del generic, debo castear a ArticulosDao
+			//como no es un metodo del generic, debo castear a dao a ArticulosDao
 			return ((OrdenesDao)super.dao).findAllBySocioId(socioId);
 		} catch (GenericException e) {
 			throw new ServiceException(e.getMessage(),e);

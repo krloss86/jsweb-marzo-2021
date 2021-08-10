@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Date;
 import java.util.Iterator;
 
 import javax.servlet.http.Part;
@@ -16,7 +17,7 @@ import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
-import ar.com.educacionit.domain.Producto;
+import ar.com.educacionit.domain.Articulos;
 
 public class XLSFileParser extends FileParserBase implements IFileParser {
 
@@ -29,7 +30,7 @@ public class XLSFileParser extends FileParserBase implements IFileParser {
 	}
 
 	@Override
-	public Collection<Producto> parse() throws IOException {
+	public Collection<Articulos> parse() throws IOException {
 
 		InputStream excelFile = null;
 		if (this.filePart != null) {
@@ -43,7 +44,7 @@ public class XLSFileParser extends FileParserBase implements IFileParser {
 		Sheet datatypeSheet = workbook.getSheetAt(0);
 		Iterator<Row> iterator = datatypeSheet.iterator();
 
-		Collection<Producto> productos = new ArrayList<>();
+		Collection<Articulos> productos = new ArrayList<>();
 
 		boolean firstRow = true;
 		// titulo|codigo|precio|tipo
@@ -57,7 +58,7 @@ public class XLSFileParser extends FileParserBase implements IFileParser {
 
 			Iterator<Cell> cellIterator = currentRow.iterator();
 
-			Producto producto = new Producto();
+			Articulos articulo = new Articulos();
 
 			while (cellIterator.hasNext()) {
 
@@ -65,22 +66,29 @@ public class XLSFileParser extends FileParserBase implements IFileParser {
 
 				switch (currentCell.getColumnIndex()) {
 				case 0:
-					producto.setTitulo(currentCell.getStringCellValue());
+					articulo.setTitulo(currentCell.getStringCellValue());
 					break;
 				case 1:
-					producto.setCodigo(currentCell.getStringCellValue());
+					articulo.setCodigo(currentCell.getStringCellValue());
 					break;
 				case 2:
-					producto.setPrecio((double) currentCell.getNumericCellValue());
+					articulo.setPrecio((double) currentCell.getNumericCellValue());
 					break;
 				case 3:
-					producto.setTipoProducto((long) currentCell.getNumericCellValue());
+					articulo.setStock((long) currentCell.getNumericCellValue());
+					break;
+				case 4:
+					articulo.setMarcasId((long) currentCell.getNumericCellValue());
+					break;
+				case 5:
+					articulo.setCategoriasId((long) currentCell.getNumericCellValue());
 					break;
 				default:
 					break;
 				}
 			}
-			productos.add(producto);
+			articulo.setFechaCreacion(new Date());
+			productos.add(articulo);
 		}
 
 		workbook.close();

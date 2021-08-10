@@ -8,7 +8,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import ar.com.educacionit.domain.Producto;
+import ar.com.educacionit.domain.Articulos;
 import ar.com.educacionit.exceptions.ServiceException;
 import ar.com.educacionit.web.enums.ViewEnums;
 import ar.com.educacionit.web.enums.ViewKeyEnums;
@@ -24,24 +24,28 @@ public class ActualizarProductoServlet extends BaseServlet {
 		String codigo = request.getParameter("codigo");
 		String titulo = request.getParameter("titulo");
 		String precio = request.getParameter("precio");
-		String tipoProducto = request.getParameter("tipoProducto");
+		String categoriaId = request.getParameter("categoriasId");
+		String marcasId = request.getParameter("marcasId");
+		String stock = request.getParameter("stock");
 		
 		ViewEnums target = ViewEnums.LISTADO_GENERAL;
 		
-		Producto nuevoProducto = null;
+		Articulos nuevoArticulo = null;
 		try {
 			
 			Long idLong = Long.parseLong(id);
 			Double precioF = Double.parseDouble(precio);
-			Long tipoProductoL = Long.parseLong(tipoProducto);
+			Long categroiasIdL = Long.parseLong(categoriaId);
+			Long marcasIdL = Long.parseLong(marcasId);
+			Long stockL = Long.parseLong(stock);
 			
-			nuevoProducto = new Producto(idLong, titulo, precioF, codigo, tipoProductoL);
+			nuevoArticulo = new Articulos(idLong, titulo, codigo, precioF, stockL,marcasIdL,categroiasIdL);
 			
-			super.ps.actualizarProdcuto(nuevoProducto);
-			request.setAttribute(ViewKeyEnums.EXITO.name(), "Se ha actualizao exitosamente el producto id:" + nuevoProducto.getId());
+			super.ps.update(nuevoArticulo);
+			request.setAttribute(ViewKeyEnums.EXITO.name(), "Se ha actualizao exitosamente el producto id:" + nuevoArticulo.getId());
 			
 			//recargo la lista de productos
-			Collection<Producto> productos = ps.findAll();
+			Collection<Articulos> productos = ps.findAll();
 			request.setAttribute(ViewKeyEnums.LISTADO.name(), productos);
 
 			Double suma = productos.stream()
@@ -55,7 +59,7 @@ public class ActualizarProductoServlet extends BaseServlet {
 			target = ViewEnums.EDITAR_PRODUCTO;
 			
 			//recargar el producto
-			addAttribute(request, ViewKeyEnums.PRODUCTO_EDITAR, nuevoProducto);
+			addAttribute(request, ViewKeyEnums.PRODUCTO_EDITAR, nuevoArticulo);
 		}
 		
 		//redireccion

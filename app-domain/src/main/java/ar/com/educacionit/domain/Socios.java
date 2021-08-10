@@ -11,6 +11,8 @@ public class Socios extends Entity {
 	private String email;
 	private Date fechaAlta;
 	private String direccion;
+	private Long paisesId;
+	
 	public Long getId() {
 		return id;
 	}
@@ -57,6 +59,12 @@ public class Socios extends Entity {
 	}
 	public void setDireccion(String direccion) {
 		this.direccion = direccion;
+	}
+	public Long getPaisesId() {
+		return paisesId;
+	}
+	public void setPaisesId(Long paisesId) {
+		this.paisesId = paisesId;
 	}
 	
 }

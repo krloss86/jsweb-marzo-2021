@@ -1,5 +1,5 @@
+<%@page import="ar.com.educacionit.domain.Articulos"%>
 <%@page import="ar.com.educacionit.web.enums.ViewKeyEnums"%>
-<%@page import="ar.com.educacionit.domain.Producto"%>
 <%@page import="java.util.Collection"%>
 <!doctype html>
 <html lang="en">
@@ -29,20 +29,24 @@
 								<th scope="col">CÓDIGO</th>
 								<th scope="col">TITULO</th>
 								<th scope="col">PRECIO</th>
-								<th scope="col">TIPO</th>
+								<th scope="col">STOCK</th>
+								<th scope="col">MARCA</th>
+								<th scope="col">CATEGORIA</th>
 								<th scope="col"></th>
 							</tr>
 						</thead>
 						<%
-							Collection<Producto> productos = (Collection<Producto>)request.getAttribute(ViewKeyEnums.LISTADO_OK.name());
+							Collection<Articulos> productos = (Collection<Articulos>)request.getAttribute(ViewKeyEnums.LISTADO_OK.name());
 						%>
-						<% for(Producto aux : productos){ %>
+						<% for(Articulos aux : productos){ %>
 							<tr>
 								<th scope="row"><%=aux.getId() %></th>
 								<td><%=aux.getCodigo() %></td>
 								<td><%=aux.getTitulo() %></td>
 								<td><%=aux.getPrecio() %></td>
-								<td><%=aux.getTipoProducto() %></td>
+								<td><%=aux.getStock() %></td>
+								<td><%=aux.getMarcasId() %></td>
+								<td><%=aux.getCategoriasId() %></td>
 							</tr>
 						<%} %>
 						<% if(productos.isEmpty()) { %>
@@ -69,20 +73,24 @@
 								<th scope="col">CÓDIGO</th>
 								<th scope="col">TITULO</th>
 								<th scope="col">PRECIO</th>
-								<th scope="col">TIPO</th>
+								<th scope="col">STOCK</th>
+								<th scope="col">MARCA</th>
+								<th scope="col">CATEGORIA</th>
 								<th scope="col"></th>
 							</tr>
 						</thead>
 						<%
-							Collection<Producto> productosFail = (Collection<Producto>)session.getAttribute(ViewKeyEnums.LISTADO_FAIL.name());
+							Collection<Articulos> productosFail = (Collection<Articulos>)session.getAttribute(ViewKeyEnums.LISTADO_FAIL.name());
 						%>
-						<% for(Producto aux : productosFail){ %>
+						<% for(Articulos aux : productosFail){ %>
 							<tr>
 								<th scope="row"></th>
 								<td><%=aux.getCodigo() %></td>
 								<td><%=aux.getTitulo() %></td>
 								<td><%=aux.getPrecio() %></td>
-								<td><%=aux.getTipoProducto() %></td>
+								<td><%=aux.getStock() %></td>	
+								<td><%=aux.getMarcasId() %></td>
+								<td><%=aux.getCategoriasId() %></td>
 							</tr>
 						<%} %>
 						<% if(productosFail.isEmpty()) { %>

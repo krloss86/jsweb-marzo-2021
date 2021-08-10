@@ -27,7 +27,7 @@ public class DetalleOrdenController extends BaseServlet {
 		String idOrden = req.getParameter(OrdenesKeyEnums.ID_ORDEN.name());
 		
 		if(idOrden == null) {
-			addErrorGeneral(req, "Debe indicar un ID de orden");
+			addErrorMessage(req, "Debe indicar un ID de orden");
 			redirect(ViewEnums.ORDENES, req, resp);
 			return;
 		}
@@ -41,7 +41,7 @@ public class DetalleOrdenController extends BaseServlet {
 			super.addAttribute(req.getSession(), OrdenesKeyEnums.ORDEN, orden);
 			
 		} catch (ServiceException e) {
-			super.addErrorGeneral(req,e.getMessage());
+			super.addErrorMessage(req,e.getMessage());
 		}
 		
 		redirect(ViewEnums.ORDER_DETAILS, req, resp);		

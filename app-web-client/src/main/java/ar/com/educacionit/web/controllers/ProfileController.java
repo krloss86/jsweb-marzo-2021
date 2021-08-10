@@ -7,7 +7,6 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import ar.com.educacionit.dao.exceptions.DuplicatedException;
 import ar.com.educacionit.domain.User;
 import ar.com.educacionit.exceptions.ServiceException;
 import ar.com.educacionit.services.SociosService;
@@ -31,7 +30,7 @@ public class ProfileController extends BaseServlet{
 		String apellido = getParameter(req,ProfileKeyEnums.APELLIDO);
 		String email = getParameter(req,ProfileKeyEnums.EMAIL);
 		String direccion = getParameter(req,ProfileKeyEnums.DIRECCION);
-		//String pais = getParameter(req,ProfileKeyEnums.PAIS);
+		String paisesId = getParameter(req,ProfileKeyEnums.PAIS);
 		
 		//validacion: completar
 		
@@ -39,7 +38,7 @@ public class ProfileController extends BaseServlet{
 		user.getSocios().setApellido(apellido);
 		user.getSocios().setEmail(email);
 		user.getSocios().setDireccion(direccion);
-		//user.getSocios().setPais(Long.parseLong(pais));
+		user.getSocios().setPaisesId(Long.parseLong(paisesId));
 		
 		SociosService sociosService = new SociosServiceImpl();
 
@@ -48,10 +47,10 @@ public class ProfileController extends BaseServlet{
 			
 			addAttribute(req.getSession(), ViewKeyEnums.USUARIO, user);
 
-			super.addExitoGeneral(req, "Datos actualizado");
+			super.addSuccessMessage(req, "Datos actualizado");
 
-		} catch (ServiceException | DuplicatedException e) {
-			super.addErrorGeneral(req, e.getMessage());
+		} catch (ServiceException e) {
+			super.addErrorMessage(req, e.getMessage());
 		}
 		
 		redirect(ViewEnums.LOGIN_SUCCESS, req, resp);
