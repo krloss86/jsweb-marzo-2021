@@ -93,27 +93,33 @@ public class CheckoutController extends BaseServlet{
 		checkout.setDireccion(direccion);
 		checkout.setPaisesId(Long.parseLong(paisesId));
 		
-		OrdenesService ordenService = new OrdenesServiceImpl();
-
-		Long idOrden = null;
-		try {
-			idOrden = ordenService.save(new ArrayList(carrito.getItems()),
-					user.getSocios().getId(), 
-					carrito.getTotal(), 
-					null,
-					Long.parseLong(medioPago), 
-					Long.parseLong(paisesId), 
-					direccion);
-			
-			//limpiar los datos de sesion
-			req.getSession().removeAttribute(CarritoKeyEnums.CARRITO.name());
-			req.getSession().removeAttribute(CarritoKeyEnums.DATOS_CHECKOUT.name());
-
-			addAttribute(req, CarritoKeyEnums.ID_ORDEN_GENERADA, idOrden);
-			redirect(ViewEnums.CHECKOUT_SUCCESS, req, resp);
-		} catch (ServiceException e) {
-			addAttribute(req, ViewKeyEnums.ERROR_GENERAL, e.getMessage());
-			redirect(ViewEnums.CHECKOUT, req, resp);
+		if(medioPago == null || medioPago.equals("")) {
+			addErrorMessage(req, "Debe seleccionar un Medio de Pago");
+			doGet(req, resp);
+		}else {
+		
+			OrdenesService ordenService = new OrdenesServiceImpl();
+	
+			Long idOrden = null;
+			try {
+				idOrden = ordenService.save(new ArrayList(carrito.getItems()),
+						user.getSocios().getId(), 
+						carrito.getTotal(), 
+						null,
+						Long.parseLong(medioPago), 
+						Long.parseLong(paisesId), 
+						direccion);
+				
+				//limpiar los datos de sesion
+				req.getSession().removeAttribute(CarritoKeyEnums.CARRITO.name());
+				req.getSession().removeAttribute(CarritoKeyEnums.DATOS_CHECKOUT.name());
+	
+				addAttribute(req, CarritoKeyEnums.ID_ORDEN_GENERADA, idOrden);
+				redirect(ViewEnums.CHECKOUT_SUCCESS, req, resp);
+			} catch (ServiceException e) {
+				addAttribute(req, ViewKeyEnums.ERROR_GENERAL, e.getMessage());
+				redirect(ViewEnums.CHECKOUT, req, resp);
+			}
 		}
 	}
 
