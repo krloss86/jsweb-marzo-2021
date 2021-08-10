@@ -11,7 +11,7 @@ import java.util.Collection;
 
 import javax.servlet.http.Part;
 
-import ar.com.educacionit.domain.Producto;
+import ar.com.educacionit.domain.Articulos;
 
 public class CSVFileParser extends FileParserBase implements IFileParser {
 
@@ -25,7 +25,7 @@ public class CSVFileParser extends FileParserBase implements IFileParser {
 	}
 
 	@Override
-	public Collection<Producto> parse() throws IOException {
+	public Collection<Articulos> parse() throws IOException {
 		
 		BufferedReader br = null;
 		
@@ -42,19 +42,19 @@ public class CSVFileParser extends FileParserBase implements IFileParser {
 			}
 		}
 		
-		Collection<Producto> productos = new ArrayList<Producto>();
+		Collection<Articulos> productos = new ArrayList<Articulos>();
 		
 		if(br != null) {
-			productos = this.buildProductos(br);
+			productos = this.buildArticulos(br);
 		}
 		
 		return productos;
 	}
 
 
-	private Collection<Producto> buildProductos(BufferedReader fr) throws IOException {
+	private Collection<Articulos> buildArticulos(BufferedReader fr) throws IOException {
 		
-		Collection<Producto> productos = new ArrayList<Producto>();
+		Collection<Articulos> productos = new ArrayList<Articulos>();
 		
 		String lineaLeida = fr.readLine();
 		// titulo;codigo;precio;tipo
@@ -71,11 +71,13 @@ public class CSVFileParser extends FileParserBase implements IFileParser {
 					String titulo = datos[0];
 					String codigo = datos[1];
 					Double precio = Double.parseDouble(datos[2]);
-					Long tipo = Long.parseLong(datos[3]);
+					Long stock = Long.parseLong(datos[3]);
+					Long categoria = Long.parseLong(datos[4]);
+					Long marca = Long.parseLong(datos[5]);
 					
-					Producto producto = new Producto(titulo, precio, codigo, tipo);
+					Articulos articulo = new Articulos(titulo, codigo, precio, stock,marca, categoria);
 					
-					productos.add(producto);
+					productos.add(articulo);
 				}
 			}
 		}

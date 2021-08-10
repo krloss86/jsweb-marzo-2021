@@ -1,5 +1,5 @@
+<%@page import="ar.com.educacionit.domain.Articulos"%>
 <%@page import="ar.com.educacionit.web.enums.ViewKeyEnums"%>
-<%@page import="ar.com.educacionit.domain.Producto"%>
 <%@page import="java.util.Collection"%>
 <!doctype html>
 <html lang="en">
@@ -52,20 +52,24 @@
 								<th scope="col">CÓDIGO</th>
 								<th scope="col">TITULO</th>
 								<th scope="col">PRECIO</th>
-								<th scope="col">TIPO</th>
+								<th scope="col">STOCK</th>
+								<th scope="col">CATEGORIA</th>
+								<th scope="col">MARCA</th>
 								<th scope="col"></th>
 							</tr>
 						</thead>
 						<%
-							Collection<Producto> productos = (Collection<Producto>)request.getAttribute(ViewKeyEnums.LISTADO.name());
+							Collection<Articulos> productos = (Collection<Articulos>)request.getAttribute(ViewKeyEnums.LISTADO.name());
 						%>
-						<% for(Producto aux : productos){ %>
+						<% for(Articulos aux : productos){ %>
 							<tr>
 								<th scope="row"><%=aux.getId() %></th>
 								<td><%=aux.getCodigo() %></td>
 								<td><%=aux.getTitulo() %></td>
 								<td><%=aux.getPrecio() %></td>
-								<td><%=aux.getTipoProducto() %></td>
+								<td><%=aux.getStock() %></td>
+								<td><%=aux.getCategoriasId() %></td>
+								<td><%=aux.getMarcasId() %></td>
 								<td>
 									<div class="d-grid gap-2 d-md-flex justify-content-md-end">
 										<button type="button" onclick="guardarId(<%=aux.getId()%>)" class="btn btn-danger me-md-2" data-bs-toggle="modal" data-bs-target="#exampleModal">
@@ -77,7 +81,7 @@
 							</tr>
 						<%} %>
 						<tr>
-							<td colspan="3" align="right">Total</td>
+							<td colspan="5" align="right">Total</td>
 							<td>$ <%=request.getAttribute(ViewKeyEnums.TOTAL.name())%></td>
 							<td colspan="2"></td>
 						</tr>

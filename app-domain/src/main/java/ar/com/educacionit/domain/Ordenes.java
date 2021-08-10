@@ -2,6 +2,7 @@ package ar.com.educacionit.domain;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 
 public class Ordenes extends Entity {
 
@@ -11,6 +12,11 @@ public class Ordenes extends Entity {
 	private Long estadosOrdenesId;
 	private Double montoTotal;
 	private Long cuponesId;
+	
+	private List<OrdenesItems> items;
+	private DireccionesOrdenes direccionOrden;
+	private PagosOrdenes pagoOrden;
+	
 	public Long getId() {
 		return id;
 	}
@@ -61,4 +67,24 @@ public class Ordenes extends Entity {
 				+ estadosOrdenesId + ", montoTotal=" + montoTotal + ", cuponesId=" + cuponesId + "]";
 
 	}
+	public List<OrdenesItems> getItems() {
+		return items;
+	}
+	public void setItems(List<OrdenesItems> items) {
+		this.items = items;
+	}
+	public DireccionesOrdenes getDireccionOrden() {
+		return direccionOrden;
+	}
+	public void setDireccionOrden(DireccionesOrdenes direccionOrden) {
+		this.direccionOrden = direccionOrden;
+	}
+	public PagosOrdenes getPagoOrden() {
+		return pagoOrden;
+	}
+	public void setPagoOrden(PagosOrdenes pagoOrden) {
+		this.pagoOrden = pagoOrden;
+	}
+	
+	
 }

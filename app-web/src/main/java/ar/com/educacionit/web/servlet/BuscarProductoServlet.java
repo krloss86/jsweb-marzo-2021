@@ -14,6 +14,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import ar.com.educacionit.domain.Articulos;
 import ar.com.educacionit.domain.Producto;
 import ar.com.educacionit.exceptions.ServiceException;
 import ar.com.educacionit.web.enums.ViewEnums;
@@ -37,13 +38,18 @@ public class BuscarProductoServlet extends BaseServlet {
 			claveBusqueda ="";
 		}
 		
-		Collection<Producto> productos = new ArrayList<>();
+		Collection<Articulos> articulos = new ArrayList<>();
 		
 		try {
-			productos = ps.buscarProductos(claveBusqueda);			
+			if(!claveBusqueda.equals("")) {
+				articulos = ps.findAllBy(claveBusqueda);
+			}else {
+				articulos = ps.findAll();
+			}
+			//productos = ps.findAll(claveBusqueda);			
 			//suma total de valores
 			
-			Stream<Producto> stream = productos.stream();
+			Stream<Articulos> stream = articulos.stream();
 			
 			//obtener los parametros de los filtros
 			String titulo = request.getParameter("titulo");
@@ -61,25 +67,25 @@ public class BuscarProductoServlet extends BaseServlet {
 			String tipo = request.getParameter("tipo");
 			if(tipo != null && !"".equals(tipo.trim())) {
 				Long tipoL = Long.parseLong(tipo);
-				stream = stream.filter(p-> p.getTipoProducto().equals(tipoL));
+				stream = stream.filter(p-> p.getCategoriasId().equals(tipoL));
 			}
 			
 			//aplico todos los filtros (si hay)
-			productos = stream.collect(Collectors.toList());
+			articulos = stream.collect(Collectors.toList());
 			
-			if(productos.isEmpty()) {	
+			if(articulos.isEmpty()) {	
 				addAttribute(request, ViewKeyEnums.WARNING_GENERAL, "No hay datos");
 			}
 			//otengo orden
 			
 			String orden = request.getParameter("orden");
 			if("asc".equals(orden)) {
-				Collections.sort((List)productos, new OrdenDesc());
+				Collections.sort((List)articulos, new OrdenDesc());
 			}else {
-				Collections.sort((List)productos, new OrdenAsc());
+				Collections.sort((List)articulos, new OrdenAsc());
 			}
 			
-			Double suma = productos.stream()
+			Double suma = articulos.stream()
 				.map(p -> p.getPrecio())
 				.reduce(0D, (Double x, Double y) -> x+y);
 			
@@ -87,7 +93,7 @@ public class BuscarProductoServlet extends BaseServlet {
 		} catch (ServiceException e) {
 			addAttribute(request, ViewKeyEnums.ERROR_GENERAL, e.getMessage());
 		} finally {
-			addAttribute(request, ViewKeyEnums.LISTADO, productos);
+			addAttribute(request, ViewKeyEnums.LISTADO, articulos);
 		}
 		
 		

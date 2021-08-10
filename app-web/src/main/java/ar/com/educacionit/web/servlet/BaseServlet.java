@@ -8,14 +8,16 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import ar.com.educacionit.services.ProductoServices;
-import ar.com.educacionit.services.impl.ProductoServiceImpl;
+import ar.com.educacionit.services.ArticulosService;
+import ar.com.educacionit.services.impl.ArticuloServiceImpl;
 import ar.com.educacionit.web.enums.ViewEnums;
 import ar.com.educacionit.web.enums.ViewKeyEnums;
 
 public abstract class BaseServlet extends HttpServlet {
 
-	protected ProductoServices ps = new ProductoServiceImpl();
+	private static final long serialVersionUID = -3588994299592741820L;
+
+	protected ArticulosService ps = new ArticuloServiceImpl();
 	
 	//metodos
 	public static void addAttribute(HttpServletRequest request, ViewKeyEnums key, Object value ) {

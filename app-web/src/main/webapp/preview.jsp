@@ -1,6 +1,6 @@
 <!-- DIRECTIVA -->
 <%@page import="ar.com.educacionit.web.enums.ViewKeyEnums"%>
-<%@page import="ar.com.educacionit.domain.Producto"%>
+<%@page import="ar.com.educacionit.domain.Articulos"%>
 <%@page import="java.util.Collection"%>
 <!doctype html>
 <html lang="en">
@@ -22,20 +22,24 @@
 						      <th scope="col">CODIGO</th>
 						      <th scope="col">TITULO</th>
 						      <th scope="col">PRECIO</th>
-						      <th scope="col">TIPO</th>
+								<th scope="col">STOCK</th>
+								<th scope="col">MARCA</th>
+								<th scope="col">CATEGORIA</th>
 						    </tr>
 						  </thead>
 						  <tbody>
 						   <!-- SCRIPTLET -->
 							<%
-								Collection<Producto> listado = (Collection<Producto>)session.getAttribute(ViewKeyEnums.UPLOAD_PREVIEW_KEY.name());
+								Collection<Articulos> listado = (Collection<Articulos>)session.getAttribute(ViewKeyEnums.UPLOAD_PREVIEW_KEY.name());
 							%>
-						   	<% for(Producto producto: listado) { %>
+						   	<% for(Articulos articulo: listado) { %>
 								<tr>
-									<td><%=producto.getCodigo() %></td>
-									<td><%=producto.getTitulo() %></td>
-									<td><%=producto.getPrecio() %></td>
-									<td><%=producto.getTipoProducto() %></td>
+									<td><%=articulo.getCodigo() %></td>
+									<td><%=articulo.getTitulo() %></td>
+									<td><%=articulo.getPrecio() %></td>
+									<td><%=articulo.getStock() %></td>
+									<td><%=articulo.getMarcasId() %></td>
+									<td><%=articulo.getCategoriasId() %></td>
 								</tr>
 							<% } %>
 						  </tbody>

@@ -6,10 +6,10 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 
-import ar.com.educacionit.domain.Producto;
+import ar.com.educacionit.domain.Articulos;
 import ar.com.educacionit.exceptions.ServiceException;
-import ar.com.educacionit.services.ProductoServices;
-import ar.com.educacionit.services.impl.ProductoServiceImpl;
+import ar.com.educacionit.services.ArticulosService;
+import ar.com.educacionit.services.impl.ArticuloServiceImpl;
 import ar.com.educacionit.web.parser.CSVFileParser;
 import ar.com.educacionit.web.parser.IFileParser;
 import ar.com.educacionit.web.parser.XLSFileParser;
@@ -30,20 +30,20 @@ public class XLSFileParserMain {
 			fileParser = new XLSFileParser(fileName);
 		}
 		
-		Collection<Producto> productos = fileParser.parse(); 
+		Collection<Articulos> productos = fileParser.parse(); 
 		
-		Collection<Producto> ok = new ArrayList<>();
-		Map<String,Producto> fail= new HashMap<>();
+		Collection<Articulos> ok = new ArrayList<>();
+		Map<String,Articulos> fail= new HashMap<>();
 		
 		if(!productos.isEmpty()) {
 			
-			ProductoServices ps = new ProductoServiceImpl();
+			ArticulosService ps = new ArticuloServiceImpl();
 			
-			for(Producto aux : productos) {
+			for(Articulos aux : productos) {
 				
 				try {
-					Producto product = ps.nuevoProducto(aux);
-					ok.add(product);
+					ps.save(aux);
+					ok.add(aux);
 				} catch (ServiceException e) {
 					//fail.add(aux);
 					fail.put(e.getCause().getMessage(), aux);

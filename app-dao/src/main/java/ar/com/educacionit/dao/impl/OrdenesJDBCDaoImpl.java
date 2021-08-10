@@ -1,10 +1,19 @@
 package ar.com.educacionit.dao.impl;
 
+import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.SQLIntegrityConstraintViolationException;
 import java.sql.Types;
+import java.util.Date;
+import java.util.List;
 
 import ar.com.educacionit.dao.OrdenesDao;
+import ar.com.educacionit.dao.exceptions.DuplicatedException;
+import ar.com.educacionit.dao.exceptions.GenericException;
+import ar.com.educacionit.dao.jdbc.AdministradorDeConexiones;
+import ar.com.educacionit.domain.Articulos;
 import ar.com.educacionit.domain.Ordenes;
 
 public class OrdenesJDBCDaoImpl extends JDBCDAOBase<Ordenes> implements OrdenesDao {
@@ -47,5 +56,16 @@ public class OrdenesJDBCDaoImpl extends JDBCDAOBase<Ordenes> implements OrdenesD
 	protected String getSaveSQL() {
 		return "(fecha_creacion,socios_id,estados_ordenes_id,monto_total,cupones_id) values (?,?,?,?,?)";
 	}
-
+	/*
+	@Override
+	public List<Articulos> findAllBy(String titulo) throws GenericException {
+		String sql = "titulo like '%"+titulo+"%'";
+		return super.findAllBy(sql);
+	}*/
+	
+	@Override
+	public List<Ordenes> findAllBySocioId(Long socioId) throws GenericException {
+		String sql = "socios_id = " +socioId;
+		return super.findAllBy(sql);
+	}
 }

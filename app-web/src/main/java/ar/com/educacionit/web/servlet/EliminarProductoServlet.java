@@ -9,7 +9,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import ar.com.educacionit.domain.Producto;
+import ar.com.educacionit.domain.Articulos;
 import ar.com.educacionit.exceptions.ServiceException;
 import ar.com.educacionit.web.enums.ViewEnums;
 import ar.com.educacionit.web.enums.ViewKeyEnums;
@@ -28,28 +28,27 @@ public class EliminarProductoServlet extends BaseServlet {
 		
 		ViewEnums target = ViewEnums.LISTADO_GENERAL;
 		
-		//validaciones
-		if(id == null || id.trim().equals("")) {
-			super.addAttribute(request, ViewKeyEnums.ERROR_GENERAL, id);
-			getServletContext().getRequestDispatcher(target.getView()).forward(request, response);			
-		}
-		
 		try {
 			Long idLong = Long.parseLong(id);
-			super.ps.eliminarProducto(idLong);
+			super.ps.delete(idLong);
 			addAttribute(request, ViewKeyEnums.EXITO, "Se ha eliminado el producto id: " +id);
 			
 		} catch (ServiceException | RuntimeException e) {				
 			addAttribute(request, ViewKeyEnums.ERROR_GENERAL, e.getMessage());
 		} finally {
-			Collection<Producto> productos;
+			Collection<Articulos> articulos;
 			try {
-				productos = super.ps.findAll();
+				articulos = super.ps.findAll();
 			} catch (ServiceException e) {
-				productos = new ArrayList<Producto>();
+				articulos = new ArrayList<>();
 			}
-			addAttribute(request, ViewKeyEnums.LISTADO, productos);
+			addAttribute(request, ViewKeyEnums.LISTADO, articulos);
 			
+			Double suma = articulos.stream()
+				.map(p -> p.getPrecio())
+				.reduce(0D, (Double x, Double y) -> x+y);
+			
+			addAttribute(request, ViewKeyEnums.TOTAL, suma);
 		}
 		
 		//redireccion

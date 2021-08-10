@@ -1,6 +1,6 @@
 package ar.com.educacionit.web.enums;
 
-public enum ViewKeyEnums {
+public enum ViewKeyEnums implements Enumerable{
 
 	USUARIO("usuario"), 
 	USUARIO_PASSWORD_INVALIDO("Usuario/Password Invalido"),
@@ -12,13 +12,7 @@ public enum ViewKeyEnums {
 	
 	//clave de busqueda
 	CLAVE_BUSQUEDA("claveBusqueda"), 
-	ID_PRODUCTO("id"),
-	LISTADO_FAIL("listadoFail"),
-	LISTADO_OK("listadoOk"), 
 	TOTAL("total"),
-	
-	//NUEVAS
-	LIST_CATEGORIAS("categorias"),
 	;
 	
 	private String viewKey;
@@ -29,5 +23,10 @@ public enum ViewKeyEnums {
 
 	public String getViewKey() {
 		return viewKey;
+	}
+
+	@Override
+	public String getKey() {
+		return this.name();
 	}
 }

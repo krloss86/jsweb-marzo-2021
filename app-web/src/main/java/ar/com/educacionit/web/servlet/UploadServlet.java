@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.Part;
 
-import ar.com.educacionit.domain.Producto;
+import ar.com.educacionit.domain.Articulos;
 import ar.com.educacionit.web.enums.ViewEnums;
 import ar.com.educacionit.web.enums.ViewKeyEnums;
 import ar.com.educacionit.web.parser.CSVFileParser;
@@ -22,6 +22,8 @@ import ar.com.educacionit.web.parser.XLSFileParser;
 @WebServlet("/controllers/UploadServlet")
 @MultipartConfig
 public class UploadServlet extends BaseServlet {
+
+	private static final long serialVersionUID = 1771151827580239286L;
 
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -45,9 +47,9 @@ public class UploadServlet extends BaseServlet {
 				fileParser = new XLSFileParser(filePart);
 			}
 			
-			Collection<Producto> productos = fileParser.parse();
+			Collection<Articulos> articulos = fileParser.parse();
 			
-			addAttribute(request.getSession(), ViewKeyEnums.UPLOAD_PREVIEW_KEY, productos);
+			addAttribute(request.getSession(), ViewKeyEnums.UPLOAD_PREVIEW_KEY, articulos);
 		}else {
 			super.addAttribute(request, ViewKeyEnums.ERROR_GENERAL,"Debe serleccionar un archivo");
 			target = ViewEnums.UPLOAD;

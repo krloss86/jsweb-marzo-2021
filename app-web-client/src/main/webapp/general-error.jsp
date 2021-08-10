@@ -7,25 +7,28 @@
 		<jsp:include page="styles.jsp"/>
 	</head>
 	<body>
-		<div class="container">
+		<div class="container-fluid">
 		    <div class="row">
 		        <div class="col-12">
-		            <div class="error-template">
+		            <div>
 		                <h1>
 		                    Oops!</h1>
 		                <h2>
 		                    404 Not Found</h2>
-		                <div class="error-details">
+		                <div class="alert alert-danger">
 		                    <%
 			                    if(exception != null) {
-			                    	out.print(exception.toString());
+			                    	if(exception.getCause() !=null)
+			                    		out.println(exception.getCause().getMessage());
+			                    	else
+			                    		out.println(exception.getMessage());
 			                    }
 		                    %>
 		                </div>
-		                <div class="error-actions">
+		                <div>
 							<a href="<%=request.getContextPath()%>"
 								class="btn btn-primary btn-lg">
-								<span class="glyphicon glyphicon-home"></span> Take Me Home 
+								Ir a Home 
 							</a>
 		                </div>
 		            </div>

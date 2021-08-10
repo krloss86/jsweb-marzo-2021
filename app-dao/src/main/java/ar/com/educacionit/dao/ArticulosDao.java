@@ -13,4 +13,6 @@ public interface ArticulosDao extends GenericDao<Articulos>{
 	 * @throws GenericException 
 	 */
 	public List<Articulos> findAllBy(String titulo) throws GenericException;
+	
+	public List<Articulos> findAllCategoriaId(Long categoriaId) throws GenericException;
 }

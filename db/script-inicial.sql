@@ -1,23 +1,11 @@
-CREATE TABLE productos (
-	id SERIAL primary key NOT NULL,
-	titulo VARCHAR(50) NOT NULL,
-	precio FLOAT NOT NULL,
-	codigo VARCHAR(6) NOT NULL,
-	id_tipo_producto INT NOT NULL
-);
-alter table PRODUCTOS add constraint codigo_unique unique (CODIGO);
+drop schema public cascade;
+create schema public;
 
 CREATE TABLE users (
 	id SERIAL primary key NOT NULL,
 	username VARCHAR(50) NOT NULL,
 	password VARCHAR(50) NOT NULL
 );
-alter table users add constraint username_unique unique (username);
-INSERT INTO users (username, password) values('eduit','eduit');
-
--- Volcando estructura de base de datos para digitalers
---CREATE DATABASE IF NOT EXISTS bootcamp1;
---USE bootcamp1;
 
 CREATE TABLE IF NOT EXISTS newsletter (
   id SERIAL PRIMARY KEY NOT NULL,
@@ -75,7 +63,10 @@ CREATE TABLE IF NOT EXISTS socios (
   nombre varchar(50) NOT NULL,
   apellido varchar(50) NOT NULL,
   email varchar(100) DEFAULT NULL,
-  fecha_alta date NOT NULL
+  fecha_alta date NOT NULL,
+  direccion VARCHAR(100),
+  paises_id int,
+  users_id int NOT NULL
 ) ;
 
 CREATE TABLE IF NOT EXISTS estados_ordenes (
@@ -126,51 +117,54 @@ CREATE TABLE IF NOT EXISTS pagos_ordenes (
   monto float NOT NULL
 ) ;
 
--- La exportación de datos fue deseleccionada.
+--constraints
+
 --ARTICULOS
 ALTER TABLE ARTICULOS ADD CONSTRAINT FK_articulos_categorias FOREIGN KEY (CATEGORIAS_ID) REFERENCES CATEGORIAS(ID);
 ALTER TABLE ARTICULOS ADD CONSTRAINT FK_articulos_marcas FOREIGN KEY (MARCAS_ID) REFERENCES MARCAS(ID);
 ALTER TABLE ARTICULOS ADD CONSTRAINT UN_articulos_codigo unique (CODIGO);
-
---constraint de tabla ordenes
+ALTER TABLE ARTICULOS ADD CONSTRAINT CK_articulo_precio_positivo CHECK(precio >=0);
+--ordenes
 ALTER TABLE ORDENES ADD CONSTRAINT FK_ordenes_estados_ordenes FOREIGN KEY (ESTADOS_ORDENES_ID) REFERENCES ESTADOS_ORDENES(ID);
 ALTER TABLE ORDENES ADD CONSTRAINT FK_ordenes_socios FOREIGN KEY (SOCIOS_ID) REFERENCES SOCIOS(ID);
 ALTER TABLE ORDENES ADD CONSTRAINT FK_ordenes_cupones FOREIGN KEY (CUPONES_ID) REFERENCES CUPONES(ID);
-
+--ORDENES_ITEMS
 ALTER TABLE ORDENES_ITEMS ADD CONSTRAINT FK_items_ordenes_ordenes FOREIGN KEY (ordenes_id) REFERENCES ORDENES(ID);
-
 ALTER TABLE ORDENES_ITEMS ADD CONSTRAINT FK_items_ordenes_articulos FOREIGN KEY (articulos_id) REFERENCES ARTICULOS(ID);
-
+--PAGOS_ORDENES
 ALTER TABLE PAGOS_ORDENES ADD CONSTRAINT FK_pagos_ordenes_ordenes FOREIGN KEY (ordenes_id) REFERENCES ORDENES(ID);
 ALTER TABLE PAGOS_ORDENES ADD CONSTRAINT FK_pagos_ordenes_medios_pagos FOREIGN KEY (medios_pagos_id) REFERENCES MEDIOS_PAGOS(ID);
-
+--DIRECCIONES_ORDENES
 ALTER TABLE DIRECCIONES_ORDENES ADD CONSTRAINT FK_direcciones_ordenes_ordenes FOREIGN KEY (ordenes_id) REFERENCES ORDENES(ID);
 ALTER TABLE DIRECCIONES_ORDENES ADD CONSTRAINT FK_direcciones_ordenes_paises FOREIGN KEY (paises_id) REFERENCES PAISES(ID);
-
+--MARCAS
 ALTER TABLE MARCAS ADD CONSTRAINT UN_marcas_codigo unique (CODIGO);
 ALTER TABLE CATEGORIAS ADD CONSTRAINT UN_categorias_codigo unique (CODIGO);
-
+--CUPONES
 ALTER TABLE CUPONES ADD CONSTRAINT CHECK_DESCUENTO CHECK(DESCUENTO >= 0 AND DESCUENTO <=100);
+--USERS
+ALTER TABLE USERS ADD CONSTRAINT UN_users_username UNIQUE (username);
+--SOCIOS
+ALTER TABLE SOCIOS ADD CONSTRAINT FK_socios_users FOREIGN KEY (users_id) REFERENCES USERS(ID);
 
 --datos iniciales de prueba
+--paises
+insert into PAISES (descripcion, descripcion_corta,habilitada) values('ARGENTINA','ARG',1);
+insert into PAISES (descripcion, descripcion_corta,habilitada) values('BRASIL','BRA',1);
+--users
+INSERT INTO USERS (username, password) values('eduit','eduit');
+INSERT INTO SOCIOS (nombre,apellido,email,fecha_alta,users_id,direccion,paises_id) VALUES('carlos','lopez','email@email.com',CURRENT_DATE,(SELECT id FROM users LIMIT 1), NULL,(SELECT id FROM paises LIMIT 1));
+
+--categorias
 insert into CATEGORIAS (descripcion,codigo,habilitada) values('categoria 1', 'cat000',1);
+insert into CATEGORIAS (descripcion,codigo,habilitada) values('categoria 2', 'cat001',1);
+--marcas
 insert into MARCAS (descripcion, codigo,habilitada) values('marca 1', 'cod000',1);
-
---datos socios
-insert into socios(nombre, apellido,email,fecha_alta) values('carlos','lopez','email@email.com',CURRENT_DATE);
-
+insert into MARCAS (descripcion, codigo,habilitada) values('marca 2', 'cod001',1);
 --estados ordenes
 insert into estados_ordenes (descripcion,descripcion_corta,estado_final) values('ESTADO CREADA','INICIAL', 0); 
 insert into estados_ordenes (descripcion,descripcion_corta,estado_final) values('ESTADO FACTURADA','FACTURADA', 1);
-
 --medios pagos
 insert into medios_pagos (descripcion,descripcion_corta,codigo,habilitada) values('EFECTIVO CONTRAREEMBOLSO','EFE_REE','001',1);
-
 --paises
 insert into paises (descripcion, descripcion_corta,habilitada) values('ARGENTINA','ARG',1);
-
---cupones
-insert into cupones (nombre,codigo,fecha_vigencia_desde,fecha_vigencia_hasta, descuento) values('BIENVENIDA','001',CURRENT_DATE, date_add(CURRENT_DATE, interval 10 day),50);
---incrementar una fecha 10 dias en mysql
---select date_add(CURRENT_DATE, interval 10 day)
-

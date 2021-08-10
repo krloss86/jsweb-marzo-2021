@@ -13,7 +13,31 @@ public class Articulos extends Entity {
 	private Long stock;
 	private Long marcasId;
 	private Long categoriasId;
+
+	public Articulos() {
 	
+	}
+
+	public Articulos(Long id, String titulo, String codigo, Double precio, Long stock, Long marcasId,
+			Long categoriasId) {
+		this.id = id;
+		this.titulo = titulo;
+		this.codigo = codigo;
+		this.precio = precio;
+		this.stock = stock;
+		this.marcasId = marcasId;
+		this.categoriasId = categoriasId;
+	}
+
+	public Articulos(String titulo, String codigo, Double precio, Long stock, Long marcasId, Long categoriasId) {
+		this.titulo = titulo;
+		this.codigo = codigo;
+		this.precio = precio;
+		this.stock = stock;
+		this.marcasId = marcasId;
+		this.categoriasId = categoriasId;
+		this.fechaCreacion = new Date();
+	}
 	public Long getId() {
 		return id;
 	}

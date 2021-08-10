@@ -20,10 +20,6 @@ import ar.com.educacionit.web.enums.ViewKeyEnums;
 public class LoginServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
-    public LoginServlet() {
-        super();
-    }
-
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
@@ -42,8 +38,7 @@ public class LoginServlet extends HttpServlet {
 			User user = ls.getUserByUserName(username);
 			
 			if(user != null && user.getPassword().equals(password)) {
-				//request.setAttribute(ViewKeyEnums.USUARIO.name(), user);
-				
+
 				//sesion!
 				request.getSession().setAttribute(ViewKeyEnums.USUARIO.name(), user);
 			}else {

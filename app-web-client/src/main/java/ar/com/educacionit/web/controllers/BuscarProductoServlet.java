@@ -13,13 +13,15 @@ import ar.com.educacionit.domain.Articulos;
 import ar.com.educacionit.exceptions.ServiceException;
 import ar.com.educacionit.services.ArticulosService;
 import ar.com.educacionit.services.impl.ArticuloServiceImpl;
+import ar.com.educacionit.web.enums.CategoriaKeyEnum;
+import ar.com.educacionit.web.enums.TipoBusquedaEnum;
 import ar.com.educacionit.web.enums.ViewEnums;
 import ar.com.educacionit.web.enums.ViewKeyEnums;
 
 /**
  * Servlet implementation class BuscarProductoServlet
  */
-@WebServlet("/controllers/BuscarProductoServlet")
+@WebServlet("/BuscarProductoServlet")
 public class BuscarProductoServlet extends BaseServlet {
 	
 	private static ArticulosService service = new ArticuloServiceImpl();
@@ -28,17 +30,27 @@ public class BuscarProductoServlet extends BaseServlet {
        
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		String claveBusqueda = request.getParameter(ViewKeyEnums.CLAVE_BUSQUEDA.getViewKey());
-		
-		if(claveBusqueda == null || claveBusqueda.trim().equals("")) {
-			claveBusqueda ="";
-		}
+		String tipoBusqueda = request.getParameter(CategoriaKeyEnum.TIPO_BUSQUEDA.getViewKey());
 		
 		List<Articulos> articulos = new ArrayList<>();
 		
 		try {
-			articulos = service.findAllBy(claveBusqueda);		
-						
+			if(TipoBusquedaEnum.CATEGORIAS_ID.name().equals(tipoBusqueda)) {
+				String categoriasId = request.getParameter(CategoriaKeyEnum.CATEGORIAS_ID.getViewKey());
+				if(categoriasId == null || categoriasId.equals("0")) {
+					categoriasId = "-1";
+				}
+				articulos = service.findByCategoriaId(Long.parseLong(categoriasId));
+			}else if(TipoBusquedaEnum.CLAVE.name().equals(tipoBusqueda)){
+				String claveBusqueda = request.getParameter(ViewKeyEnums.CLAVE_BUSQUEDA.getViewKey());
+				if(claveBusqueda == null || claveBusqueda.trim().equals("")) {
+					claveBusqueda ="";
+				}
+				articulos = service.findAllBy(claveBusqueda);
+			}else {
+				articulos = service.findAll();
+			}
+			
 			if(articulos.isEmpty()) {	
 				addAttribute(request, ViewKeyEnums.WARNING_GENERAL, "No hay datos");
 			}
@@ -55,5 +67,13 @@ public class BuscarProductoServlet extends BaseServlet {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		doPost(req, resp);
+	}
+	
+	public List<Articulos> findArticulosByCategoriasId(Long categoriasId) throws ServiceException {
+		return service.findByCategoriaId(categoriasId);
+	}
+	
+	public List<Articulos> findArticulosByTitulo(String clave) throws ServiceException {
+		return service.findAllBy(clave);
 	}
 }

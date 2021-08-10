@@ -6,12 +6,12 @@ import java.io.IOException;
 import java.util.Map;
 import java.util.Set;
 
-import ar.com.educacionit.domain.Producto;
+import ar.com.educacionit.domain.Articulos;
 
 public class ProductoWritter implements IFileWritter {
 
 	@Override
-	public void write(String name, Map<String, Producto> productos) throws IOException {
+	public void write(String name, Map<String, Articulos> productos) throws IOException {
 		//abril
 		File file = new File(name);
 		
@@ -21,11 +21,11 @@ public class ProductoWritter implements IFileWritter {
 		fr.write("titulo;codigo;precio;tipo;motivo\n");
 		//si hay datos
 		
-		Set<Map.Entry<String, Producto>> entries = productos.entrySet();
+		Set<Map.Entry<String, Articulos>> entries = productos.entrySet();
 		
-		for(Map.Entry<String, Producto> aux : entries) {
+		for(Map.Entry<String, Articulos> aux : entries) {
 			//escribir
-			fr.write(aux.getValue().toCSV() + ";"+aux.getKey());
+			fr.write(toCSV(aux.getValue()) + ";"+aux.getKey());
 			fr.write("\n");
 		}
 		
