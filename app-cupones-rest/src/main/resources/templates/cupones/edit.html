@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+	<head>
+	    <meta charset="utf-8">
+	    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+		<link rel="stylesheet" th:href="@{/css/bootstrap/themes/cerulean/bootstrap.css}">
+	</head>
+	<body>
+		<div th:insert="navbar.html"> </div>
+		<div class="container">
+			<div class="row">
+				<div class="col-12">
+					<h1>Editar</h1>
+					<form
+						class="row g-1 needs-validation was-validated"
+						action="#"
+						th:action="@{/cupon/update}"
+						th:object="${CUPON}"
+						method="post"
+						>
+						<div class="form-group">
+							<label for="codigo" class="control-label col-sm-4">ID</label>
+							<input
+								type="text"
+								th:field="*{id}"
+								id="id" 
+								class="form-control" 
+								readonly="readonly"/>
+						</div>
+						<div class="form-group">
+							<label for="codigo" class="control-label col-sm-4">
+								Nombre
+							</label>
+							<input
+								type="text"
+								th:field="*{nombre}"
+								id="nombre" 
+								class="form-control" 
+								required/>
+					        <div th:if="${#fields.hasErrors('codigo')}" 
+					        	th:errors="*{codigo}" 
+					        	class="invalid-feedback"></div>
+					        <div th:if="${#fields.hasErrors('nombre')}" 
+					        	th:errors="*{nombre}" 
+					        	class="invalid-feedback"></div>
+						</div>
+						<div class="form-group">
+							<label for="codigo" class="control-label col-sm-4">
+								Código
+							</label>
+							<input
+								type="text"
+								th:field="*{codigo}"
+								id="codigo" 
+								class="form-control" 
+								required/>
+					        <div th:if="${#fields.hasErrors('codigo')}" 
+					        	th:errors="*{codigo}" 
+					        	class="invalid-feedback"></div>
+						</div>
+						<div class="form-group">
+							<label for="descripcion" class="control-label col-sm-4">
+								Vigencia Desde
+							</label>
+<!-- 							<time th:text="*{fechaVigenciaDesde}"></time> -->
+							<input
+								type="date"
+								id="fechaVigenciaDesde"
+								th:field="*{fechaVigenciaDesde}"
+								class="form-control"
+								required/>
+					        <div th:if="${#fields.hasErrors('fechaVigenciaDesde')}" 
+					        	th:errors="*{fechaVigenciaDesde}" 
+					        	class="invalid-feedback"></div>
+						</div>
+						<div class="form-group">
+							<label for="precio" class="control-label col-sm-4">
+								Vigencia Hasta
+							</label>
+							<input
+							    type="date"
+								th:field="*{fechaVigenciaHasta}"
+								id="fechaVigenciaHasta"
+								class="form-control"
+								required/>
+					        <div th:if="${#fields.hasErrors('fechaVigenciaHasta')}" 
+					        	th:errors="*{fechaVigenciaHasta}" 
+					        	class="invalid-feedback"></div>
+						</div>
+						<div class="form-group">
+							<label for="precio" class="control-label col-sm-4">
+								Descuento
+							</label>
+							<input
+							    type="text"
+								th:field="*{descuento}"
+								id="descuento"
+								class="form-control"
+								required
+								/>
+					        <div th:if="${#fields.hasErrors('descuento')}" 
+					        	th:errors="*{descuento}" 
+					        	class="invalid-feedback"></div>
+						</div>
+						<button 
+							type="submit"
+							class="btn btn-success mt-1">Grabar</button>
+						<a th:href="@{/cupon/list}"
+							class="btn btn-primary ml-2 mt-1">Volver</a>
+					</form>
+				</div>
+			</div>
+		</div>
+		<div th:insert="scripts.html"> </div>		
+	</body>
+</html>

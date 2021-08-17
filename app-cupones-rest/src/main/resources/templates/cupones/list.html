@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<meta charset="utf-8">
+    	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+		<link rel="stylesheet" th:href="@{/css/bootstrap/themes/cerulean/bootstrap.css}">
+		<script type="text/javascript">
+			function guardarId(id) {
+				//funcion nativa de js
+				document.getElementById('idProductoEliminar').value = id;
+			}
+		</script>
+	</head>
+	<body>
+		<div th:insert="navbar.html"> </div>
+		<div class="container">
+			<div class="row">
+				<div class="col-12">
+		    		<h1>Cupones</h1>
+		    		<a th:href="@{/cupon/new}" href="new">Crear Nuevo</a> | <a th:href="@{'/logout'}">Logout</a>
+		    	</div>
+		    </div>
+			<div class="row">
+				<div class="col-12">
+					<table class="table">
+						<thead>
+							<tr>
+								<th scope="col">#</th>
+								<th scope="col">Nombre</th>
+								<th scope="col">C&oacute;digo</th>
+								<th scope="col">Vigencia Desde</th>
+								<th scope="col">Vigencia Hasta</th>
+								<th scope="col">Descuento</th>
+								<th scope="col">&nbsp;</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr th:each="cupon : ${CUPONES}">
+								<td th:text="${cupon.id}"></td>
+								<td th:text="${cupon.codigo}"></td>
+								<td th:text="${cupon.nombre}"></td>
+								<td th:text="${cupon.fechaVigenciaDesde}"></td>
+								<td th:text="${cupon.fechaVigenciaHasta}"></td>
+								<td th:text="${cupon.descuento}"></td>
+								<td>
+									<a  class="btn btn-primary"
+										th:href="@{'/cupon/edit/' + ${cupon.id}}">Edit</a>
+			                		<a  class="btn btn-danger me-md-2"
+			                			th:attr="onclick='guardarId(' + ${cupon.id}+')'"
+			                			data-bs-toggle="modal" data-bs-target="#exampleModal">Delete</a>
+								</td>
+							</tr> 
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+		<!-- Modal -->
+		<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+		  <div class="modal-dialog">
+		    <div class="modal-content">
+		      <div class="modal-header">
+		        <h5 class="modal-title" id="exampleModalLabel">¿Desea eliminar el producto?</h5>
+		        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+		      </div>
+		      <div class="modal-body">
+		        ¿Desea eliminar el producto?
+		      </div>
+		      <div class="modal-footer">
+		        <form id="eliminarForm"
+		        	th:method="GET" 
+		        	action="#"
+		        	th:action="@{/cupon/delete2}"
+		        	>
+		      		<input name="id" type="hidden" id="idProductoEliminar">
+        	        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>		        	
+		        	<button type="submit" class="btn btn-primary">Confirmar</button>
+		        </form>
+		      </div>
+		    </div>
+		  </div>
+		</div>
+		<div th:insert="scripts.html"> </div>		
+	</body>
+</html>
