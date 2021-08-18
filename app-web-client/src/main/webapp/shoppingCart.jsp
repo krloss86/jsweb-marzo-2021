@@ -105,7 +105,7 @@
 						<p>No hay productos en el carrito</p>
 						<hr>
 						<p class="mb-0">
-							<a class="btn btn-info btn-md" href="/app-web-client/">
+							<a class="btn btn-info btn-md" href="/app-web-client/BuscarProductoServlet">
 							<i class="bi bi-cart"></i> 
 							Continuar comprando </a>
 						</p>

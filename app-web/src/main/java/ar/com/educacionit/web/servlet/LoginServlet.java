@@ -15,6 +15,7 @@ import ar.com.educacionit.services.LoginService;
 import ar.com.educacionit.services.impl.LoginServiceImp;
 import ar.com.educacionit.web.enums.ViewEnums;
 import ar.com.educacionit.web.enums.ViewKeyEnums;
+import at.favre.lib.crypto.bcrypt.BCrypt;
 
 @WebServlet("/LoginServlet")
 public class LoginServlet extends HttpServlet {
@@ -37,10 +38,18 @@ public class LoginServlet extends HttpServlet {
 			
 			User user = ls.getUserByUserName(username);
 			
-			if(user != null && user.getPassword().equals(password)) {
+			if(user != null) {
+				//verifico la password
+				BCrypt.Result result = BCrypt.verifyer().verify(password.getBytes(), user.getPassword().getBytes());					
+			
+				if(result.verified) {
 
-				//sesion!
-				request.getSession().setAttribute(ViewKeyEnums.USUARIO.name(), user);
+					//sesion!
+					request.getSession().setAttribute(ViewKeyEnums.USUARIO.name(), user);
+				}else {
+					request.setAttribute(ViewKeyEnums.ERROR_GENERAL.name(), ViewKeyEnums.USUARIO_PASSWORD_INVALIDO.getViewKey());
+					target = ViewEnums.LOGIN;
+				}
 			}else {
 				request.setAttribute(ViewKeyEnums.ERROR_GENERAL.name(), ViewKeyEnums.USUARIO_PASSWORD_INVALIDO.getViewKey());
 				target = ViewEnums.LOGIN;

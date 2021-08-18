@@ -19,7 +19,7 @@ import javax.servlet.http.HttpSession;
 import ar.com.educacionit.domain.User;
 import ar.com.educacionit.web.enums.ViewKeyEnums;
 
-@WebFilter(filterName ="/ClientSessionFilter", urlPatterns = "/*")
+@WebFilter(filterName ="/ClientSessionFilter", urlPatterns = {"/secure/*","/controllers/*"})
 public class ClientSessionFilter implements Filter {
 
 	private ServletContext context;
@@ -36,13 +36,13 @@ public class ClientSessionFilter implements Filter {
 		HttpServletResponse res = (HttpServletResponse) response;
 
 		String uri = req.getRequestURI();
-		String contextPath = req.getContextPath();
+		//String contextPath = req.getContextPath();
 		
 		this.context.log("Requested Resource::" + uri);
 
 		HttpSession session = req.getSession(false);
 
-		final List<String> validatePath = Arrays.asList(
+		/*final List<String> validatePath = Arrays.asList(
 				contextPath+"/controllers/",
 				contextPath+"/secure/"
 		);
@@ -52,7 +52,7 @@ public class ClientSessionFilter implements Filter {
 				.count() > 0;
 		
 		if(mustValidatePath) {
-
+		*/
 			if (session == null) {
 				this.context.log("Unauthorized access request");
 				request.setAttribute(ViewKeyEnums.ERROR_GENERAL.name(), ViewKeyEnums.USUARIO_SESSION_INVALIDA.getViewKey());
@@ -72,10 +72,10 @@ public class ClientSessionFilter implements Filter {
 					req.getRequestDispatcher("/login.jsp").forward(request, response);
 				}
 			}
-		}else {
+		/*}else {
 			// pass the request along the filter chain
 			chain.doFilter(request, response);
-		}
+		}*/
 	}
 
 	public void destroy() {

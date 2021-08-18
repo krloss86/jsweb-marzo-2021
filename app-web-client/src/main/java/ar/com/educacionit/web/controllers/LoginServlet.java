@@ -18,6 +18,7 @@ import ar.com.educacionit.services.impl.PaisesServiceImpl;
 import ar.com.educacionit.web.enums.CarritoKeyEnums;
 import ar.com.educacionit.web.enums.ViewEnums;
 import ar.com.educacionit.web.enums.ViewKeyEnums;
+import at.favre.lib.crypto.bcrypt.BCrypt;
 
 @WebServlet("/LoginServlet")
 public class LoginServlet extends BaseServlet {
@@ -39,14 +40,20 @@ public class LoginServlet extends BaseServlet {
 				
 				User user = ls.getUserByUserName(username);
 				
-				if(user != null && user.getPassword().equals(password)) {
-					//request.setAttribute(ViewKeyEnums.USUARIO.name(), user);
+				if(user != null) {
+					//verifico la password
+					BCrypt.Result result = BCrypt.verifyer().verify(password.getBytes(), user.getPassword().getBytes());					
 					
-					//sesion!
-					addAttribute(request.getSession(), ViewKeyEnums.USUARIO, user);
-					
-					List<Paises> paises = new PaisesServiceImpl().findAll();
-					addAttribute(request.getSession(), CarritoKeyEnums.PAISES, paises);
+					if(result.verified) {
+						//sesion!
+						addAttribute(request.getSession(), ViewKeyEnums.USUARIO, user);
+						
+						List<Paises> paises = new PaisesServiceImpl().findAll();
+						addAttribute(request.getSession(), CarritoKeyEnums.PAISES, paises);
+					} else {
+						request.setAttribute(ViewKeyEnums.ERROR_GENERAL.name(), ViewKeyEnums.USUARIO_PASSWORD_INVALIDO.getViewKey());
+						target = ViewEnums.LOGIN;
+					}
 				}else {
 					request.setAttribute(ViewKeyEnums.ERROR_GENERAL.name(), ViewKeyEnums.USUARIO_PASSWORD_INVALIDO.getViewKey());
 					target = ViewEnums.LOGIN;

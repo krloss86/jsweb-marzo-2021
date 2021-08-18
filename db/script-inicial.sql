@@ -4,7 +4,7 @@ create schema public;
 CREATE TABLE users (
 	id SERIAL primary key NOT NULL,
 	username VARCHAR(50) NOT NULL,
-	password VARCHAR(50) NOT NULL
+	password VARCHAR(100) NOT NULL
 );
 
 CREATE TABLE IF NOT EXISTS newsletter (
@@ -117,6 +117,16 @@ CREATE TABLE IF NOT EXISTS pagos_ordenes (
   monto float NOT NULL
 ) ;
 
+CREATE TABLE IF NOT EXISTS roles (
+	id SERIAL PRIMARY KEY NOT NULL,
+	role VARCHAR(20) NOT NULL
+);
+
+CREATE TABLE IF NOT EXISTS users_roles (
+	users_id INT NOT NULL,
+	roles_id INT NOT NULL
+);
+
 --constraints
 
 --ARTICULOS
@@ -142,19 +152,24 @@ ALTER TABLE MARCAS ADD CONSTRAINT UN_marcas_codigo unique (CODIGO);
 ALTER TABLE CATEGORIAS ADD CONSTRAINT UN_categorias_codigo unique (CODIGO);
 --CUPONES
 ALTER TABLE CUPONES ADD CONSTRAINT CHECK_DESCUENTO CHECK(DESCUENTO >= 0 AND DESCUENTO <=100);
+ALTER TABLE CUPONES ADD CONSTRAINT UN_CUPON_CODIGO unique (CODIGO);
 --USERS
 ALTER TABLE USERS ADD CONSTRAINT UN_users_username UNIQUE (username);
 --SOCIOS
 ALTER TABLE SOCIOS ADD CONSTRAINT FK_socios_users FOREIGN KEY (users_id) REFERENCES USERS(ID);
+--ROLES
+ALTER TABLE ROLES ADD CONSTRAINT UN_ROLE UNIQUE (ROLE);
+--USERS_ROLES
+ALTER TABLE users_roles ADD CONSTRAINT fk_users_roles_id FOREIGN KEY (users_id) REFERENCES users(id); 
+ALTER TABLE users_roles ADD CONSTRAINT fk_users_roles_r_id FOREIGN KEY (roles_id) REFERENCES roles(id);
 
 --datos iniciales de prueba
 --paises
 insert into PAISES (descripcion, descripcion_corta,habilitada) values('ARGENTINA','ARG',1);
 insert into PAISES (descripcion, descripcion_corta,habilitada) values('BRASIL','BRA',1);
 --users
-INSERT INTO USERS (username, password) values('eduit','eduit');
+INSERT INTO USERS (username, password) values('eduit','$2y$10$pz6nmql6Sz5kOcNuSZw/reJSu1ZG1QYS8TMMRnNNZ0dO4zPARYD9m');
 INSERT INTO SOCIOS (nombre,apellido,email,fecha_alta,users_id,direccion,paises_id) VALUES('carlos','lopez','email@email.com',CURRENT_DATE,(SELECT id FROM users LIMIT 1), NULL,(SELECT id FROM paises LIMIT 1));
-
 --categorias
 insert into CATEGORIAS (descripcion,codigo,habilitada) values('categoria 1', 'cat000',1);
 insert into CATEGORIAS (descripcion,codigo,habilitada) values('categoria 2', 'cat001',1);
@@ -168,3 +183,7 @@ insert into estados_ordenes (descripcion,descripcion_corta,estado_final) values(
 insert into medios_pagos (descripcion,descripcion_corta,codigo,habilitada) values('EFECTIVO CONTRAREEMBOLSO','EFE_REE','001',1);
 --paises
 insert into paises (descripcion, descripcion_corta,habilitada) values('ARGENTINA','ARG',1);
+--roles
+INSERT INTO roles(role) VALUES('ADMIN');
+INSERT INTO roles(role) VALUES('USER');
+INSERT INTO users_roles(USERS_ID,ROLES_ID) VALUES(1,1);
