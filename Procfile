@@ -1,1 +1,1 @@
-web: java $JAVA_OPTS -jar app-web-client/target/dependency/webapp-runner.jar --port $PORT app-web-client/target/*.war
+web: java $JAVA_OPTS -jar app-web-springmvc/target/dependency/webapp-runner.jar --port $PORT app-web-springmvc/target/*.jar
