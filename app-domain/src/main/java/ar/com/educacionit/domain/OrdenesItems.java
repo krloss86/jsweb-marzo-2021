@@ -41,11 +41,7 @@ public class OrdenesItems extends Entity{
 		return "OrdenesItems [ordenesId=" + ordenesId + ", numeroItem=" + numeroItem + ", cantidad=" + cantidad
 				+ ", articulosId=" + articulosId + "]";
 	}
-
-	@Override
-	public void setId(Serializable id) {
-		this.setId((Long)id);
-	}
+	
 	public Long getId() {
 		return id;
 	}

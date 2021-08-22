@@ -179,6 +179,8 @@ insert into MARCAS (descripcion, codigo,habilitada) values('marca 2', 'cod001',1
 --estados ordenes
 insert into estados_ordenes (descripcion,descripcion_corta,estado_final) values('ESTADO CREADA','INICIAL', 0); 
 insert into estados_ordenes (descripcion,descripcion_corta,estado_final) values('ESTADO FACTURADA','FACTURADA', 1);
+insert into estados_ordenes (descripcion,descripcion_corta,estado_final) values('ESTADO CANCELADA','CANCELADA', 1);
+
 --medios pagos
 insert into medios_pagos (descripcion,descripcion_corta,codigo,habilitada) values('EFECTIVO CONTRAREEMBOLSO','EFE_REE','001',1);
 --paises

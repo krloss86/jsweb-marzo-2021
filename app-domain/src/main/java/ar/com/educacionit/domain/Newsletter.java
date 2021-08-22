@@ -1,6 +1,6 @@
 package ar.com.educacionit.domain;
 
-public class Newsletter {
+public class Newsletter extends Entity{
 
 	private Long id;
 	private String email;

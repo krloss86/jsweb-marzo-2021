@@ -1,6 +1,5 @@
 package ar.com.educacionit.domain;
 
-import java.io.Serializable;
 import java.util.Date;
 
 public class Articulos extends Entity {
@@ -92,10 +91,5 @@ public class Articulos extends Entity {
 		return "Articulo [id=" + id + ", titulo=" + titulo + ", fechaCreacion=" + fechaCreacion + ", precio=" + precio
 				+ ", stock=" + stock + ", marcasId=" + marcasId + ", categoriasId=" + categoriasId + "]";
 	}
-	@Override
-	public void setId(Serializable id) {
-		this.id = (Long)id;		
-	}
-
 	
 }

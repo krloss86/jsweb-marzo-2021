@@ -13,7 +13,6 @@ public class AdministradorDeConexiones {
 		String user ="fwbhwfmiaiacla";
 		String password = "1c5bc164fc9dd6fac878c75684f99074716202336e59c06393900c1c56ef8ed5";		
 		String driverName = "org.postgresql.Driver";
-		
 		/*
 		String url = "jdbc:mysql://127.0.0.1/bootcamp1?serverTimeZone=UTC&userSSL=false";
 		String user ="root";

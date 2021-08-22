@@ -1,8 +1,5 @@
 package ar.com.educacionit.domain;
 
-import java.io.Serializable;
-import java.util.Date;
-
 public class DireccionesOrdenes extends Entity {
 
 	private Long id;	
@@ -41,9 +38,5 @@ public class DireccionesOrdenes extends Entity {
 	public void setDireccionEnvio(String direccionEnvio) {
 		this.direccionEnvio = direccionEnvio;
 	}
-
-	@Override
-	public void setId(Serializable id) {
-		setId((Long)id);
-	}	
+	
 }

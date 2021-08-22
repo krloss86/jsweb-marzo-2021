@@ -1,7 +1,5 @@
 package ar.com.educacionit.domain;
 
-import java.io.Serializable;
-
 public class Marcas extends Entity{
 
 	private Long id;
@@ -39,9 +37,5 @@ public class Marcas extends Entity{
 		return "Marcas [id=" + id + ", descripcion=" + descripcion + ", codigo=" + codigo + "]";
 	}
 	
-	@Override
-	public void setId(Serializable id) {
-		this.setId((Long)id);		
-	}
 	
 }

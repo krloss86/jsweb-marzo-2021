@@ -1,6 +1,6 @@
 package ar.com.educacionit.domain;
 
-public class Producto {
+public class Producto extends Entity{
 
 	private Long id;
 	private String titulo;

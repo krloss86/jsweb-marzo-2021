@@ -1,7 +1,5 @@
 package ar.com.educacionit.domain;
 
-import java.io.Serializable;
-
 public class Paises extends Entity{
 
 	private Long id;
@@ -28,17 +26,11 @@ public class Paises extends Entity{
 		this.descripcionCorta = descripcionCorta;
 	}
 	
-	
 	public Long getHabilitada() {
 		return habilitada;
 	}
 	public void setHabilitada(Long habilitada) {
 		this.habilitada = habilitada;
-	}
-		
-	@Override
-	public void setId(Serializable id) {
-		setId((Long)id);
 	}
 	
 	@Override

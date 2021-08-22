@@ -1,6 +1,5 @@
 package ar.com.educacionit.domain;
 
-import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
@@ -55,12 +54,7 @@ public class Ordenes extends Entity {
 	public void setCuponesId(Long cuponesId) {
 		this.cuponesId = cuponesId;
 	}
-	
-	@Override
-	public void setId(Serializable id) {
-		this.setId((Long)id);
-	}
-	
+		
 	@Override
 	public String toString() {
 		return "Ordenes [id=" + id + ", fechaCreacion=" + fechaCreacion + ", socioId=" + sociosId + ", estadosOdenesId="
@@ -85,6 +79,5 @@ public class Ordenes extends Entity {
 	public void setPagoOrden(PagosOrdenes pagoOrden) {
 		this.pagoOrden = pagoOrden;
 	}
-	
-	
+		
 }

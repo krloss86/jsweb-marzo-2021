@@ -1,7 +1,5 @@
 package ar.com.educacionit.domain;
 
-import java.io.Serializable;
-
 public class EstadosOrdenes extends Entity{
 
 	private Long id;
@@ -36,10 +34,6 @@ public class EstadosOrdenes extends Entity{
 		this.estadoFinal = estadoFinal;
 	}
 	
-	@Override
-	public void setId(Serializable id) {
-		setId((Long)id);
-	}
 	@Override
 	public String toString() {
 		return "EstadosOrdenes [id=" + id + ", descripcion=" + descripcion + ", estadoFinal=" + estadoFinal + "]";

@@ -1,6 +1,5 @@
 package ar.com.educacionit.domain;
 
-import java.io.Serializable;
 import java.util.Date;
 
 public class Socios extends Entity {
@@ -43,12 +42,7 @@ public class Socios extends Entity {
 	public void setFechaAlta(Date fechaAlta) {
 		this.fechaAlta = fechaAlta;
 	}
-	
-	@Override
-	public void setId(Serializable id) {
-		setId((Long)id);
-	}
-	
+		
 	@Override
 	public String toString() {
 		return "Socioas [id=" + id + ", nombre=" + nombre + ", apellido=" + apellido + ", email=" + email

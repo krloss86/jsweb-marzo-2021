@@ -1,7 +1,5 @@
 package ar.com.educacionit.domain;
 
-import java.io.Serializable;
-
 public class MediosPagos extends Entity {
 
 	private Long id;
@@ -46,11 +44,6 @@ public class MediosPagos extends Entity {
 	@Override
 	public String toString() {
 		return "MediosPagos [id=" + id + ", descripcion=" + descripcion + ", habilitada=" + habilitada + "]";
-	}
-	
-	@Override
-	public void setId(Serializable id) {
-		setId((Long)id);
 	}
 	
 }

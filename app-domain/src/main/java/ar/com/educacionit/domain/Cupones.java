@@ -1,6 +1,5 @@
 package ar.com.educacionit.domain;
 
-import java.io.Serializable;
 import java.util.Date;
 
 public class Cupones extends Entity {
@@ -47,10 +46,6 @@ public class Cupones extends Entity {
 	}
 	public void setCodigo(String codigo) {
 		this.codigo = codigo;
-	}
-	@Override
-	public void setId(Serializable id) {
-		setId((Long)id);
 	}
 	
 	@Override

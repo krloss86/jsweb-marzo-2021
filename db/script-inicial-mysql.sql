@@ -183,6 +183,8 @@ insert into MARCAS (descripcion, codigo,habilitada) values('marca 1', 'cod001',1
 #estados ordenes
 insert into ESTADOS_ORDENES (descripcion,descripcion_corta,estado_final) values('ESTADO CREADA','INICIAL', 0); 
 insert into ESTADOS_ORDENES (descripcion,descripcion_corta,estado_final) values('ESTADO FACTURADA','FACTURADA', 1);
+insert into ESTADOS_ORDENES (descripcion,descripcion_corta,estado_final) values('ESTADO CANCELADA','CANCELADA', 1);
+
 #medios pagos
 insert into MEDIOS_PAGOS (descripcion,descripcion_corta,codigo,habilitada) values('EFECTIVO CONTRAREEMBOLSO','EFE_REE','001',1);
 #incrementar una fecha 10 dias en mysql

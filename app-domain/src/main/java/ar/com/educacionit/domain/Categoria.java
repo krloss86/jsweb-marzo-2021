@@ -1,7 +1,5 @@
 package ar.com.educacionit.domain;
 
-import java.io.Serializable;
-
 /**
  * Tabla categorias
  * @author CHLopez
@@ -43,11 +41,6 @@ public class Categoria extends Entity{
 
 	public void setCodigo(String codigo) {
 		this.codigo = codigo;
-	}
-
-	@Override
-	public void setId(Serializable id) {
-		this.id = (Long)id;
 	}
 	
 }

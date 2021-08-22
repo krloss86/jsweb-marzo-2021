@@ -1,6 +1,6 @@
 package ar.com.educacionit.domain;
 
-public class User {
+public class User extends Entity{
 
 	private Long id;
 	private String username;
